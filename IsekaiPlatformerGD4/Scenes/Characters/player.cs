@@ -78,7 +78,7 @@ public partial class player : CharacterBody2D
 
         if (IsOnFloor())
         {
-            hasDoubleJump = true;
+            hasDoubleJump = false;
             hasDash = true;
 
         }

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bray8ke2twbqg"]
+
+[ext_resource type="Script" path="res://Scenes/UI/lbl_event.cs" id="1_0scpn"]
+
+[node name="lbl_event" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+tooltip_text = "schmik?"
+mouse_filter = 1
+text = "dsklfalsdkj"
+script = ExtResource("1_0scpn")

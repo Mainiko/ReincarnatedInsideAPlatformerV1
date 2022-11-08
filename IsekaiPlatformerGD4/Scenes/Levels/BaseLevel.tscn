@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://rhhh68q4atdg"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/BaseLevel.cs" id="1_nd4ev"]
+[ext_resource type="TileSet" uid="uid://c18q7b77gfsuc" path="res://Assets/Sprites/Tiles/Isekai_Tiles_1/tileset_Isekai_Tiles_1.tres" id="1_sm6hl"]
+[ext_resource type="Texture2D" uid="uid://dvpdxqxkijq33" path="res://Assets/Sprites/Backgrounds/purpletestBG1.png" id="3_gmdih"]
+[ext_resource type="PackedScene" uid="uid://ynqqfcax2dc5" path="res://Scenes/Enemies/ball_enemy.tscn" id="4_7ryhe"]
+[ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="5_plhsf"]
+[ext_resource type="PackedScene" uid="uid://bm8na00p1esbi" path="res://Scenes/text_rect_icon.tscn" id="6_hrk1r"]
+[ext_resource type="PackedScene" uid="uid://bray8ke2twbqg" path="res://Scenes/UI/lbl_event.tscn" id="7_ojdin"]
+
+[node name="BaseLevel" type="Node"]
+script = ExtResource("1_nd4ev")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_gmdih")
+
+[node name="TileMap" type="TileMap" parent="."]
+light_mask = 2
+tile_set = ExtResource("1_sm6hl")
+format = 2
+layer_0/tile_data = PackedInt32Array(458762, 0, 1, 458763, 131072, 1, 458764, 131072, 2, 524299, 131072, 1, 524298, 65536, 1, 524301, 131072, 2, 458765, 131072, 1, 524300, 65536, 2, 19, 0, 0, 65555, 0, 2, 655376, 0, 1, 655377, 65536, 1, 589841, 65536, 1, 589842, 65536, 1, 589843, 65536, 1, 524307, 65536, 2, 524306, 65536, 1, 524305, 0, 1, 524304, 0, 1, 589840, 65536, 0, 655379, 65536, 1, 655380, 131072, 1, 655378, 65536, 1, 720915, 65536, 1, 720914, 65536, 1, 720913, 65536, 1, 720912, 65536, 2, 720911, 0, 0, 720896, 131072, 1, 524308, 131072, 2, 524309, 65536, 1, 524310, 65536, 1, 524311, 65536, 1, 524312, 65536, 1, 655355, 65536, 1, 655354, 0, 1, 524314, 65536, 1, 524313, 65536, 1, 720903, 65536, 0, 720902, 65536, 0, 720901, 65536, 0, 720900, 65536, 0, 720899, 65536, 0, 720898, 65536, 0, 720904, 65536, 0, 720905, 65536, 0, 720906, 65536, 0, 720907, 65536, 0, 720908, 65536, 0, 720909, 65536, 0, 720910, 0, 2, 655375, 65536, 1, 458769, 0, 1, 262163, 0, 1, 196627, 0, 1, 393226, 0, 1, 720897, 131072, 1, 393228, 131072, 1, 327692, 131072, 0, 262155, 131072, 1, 196619, 131072, 0, 131082, 0, 2, 65546, 0, 0, 196618, 65536, 1, 262154, 0, 1, 327690, 0, 1, 327691, 65536, 1, 393227, 65536, 1, -65517, 65536, 2, -131053, 65536, 1, -131054, 65536, 1, -131055, 65536, 1, -131056, 65536, 1, -131057, 65536, 1, -131058, 65536, 1, -131059, 65536, 1, -131060, 65536, 1, -131061, 65536, 1, -131062, 0, 0, -131070, 131072, 0, -131071, 0, 0, -131072, 65536, 1, -131063, 65536, 1, -131064, 65536, 1, -131065, 65536, 1, -131066, 65536, 1, -131067, 65536, 1, -131068, 65536, 1, -131069, 65536, 1, 458771, 65536, 1, 393235, 65536, 0, 327699, 131072, 0, 131091, 0, 0, 458770, 65536, 1, 393234, 65536, 1, 131075, 0, 1, 196611, 0, 1, 262147, 0, 1, 327683, 0, 1, 393219, 0, 1, 458755, 0, 1, 524291, 0, 1, 131079, 0, 1, 196615, 0, 1, 262151, 0, 1, 327687, 0, 1, 393223, 0, 1, 458759, 0, 1, 524295, 0, 1, 393211, 0, 0, 458747, 65536, 1, 524283, 65536, 1, 589819, 0, 2, 720891, 131072, 2, 786427, 65536, 1, 786428, 65536, 1, 786429, 65536, 1, 786430, 65536, 1, 786431, 65536, 1, -65537, 65536, 1, -65538, 65536, 1, -65539, 65536, 1, -65540, 131072, 0, -65541, 65536, 1, -5, 65536, 1, 65531, 65536, 1, 131067, 65536, 1, 196603, 65536, 1, 262139, 0, 2, 327675, 65536, 1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.870588, 0.780392, 0.945098, 1)
+
+[node name="PlayerRoot" type="Node2D" parent="."]
+position = Vector2(88, 80)
+
+[node name="BallEnemyRoot" type="Node2D" parent="."]
+position = Vector2(264, 40)
+
+[node name="ballEnemy" parent="." instance=ExtResource("4_7ryhe")]
+position = Vector2(176, -8)
+
+[node name="spike_enemy" parent="." instance=ExtResource("5_plhsf")]
+position = Vector2(144, 176)
+
+[node name="text_rect_icon" parent="." instance=ExtResource("6_hrk1r")]
+offset_left = 8.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 24.0
+
+[node name="text_rect_icon2" parent="." instance=ExtResource("6_hrk1r")]
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 48.0
+offset_bottom = 72.0
+
+[node name="text_rect_icon3" parent="." instance=ExtResource("6_hrk1r")]
+offset_left = 8.0
+offset_top = 80.0
+offset_right = 48.0
+offset_bottom = 120.0
+
+[node name="text_rect_icon4" parent="." instance=ExtResource("6_hrk1r")]
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 48.0
+offset_bottom = 168.0
+
+[node name="lbl_event" parent="." instance=ExtResource("7_ojdin")]
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 283.0
+offset_bottom = 34.0

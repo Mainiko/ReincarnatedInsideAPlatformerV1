@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm8na00p1esbi"]
+
+[ext_resource type="Texture2D" uid="uid://c8l6extavg0hx" path="res://icon.svg" id="1_3cxy0"]
+[ext_resource type="Script" path="res://Scenes/text_rect_icon.cs" id="2_wlas5"]
+
+[node name="text_rect_icon" type="TextureRect"]
+offset_left = -16.0
+offset_top = -40.0
+offset_right = 24.0
+texture = ExtResource("1_3cxy0")
+ignore_texture_size = true
+script = ExtResource("2_wlas5")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 63.0
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -40,7 +40,7 @@ position = Vector2(264, 40)
 position = Vector2(176, -8)
 
 [node name="spike_enemy" parent="." instance=ExtResource("5_plhsf")]
-position = Vector2(344, 128)
+position = Vector2(136, 176)
 
 [node name="text_rect_icon" parent="." instance=ExtResource("6_hrk1r")]
 offset_left = 8.0

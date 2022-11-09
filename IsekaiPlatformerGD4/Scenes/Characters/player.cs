@@ -21,27 +21,27 @@ public partial class player : CharacterBody2D
 
     private enum State { NORMAL, DASHING, INPUT_DISABLED }
 
-    private Vector2 velocity = Vector2.Zero;
-    private int maxHorizontalSpeed = 200;
-    private int horizontalAcceleration = 2000;
-    private int jumpSpeed = 300;
-    private int jumpTerminationMultiplier = 4;
-    private bool hasDoubleJump = false;
-    private bool hasDash = false;
+    [Export]private int maxHorizontalSpeed = 200;
+    [Export]private int horizontalAcceleration = 2000;
+    [Export]private int jumpSpeed = 300;
+    [Export]private int jumpTerminationMultiplier = 4;
+    [Export]private int addiditionalFallGravity = 1500;
+    [Export]private float acceleration = 0.25f;
+    [Export]private int wallGravity = 900;
+    [Export]private bool hasDoubleJump = false;
+    [Export]private bool CanGaineDoubleJump = false;
+    [Export]private bool hasDash = false;
+    [Export]private bool isDashing = false;
     private State currentState = State.NORMAL;
     private bool isStateNew = true;
     private bool isDying = false;
-    private float acceleration = 0.25f;
-    //private float acceleration = 0.25f;
-    private int wallGravity = 900;
-    private bool isDashing = false;
-    private int addiditionalFallGravity = 1500;
-
+    private Vector2 velocity = Vector2.Zero;
+    
     //Celeste tutorial
-    private int jumpHeight = 300;
+    [Export]private int jumpHeight = 300;
     [Export]private int dashSpeed = 1500;
 
-    private int defaultHazardMask = 0;
+    [Export] private int defaultHazardMask = 0;
 
     public override void _Ready()
     {
@@ -78,7 +78,7 @@ public partial class player : CharacterBody2D
 
         if (IsOnFloor())
         {
-            hasDoubleJump = false;
+            hasDoubleJump = CanGaineDoubleJump;
             hasDash = true;
 
         }
@@ -197,6 +197,7 @@ public partial class player : CharacterBody2D
 
     private void PlayerDie()
     {
+        GetTree().ReloadCurrentScene();
         QueueFree();
         GD.Print("I ded");
 

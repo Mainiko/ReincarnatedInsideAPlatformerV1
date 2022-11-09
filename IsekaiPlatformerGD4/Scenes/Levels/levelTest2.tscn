@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://2sowh0yve6c8"]
+
+[ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_2awef"]
+
+[node name="BaseLevel" instance=ExtResource("1_2awef")]
+
+[node name="spike_enemy" parent="." index="6"]
+position = Vector2(88, 174)
+
+[node name="text_rect_icon4" parent="." index="10"]
+offset_top = 126.0
+offset_bottom = 166.0

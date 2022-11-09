@@ -42,7 +42,7 @@ position = Vector2(264, 40)
 position = Vector2(176, -8)
 
 [node name="spike_enemy" parent="." instance=ExtResource("5_plhsf")]
-position = Vector2(136, 176)
+position = Vector2(39, 175)
 
 [node name="text_rect_icon" parent="." instance=ExtResource("6_hrk1r")]
 offset_left = 8.0
@@ -78,4 +78,5 @@ offset_bottom = 34.0
 position = Vector2(114, 202)
 
 [node name="Door" parent="." instance=ExtResource("9_7vc11")]
-position = Vector2(296, 86)
+position = Vector2(167, 166)
+target_level_pass = "res://Scenes/Levels/levelTest2.tscn"

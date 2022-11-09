@@ -234,6 +234,8 @@ animations = [{
 size = Vector2(6, 15)
 
 [node name="player" type="CharacterBody2D"]
+light_mask = 2
+z_index = 1
 script = ExtResource("1_tpgux")
 
 [node name="CoyoteTimer" type="Timer" parent="."]

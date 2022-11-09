@@ -125,16 +125,16 @@ public partial class player : CharacterBody2D
             velocity.y = JumpVelocity;
             velocity.x = -jumpHeight;
         }
-        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right"))
-        {
-            velocity.y = JumpVelocity;
-            velocity.x = jumpHeight;
-        }
-        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left"))
-        {
-            velocity.y = JumpVelocity;
-            velocity.x = -jumpHeight;
-        }
+        //else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right"))
+        //{
+        //    velocity.y = JumpVelocity;
+        //    velocity.x = jumpHeight;
+        //}
+        //else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left"))
+        //{
+        //    velocity.y = JumpVelocity;
+        //    velocity.x = -jumpHeight;
+        //}
 
 
         //Handle Dashing

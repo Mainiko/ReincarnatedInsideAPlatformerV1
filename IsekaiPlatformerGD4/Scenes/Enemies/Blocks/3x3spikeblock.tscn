@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bthv5cf1mp3hy"]
+
+[ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="1_sx66w"]
+[ext_resource type="TileSet" uid="uid://c18q7b77gfsuc" path="res://Assets/Sprites/Tiles/Isekai_Tiles_1/tileset_Isekai_Tiles_1.tres" id="2_e5lcl"]
+
+[node name="3x3spikeblock" type="Node2D"]
+
+[node name="spike_enemy19" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(-16, -24)
+
+[node name="spike_enemy21" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(0, -24)
+
+[node name="spike_enemy23" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(16, -24)
+
+[node name="spike_enemy31" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(16, 24)
+rotation = 3.14159
+
+[node name="spike_enemy34" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(0, 24)
+rotation = 3.14159
+
+[node name="spike_enemy32" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(-16, 24)
+rotation = 3.14159
+
+[node name="spike_enemy20" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(24, -16)
+rotation = 1.57079
+
+[node name="spike_enemy22" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(24, 0)
+rotation = 1.57079
+
+[node name="spike_enemy24" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(24, 16)
+rotation = 1.57079
+
+[node name="spike_enemy30" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(-24, -16)
+rotation = -1.5708
+
+[node name="spike_enemy33" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(-24, 3.05176e-05)
+rotation = -1.5708
+
+[node name="spike_enemy35" parent="." instance=ExtResource("1_sx66w")]
+position = Vector2(-24, 16)
+rotation = -1.5708
+
+[node name="TileMap" type="TileMap" parent="."]
+light_mask = 2
+texture_filter = 1
+position = Vector2(-8, 8)
+tile_set = ExtResource("2_e5lcl")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65536, 65536, 1, -1, 65536, 1, -65537, 65536, 1, -131072, 65536, 1, -131071, 65536, 1, -65535, 65536, 1, 1, 65536, 1, 0, 65536, 1, 65535, 65536, 1)

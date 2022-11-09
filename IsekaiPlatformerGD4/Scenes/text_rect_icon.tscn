@@ -12,7 +12,6 @@ ignore_texture_size = true
 script = ExtResource("2_wlas5")
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
 offset_top = 40.0
 offset_right = 40.0
 offset_bottom = 63.0

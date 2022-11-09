@@ -19,6 +19,7 @@ texture = ExtResource("3_gmdih")
 
 [node name="TileMap" type="TileMap" parent="."]
 light_mask = 2
+texture_filter = 1
 tile_set = ExtResource("1_sm6hl")
 format = 2
 
@@ -29,4 +30,4 @@ position = Vector2(232, 116)
 position = Vector2(173, 212)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(161, 90)
+position = Vector2(160, 90)

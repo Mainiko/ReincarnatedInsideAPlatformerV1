@@ -34,6 +34,7 @@ public partial class player : CharacterBody2D
     [Export]private bool CanGaineDoubleJump = false;
     [Export]private bool hasDash = false;
     [Export]private bool isDashing = false;
+    [Export] private bool wallClimbJump = false;
     private State currentState = State.NORMAL;
     private bool isStateNew = true;
     private bool isDying = false;
@@ -134,12 +135,12 @@ public partial class player : CharacterBody2D
             velocity.y = JumpVelocity;
             velocity.x = -jumpHeight;
         }
-        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right"))
+        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right") && wallClimbJump == true)
         {
             velocity.y = JumpVelocity;
             velocity.x = jumpHeight;
         }
-        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left"))
+        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && wallClimbJump == true)
         {
             velocity.y = JumpVelocity;
             velocity.x = -jumpHeight;

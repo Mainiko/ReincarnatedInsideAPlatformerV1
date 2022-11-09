@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bm5f3mt0ils64" path="res://Assets/Sprites/Characters/Player/Idle-Sheet_MC_v2.png" id="2_jyqdq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lr5of"]
-size = Vector2(8, 16)
+size = Vector2(8, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8jomj"]
 atlas = ExtResource("2_jyqdq")
@@ -237,14 +237,13 @@ size = Vector2(6, 15)
 light_mask = 2
 z_index = 1
 script = ExtResource("1_tpgux")
-JUMP_RELESE_FORCE = -70
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_lr5of")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

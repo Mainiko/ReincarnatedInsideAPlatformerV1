@@ -4,16 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://ne5yu3nln78h" path="res://Assets/Sprites/Tilemap/tiles.png" id="2_kv3yb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5t7cy"]
+size = Vector2(18, 18)
 
 [node name="Door" type="Area2D"]
 script = ExtResource("1_mntbs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -9)
 texture = ExtResource("2_kv3yb")
 region_enabled = true
 region_rect = Rect2(200, 120, 18, 18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_5t7cy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

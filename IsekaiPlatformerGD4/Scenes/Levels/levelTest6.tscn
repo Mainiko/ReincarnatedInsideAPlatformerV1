@@ -1,0 +1,259 @@
+[gd_scene load_steps=6 format=3 uid="uid://kddeuf5mespg"]
+
+[ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_270e8"]
+[ext_resource type="PackedScene" uid="uid://ce88ag4tnpq8t" path="res://Scenes/Extra/door.tscn" id="2_behh0"]
+[ext_resource type="PackedScene" uid="uid://617ptoqftmys" path="res://Scenes/Enemies/Blocks/1x1spikeblock.tscn" id="3_3idoa"]
+[ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="3_4os2s"]
+[ext_resource type="TileSet" uid="uid://c18q7b77gfsuc" path="res://Assets/Sprites/Tiles/Isekai_Tiles_1/tileset_Isekai_Tiles_1.tres" id="5_wm2xc"]
+
+[node name="levelTest6" instance=ExtResource("1_270e8")]
+
+[node name="TileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(458772, 65536, 1, 393236, 65536, 1, 327700, 65536, 1, 262164, 65536, 1, 196628, 65536, 1, 131092, 65536, 1, 720895, 65536, 1, 720899, 65536, 1, 720908, 65536, 1, 720912, 65536, 1, 655359, 65536, 1, 589823, 65536, 1, 524287, 65536, 1, 458751, 65536, 1, 393215, 65536, 1, 327679, 65536, 1, 262143, 65536, 1, 196607, 65536, 1, 131071, 65536, 1, 65535, 65536, 1, -1, 65536, 1, -65516, 65536, 1, 20, 65536, 1, 65556, 65536, 1, 524308, 65536, 1, 589844, 65536, 1, 655380, 65536, 1, 720916, 65536, 1, 720915, 65536, 1, 720914, 65536, 1, 720913, 65536, 1, 720911, 65536, 1, 720910, 65536, 1, 720909, 65536, 1, 720907, 65536, 1, 720906, 65536, 1, 720905, 65536, 1, 720904, 65536, 1, 720903, 65536, 1, 720902, 65536, 1, 720901, 65536, 1, 720900, 65536, 1, 720898, 65536, 1, 720897, 65536, 1, 720896, 65536, 1, 786431, 65536, 1, 589829, 131072, 0, 589828, 65536, 0, 589827, 65536, 0, 589826, 0, 0, 589839, 131072, 3, 589838, 65536, 3, 589837, 0, 3, 327697, 0, 1, 393233, 0, 1, 458769, 0, 1, 524305, 0, 1)
+
+[node name="PlayerRoot" parent="." index="2"]
+position = Vector2(40, 128)
+
+[node name="Door" parent="." index="5" instance=ExtResource("2_behh0")]
+position = Vector2(224, 144)
+
+[node name="spikes" type="Node2D" parent="." index="6"]
+
+[node name="1x1spikeblock2" parent="spikes" index="0" instance=ExtResource("3_3idoa")]
+position = Vector2(288, 56)
+
+[node name="3x3spikeblock" type="Node2D" parent="spikes" index="1"]
+position = Vector2(184, 55)
+
+[node name="spike_enemy31" parent="spikes/3x3spikeblock" index="0" instance=ExtResource("3_4os2s")]
+position = Vector2(16, 24)
+rotation = 3.14159
+
+[node name="spike_enemy34" parent="spikes/3x3spikeblock" index="1" instance=ExtResource("3_4os2s")]
+position = Vector2(0, 24)
+rotation = 3.14159
+
+[node name="spike_enemy32" parent="spikes/3x3spikeblock" index="2" instance=ExtResource("3_4os2s")]
+position = Vector2(-16, 24)
+rotation = 3.14159
+
+[node name="spike_enemy20" parent="spikes/3x3spikeblock" index="3" instance=ExtResource("3_4os2s")]
+position = Vector2(24, -16)
+rotation = 1.57079
+
+[node name="spike_enemy22" parent="spikes/3x3spikeblock" index="4" instance=ExtResource("3_4os2s")]
+position = Vector2(24, 0)
+rotation = 1.57079
+
+[node name="spike_enemy24" parent="spikes/3x3spikeblock" index="5" instance=ExtResource("3_4os2s")]
+position = Vector2(24, 16)
+rotation = 1.57079
+
+[node name="TileMap" type="TileMap" parent="spikes/3x3spikeblock" index="6"]
+light_mask = 2
+texture_filter = 1
+position = Vector2(-8, 8)
+tile_set = ExtResource("5_wm2xc")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65536, 0, 0, -131071, 0, 0, -65535, 65536, 1, 1, 65536, 1, 0, 65536, 1, 65535, 0, 0)
+
+[node name="spike_enemy" parent="spikes" index="2" instance=ExtResource("3_4os2s")]
+position = Vector2(312, 176)
+
+[node name="spike_enemy2" parent="spikes" index="3" instance=ExtResource("3_4os2s")]
+position = Vector2(296, 176)
+
+[node name="spike_enemy3" parent="spikes" index="4" instance=ExtResource("3_4os2s")]
+position = Vector2(280, 176)
+
+[node name="spike_enemy4" parent="spikes" index="5" instance=ExtResource("3_4os2s")]
+position = Vector2(264, 176)
+
+[node name="spike_enemy5" parent="spikes" index="6" instance=ExtResource("3_4os2s")]
+position = Vector2(248, 176)
+
+[node name="spike_enemy6" parent="spikes" index="7" instance=ExtResource("3_4os2s")]
+position = Vector2(232, 176)
+
+[node name="spike_enemy7" parent="spikes" index="8" instance=ExtResource("3_4os2s")]
+position = Vector2(216, 176)
+
+[node name="spike_enemy8" parent="spikes" index="9" instance=ExtResource("3_4os2s")]
+position = Vector2(200, 176)
+
+[node name="spike_enemy9" parent="spikes" index="10" instance=ExtResource("3_4os2s")]
+position = Vector2(184, 176)
+
+[node name="spike_enemy10" parent="spikes" index="11" instance=ExtResource("3_4os2s")]
+position = Vector2(168, 176)
+
+[node name="spike_enemy11" parent="spikes" index="12" instance=ExtResource("3_4os2s")]
+position = Vector2(152, 176)
+
+[node name="spike_enemy12" parent="spikes" index="13" instance=ExtResource("3_4os2s")]
+position = Vector2(136, 176)
+
+[node name="spike_enemy13" parent="spikes" index="14" instance=ExtResource("3_4os2s")]
+position = Vector2(120, 176)
+
+[node name="spike_enemy14" parent="spikes" index="15" instance=ExtResource("3_4os2s")]
+position = Vector2(104, 176)
+
+[node name="spike_enemy15" parent="spikes" index="16" instance=ExtResource("3_4os2s")]
+position = Vector2(88, 176)
+
+[node name="spike_enemy16" parent="spikes" index="17" instance=ExtResource("3_4os2s")]
+position = Vector2(72, 176)
+
+[node name="spike_enemy17" parent="spikes" index="18" instance=ExtResource("3_4os2s")]
+position = Vector2(56, 176)
+
+[node name="spike_enemy18" parent="spikes" index="19" instance=ExtResource("3_4os2s")]
+position = Vector2(40, 176)
+
+[node name="spike_enemy19" parent="spikes" index="20" instance=ExtResource("3_4os2s")]
+position = Vector2(24, 176)
+
+[node name="spike_enemy20" parent="spikes" index="21" instance=ExtResource("3_4os2s")]
+position = Vector2(8, 176)
+
+[node name="4x4spikeblock" type="Node2D" parent="spikes" index="22"]
+position = Vector2(64, 55)
+
+[node name="spike_enemy19" parent="spikes/4x4spikeblock" index="0" instance=ExtResource("3_4os2s")]
+position = Vector2(-24, -32)
+
+[node name="spike_enemy21" parent="spikes/4x4spikeblock" index="1" instance=ExtResource("3_4os2s")]
+position = Vector2(-8, -32)
+
+[node name="spike_enemy23" parent="spikes/4x4spikeblock" index="2" instance=ExtResource("3_4os2s")]
+position = Vector2(8, -32)
+
+[node name="spike_enemy26" parent="spikes/4x4spikeblock" index="3" instance=ExtResource("3_4os2s")]
+position = Vector2(24, -32)
+
+[node name="spike_enemy31" parent="spikes/4x4spikeblock" index="4" instance=ExtResource("3_4os2s")]
+position = Vector2(8, 32)
+rotation = 3.14159
+
+[node name="spike_enemy37" parent="spikes/4x4spikeblock" index="5" instance=ExtResource("3_4os2s")]
+position = Vector2(24, 32)
+rotation = 3.14159
+
+[node name="spike_enemy34" parent="spikes/4x4spikeblock" index="6" instance=ExtResource("3_4os2s")]
+position = Vector2(-8, 32)
+rotation = 3.14159
+
+[node name="spike_enemy32" parent="spikes/4x4spikeblock" index="7" instance=ExtResource("3_4os2s")]
+position = Vector2(-24, 32)
+rotation = 3.14159
+
+[node name="spike_enemy30" parent="spikes/4x4spikeblock" index="8" instance=ExtResource("3_4os2s")]
+position = Vector2(-32, -24)
+rotation = -1.5708
+
+[node name="spike_enemy33" parent="spikes/4x4spikeblock" index="9" instance=ExtResource("3_4os2s")]
+position = Vector2(-32, -7.99997)
+rotation = -1.5708
+
+[node name="spike_enemy35" parent="spikes/4x4spikeblock" index="10" instance=ExtResource("3_4os2s")]
+position = Vector2(-32, 8)
+rotation = -1.5708
+
+[node name="spike_enemy36" parent="spikes/4x4spikeblock" index="11" instance=ExtResource("3_4os2s")]
+position = Vector2(-32, 24)
+rotation = -1.5708
+
+[node name="TileMap" type="TileMap" parent="spikes/4x4spikeblock" index="12"]
+light_mask = 2
+texture_filter = 1
+tile_set = ExtResource("5_wm2xc")
+format = 2
+layer_0/tile_data = PackedInt32Array(65537, 131072, 1, 65536, 65536, 1, 131071, 65536, 1, 131070, 65536, 1, 65534, 65536, 1, -2, 65536, 1, -1, 65536, 1, -65537, 65536, 1, -65538, 65536, 1, -131072, 65536, 1, -131071, 131072, 1, -65535, 131072, 1, 1, 131072, 1, -65536, 65536, 1, 0, 65536, 1, 65535, 65536, 1)
+
+[node name="4x4spikeblock2" type="Node2D" parent="spikes" index="23"]
+position = Vector2(160, 128)
+
+[node name="spike_enemy19" parent="spikes/4x4spikeblock2" index="0" instance=ExtResource("3_4os2s")]
+position = Vector2(-24, -32)
+
+[node name="spike_enemy21" parent="spikes/4x4spikeblock2" index="1" instance=ExtResource("3_4os2s")]
+position = Vector2(-8, -32)
+
+[node name="spike_enemy23" parent="spikes/4x4spikeblock2" index="2" instance=ExtResource("3_4os2s")]
+position = Vector2(8, -32)
+
+[node name="spike_enemy26" parent="spikes/4x4spikeblock2" index="3" instance=ExtResource("3_4os2s")]
+position = Vector2(24, -32)
+
+[node name="spike_enemy31" parent="spikes/4x4spikeblock2" index="4" instance=ExtResource("3_4os2s")]
+position = Vector2(8, 32)
+rotation = 3.14159
+
+[node name="spike_enemy37" parent="spikes/4x4spikeblock2" index="5" instance=ExtResource("3_4os2s")]
+position = Vector2(24, 32)
+rotation = 3.14159
+
+[node name="spike_enemy34" parent="spikes/4x4spikeblock2" index="6" instance=ExtResource("3_4os2s")]
+position = Vector2(-8, 32)
+rotation = 3.14159
+
+[node name="spike_enemy32" parent="spikes/4x4spikeblock2" index="7" instance=ExtResource("3_4os2s")]
+position = Vector2(-24, 32)
+rotation = 3.14159
+
+[node name="spike_enemy20" parent="spikes/4x4spikeblock2" index="8" instance=ExtResource("3_4os2s")]
+position = Vector2(32, -24)
+rotation = 1.57079
+
+[node name="spike_enemy22" parent="spikes/4x4spikeblock2" index="9" instance=ExtResource("3_4os2s")]
+position = Vector2(32, -8)
+rotation = 1.57079
+
+[node name="spike_enemy24" parent="spikes/4x4spikeblock2" index="10" instance=ExtResource("3_4os2s")]
+position = Vector2(32, 8)
+rotation = 1.57079
+
+[node name="spike_enemy25" parent="spikes/4x4spikeblock2" index="11" instance=ExtResource("3_4os2s")]
+position = Vector2(32, 24)
+rotation = 1.57079
+
+[node name="TileMap" type="TileMap" parent="spikes/4x4spikeblock2" index="12"]
+light_mask = 2
+texture_filter = 1
+tile_set = ExtResource("5_wm2xc")
+format = 2
+layer_0/tile_data = PackedInt32Array(65537, 65536, 1, 65536, 65536, 1, 131071, 65536, 1, 131070, 0, 1, 65534, 0, 1, -2, 0, 1, -1, 65536, 1, -65537, 65536, 1, -65538, 0, 1, -131072, 65536, 1, -131071, 65536, 1, -65535, 65536, 1, 1, 65536, 1, -65536, 65536, 1, 0, 65536, 1, 65535, 65536, 1)
+
+[node name="2x2spikeblock" type="Node2D" parent="spikes" index="24"]
+position = Vector2(240, 56)
+
+[node name="spike_enemy19" parent="spikes/2x2spikeblock" index="0" instance=ExtResource("3_4os2s")]
+position = Vector2(-8, -16)
+
+[node name="spike_enemy21" parent="spikes/2x2spikeblock" index="1" instance=ExtResource("3_4os2s")]
+position = Vector2(8, -16)
+
+[node name="spike_enemy31" parent="spikes/2x2spikeblock" index="2" instance=ExtResource("3_4os2s")]
+position = Vector2(8, 16)
+rotation = 3.14159
+
+[node name="spike_enemy32" parent="spikes/2x2spikeblock" index="3" instance=ExtResource("3_4os2s")]
+position = Vector2(-8, 16)
+rotation = 3.14159
+
+[node name="spike_enemy30" parent="spikes/2x2spikeblock" index="4" instance=ExtResource("3_4os2s")]
+position = Vector2(-16, -7.99997)
+rotation = -1.5708
+
+[node name="spike_enemy33" parent="spikes/2x2spikeblock" index="5" instance=ExtResource("3_4os2s")]
+position = Vector2(-16, 8.00003)
+rotation = -1.5708
+
+[node name="TileMap" type="TileMap" parent="spikes/2x2spikeblock" index="6"]
+light_mask = 2
+texture_filter = 1
+position = Vector2(0, 16)
+tile_set = ExtResource("5_wm2xc")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65536, 131072, 1, -1, 65536, 1, -65537, 65536, 1, -131072, 131072, 1)

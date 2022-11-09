@@ -237,6 +237,7 @@ size = Vector2(6, 15)
 light_mask = 2
 z_index = 1
 script = ExtResource("1_tpgux")
+JUMP_RELESE_FORCE = -70
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -255,11 +256,11 @@ playing = true
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 rotation = 1.5708
-target_position = Vector2(0, 10)
+target_position = Vector2(3.61999e-05, 10)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 rotation = -1.5708
-target_position = Vector2(0, 10)
+target_position = Vector2(-3.61999e-05, 10)
 
 [node name="Area2D" type="Area2D" parent="."]
 

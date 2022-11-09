@@ -9,8 +9,7 @@ public partial class player : CharacterBody2D
     [Signal] public delegate void OnPlayerDiedEventHandler();
 
 
-    public const float Speed = 125.0f;
-    public const float JumpVelocity = -250.0f;
+    
 
     // Get the gravity from the project settings to be synced with RigidBody nodes.
     public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -21,9 +20,12 @@ public partial class player : CharacterBody2D
 
     private enum State { NORMAL, DASHING, INPUT_DISABLED }
 
+    [Export]private float Speed = 125.0f;
     [Export]private int maxHorizontalSpeed = 200;
     [Export]private int horizontalAcceleration = 2000;
     [Export]private int jumpSpeed = 300;
+    [Export] private float JumpVelocity = -250.0f;
+    [Export]private int JUMP_RELESE_FORCE = -100;
     [Export]private int jumpTerminationMultiplier = 4;
     [Export]private int addiditionalFallGravity = 1500;
     [Export]private float acceleration = 0.25f;
@@ -94,6 +96,13 @@ public partial class player : CharacterBody2D
             }
         }
 
+
+        if (Input.IsActionJustReleased("jump") && (velocity.y < JUMP_RELESE_FORCE))
+        {
+            velocity.y = JUMP_RELESE_FORCE;
+        }
+
+
         Vector2 direction = GetDirectionVector();
 
         if (direction != Vector2.Zero)
@@ -125,16 +134,16 @@ public partial class player : CharacterBody2D
             velocity.y = JumpVelocity;
             velocity.x = -jumpHeight;
         }
-        //else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right"))
-        //{
-        //    velocity.y = JumpVelocity;
-        //    velocity.x = jumpHeight;
-        //}
-        //else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left"))
-        //{
-        //    velocity.y = JumpVelocity;
-        //    velocity.x = -jumpHeight;
-        //}
+        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right"))
+        {
+            velocity.y = JumpVelocity;
+            velocity.x = jumpHeight;
+        }
+        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left"))
+        {
+            velocity.y = JumpVelocity;
+            velocity.x = -jumpHeight;
+        }
 
 
         //Handle Dashing

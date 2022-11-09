@@ -85,7 +85,7 @@ public partial class player : CharacterBody2D
      
 
         // Handle Jump.
-        if (Input.IsActionJustPressed("ui_accept") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump))
+        if (Input.IsActionJustPressed("jump") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump))
         {
             velocity.y = JumpVelocity;
             if(!IsOnFloor() && coyoteTimer.IsStopped())
@@ -125,7 +125,16 @@ public partial class player : CharacterBody2D
             velocity.y = JumpVelocity;
             velocity.x = -jumpHeight;
         }
-
+        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right"))
+        {
+            velocity.y = JumpVelocity;
+            velocity.x = jumpHeight;
+        }
+        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left"))
+        {
+            velocity.y = JumpVelocity;
+            velocity.x = -jumpHeight;
+        }
 
 
         //Handle Dashing

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dvpdxqxkijq33" path="res://Assets/Sprites/Backgrounds/purpletestBG1.png" id="3_gmdih"]
 [ext_resource type="PackedScene" uid="uid://dcm374i48rj4r" path="res://Scenes/Extra/fall_hitbox.tscn" id="8_otbas"]
 
-[node name="BaseLevel" type="Node"]
+[node name="BaseLevel2" type="Node"]
 script = ExtResource("1_nd4ev")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -19,7 +19,6 @@ texture = ExtResource("3_gmdih")
 
 [node name="TileMap" type="TileMap" parent="."]
 light_mask = 2
-texture_filter = 1
 tile_set = ExtResource("1_sm6hl")
 format = 2
 
@@ -30,4 +29,4 @@ position = Vector2(232, 116)
 position = Vector2(173, 212)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(160, 90)
+position = Vector2(161, 90)

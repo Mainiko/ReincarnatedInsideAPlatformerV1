@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+[gd_scene load_steps=4 format=3 uid="uid://33s27naa2hv5"]
+=======
 [gd_scene load_steps=4 format=3 uid="uid://cmypejry6156i"]
+>>>>>>> 674764e46dde436d1475d372a5e6d1e8846ef0d4
 
 [ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_iwlyj"]
 [ext_resource type="PackedScene" uid="uid://ce88ag4tnpq8t" path="res://Scenes/Extra/door.tscn" id="2_txbsa"]

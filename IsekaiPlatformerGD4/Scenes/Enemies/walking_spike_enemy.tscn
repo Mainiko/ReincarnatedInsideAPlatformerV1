@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://b624rtjdc4a62"]
+
+[ext_resource type="Texture2D" uid="uid://d0ns22wr0h6n6" path="res://Assets/Sprites/Characters/character_0015.png" id="1_infyy"]
+[ext_resource type="Script" path="res://Scenes/Enemies/walking_spike_enemy.cs" id="1_krdfc"]
+[ext_resource type="Texture2D" uid="uid://do0qejdc24gfr" path="res://Assets/Sprites/Characters/character_0016.png" id="2_otbs4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jyfum"]
+resource_local_to_scene = true
+resource_name = "Walking"
+animations = [{
+"frames": [ExtResource("1_infyy"), ExtResource("2_otbs4")],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_haq86"]
+size = Vector2(11.7523, 10.9096)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78dwn"]
+size = Vector2(14.5617, 11.1624)
+
+[node name="walking_spike_enemy" type="CharacterBody2D"]
+script = ExtResource("1_krdfc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+frames = SubResource("SpriteFrames_jyfum")
+animation = &"Walking"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.598012, 5.16883)
+shape = SubResource("RectangleShape2D_haq86")
+
+[node name="LedgeCheckRight" type="RayCast2D" parent="."]
+position = Vector2(4.99497, 8.12837)
+target_position = Vector2(-0.180399, 6.48755)
+
+[node name="LedgeCheckLeft" type="RayCast2D" parent="."]
+position = Vector2(-5.72632, 8.12837)
+target_position = Vector2(-0.180399, 6.48755)
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-0.551145, 5.18289)
+shape = SubResource("RectangleShape2D_78dwn")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

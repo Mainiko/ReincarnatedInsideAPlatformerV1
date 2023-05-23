@@ -12,5 +12,5 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 0, 1, 196608,
 position = Vector2(20, 171)
 
 [node name="Door" parent="." index="5" instance=ExtResource("2_fq8fe")]
-position = Vector2(294, 166)
+position = Vector2(296, 176)
 target_level_pass = "res://Scenes/Levels/levelTest3.tscn"

@@ -15,7 +15,7 @@ layer_0/tile_data = PackedInt32Array(720904, 65536, 2, 720905, 65536, 2, 720906,
 position = Vector2(24, 152)
 
 [node name="Door" parent="." index="5" instance=ExtResource("2_n8edg")]
-position = Vector2(280, 168)
+position = Vector2(280, 176)
 target_level_pass = "res://Scenes/Levels/levelTest4.tscn"
 
 [node name="spike_root" type="Node2D" parent="." index="6"]
@@ -151,4 +151,4 @@ position = Vector2(-40, 96)
 position = Vector2(-8, 64)
 
 [node name="walking_spike_enemy" parent="." index="7" instance=ExtResource("4_bs55a")]
-position = Vector2(152, 36)
+position = Vector2(144, -12)

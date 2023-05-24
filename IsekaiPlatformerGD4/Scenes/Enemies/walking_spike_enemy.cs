@@ -3,7 +3,7 @@ using System;
 
 public partial class walking_spike_enemy : CharacterBody2D
 {
-	AnimatedSprite2D animatedSprite2D = null;
+    AnimatedSprite2D animatedSprite2D = null;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -12,7 +12,7 @@ public partial class walking_spike_enemy : CharacterBody2D
     public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
-
+        animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         var LedgeCheckRight = GetNode<RayCast2D>("LedgeCheckRight");
         var ledgeCheckLeft = GetNode<RayCast2D>("LedgeCheckLeft");
 
@@ -27,15 +27,14 @@ public partial class walking_spike_enemy : CharacterBody2D
             direction *= -1;
             GD.Print(direction.x);
             GD.Print(found_ledge);
-
+            GD.Print(animatedSprite2D);
         }
 
 
-        //if (direction.x > 0)
-        //    animatedSprite2D.FlipH = true;
-
-        //if (direction.x < 0)
-        //    animatedSprite2D.FlipH = false;
+        if (direction.x > 0)
+            animatedSprite2D.FlipH = true;
+        if (direction.x < 0)
+           animatedSprite2D.FlipH = false;
 
 
         float ost = 25.0f;

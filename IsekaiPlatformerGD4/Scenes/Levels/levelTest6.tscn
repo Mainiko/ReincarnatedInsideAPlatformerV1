@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c573nyaxlame3"]
+[gd_scene load_steps=6 format=3 uid="uid://sb2133aufluu"]
 
 [ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_270e8"]
 [ext_resource type="PackedScene" uid="uid://ce88ag4tnpq8t" path="res://Scenes/Extra/door.tscn" id="2_behh0"]
@@ -16,6 +16,7 @@ position = Vector2(40, 128)
 
 [node name="Door" parent="." index="5" instance=ExtResource("2_behh0")]
 position = Vector2(224, 144)
+target_level_pass = "res://Scenes/Levels/levelTest7.tscn"
 
 [node name="spikes" type="Node2D" parent="." index="6"]
 

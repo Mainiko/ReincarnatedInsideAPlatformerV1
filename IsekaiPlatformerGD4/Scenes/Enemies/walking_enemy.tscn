@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://nawchfsltjvm"]
+
+[ext_resource type="PackedScene" uid="uid://b624rtjdc4a62" path="res://Scenes/Enemies/walking_spike_enemy.tscn" id="1_vsi6u"]
+[ext_resource type="Texture2D" uid="uid://caeqpcn3bdua6" path="res://Assets/Sprites/Characters/character_0021.png" id="2_72y7x"]
+[ext_resource type="Texture2D" uid="uid://dcnggpcu30o55" path="res://Assets/Sprites/Characters/character_0022.png" id="3_m7ngi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vyrgb"]
+resource_local_to_scene = true
+resource_name = "Walking"
+animations = [{
+"frames": [ExtResource("2_72y7x"), ExtResource("3_m7ngi")],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nssh7"]
+size = Vector2(21.1875, 9.625)
+
+[node name="walking_enemy" instance=ExtResource("1_vsi6u")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+frames = SubResource("SpriteFrames_vyrgb")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.375, 1.56182)
+
+[node name="LedgeCheckRight" parent="." index="2"]
+position = Vector2(9.27436, 8.12837)
+
+[node name="LedgeCheckLeft" parent="." index="3"]
+position = Vector2(-7.83094, 9.18068)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-0.0937504, 4.61793)
+
+[node name="Death_HitBox" type="Area2D" parent="." index="5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death_HitBox" index="0"]
+position = Vector2(-0.03125, -4.5)
+shape = SubResource("RectangleShape2D_nssh7")
+
+[connection signal="body_entered" from="Death_HitBox" to="." method="_on_death_hit_box_body_entered"]

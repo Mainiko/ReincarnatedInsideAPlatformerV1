@@ -15,10 +15,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_haq86"]
-size = Vector2(11.7523, 10.9096)
+size = Vector2(18, 18.1236)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78dwn"]
-size = Vector2(14.5617, 11.1624)
+size = Vector2(22.6875, 16.9859)
 
 [node name="walking_spike_enemy" type="CharacterBody2D"]
 script = ExtResource("1_krdfc")
@@ -44,7 +44,7 @@ target_position = Vector2(-0.180399, 6.48755)
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-0.551145, 5.18289)
+position = Vector2(-0.551145, 2.41517)
 shape = SubResource("RectangleShape2D_78dwn")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

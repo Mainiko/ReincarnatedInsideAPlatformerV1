@@ -24,7 +24,7 @@ public partial class player : CharacterBody2D
     [Export]private int maxHorizontalSpeed = 200;
     [Export]private int horizontalAcceleration = 2000;
     [Export]private int jumpSpeed = 300;
-    [Export] private float JumpVelocity = -250.0f;
+    [Export]private float JumpVelocity = -250.0f;
     [Export]private int JUMP_RELESE_FORCE = -100;
     [Export]private int jumpTerminationMultiplier = 4;
     [Export]private int addiditionalFallGravity = 1500;
@@ -38,8 +38,7 @@ public partial class player : CharacterBody2D
     private State currentState = State.NORMAL;
     private bool isStateNew = true;
     private bool isDying = false;
-    private Vector2 velocity = Vector2.Zero;
-    
+    private bool isJumpingOnEnemy = false;
     //Celeste tutorial
     [Export]private int jumpHeight = 300;
     [Export]private int dashSpeed = 1500;
@@ -56,7 +55,7 @@ public partial class player : CharacterBody2D
     {
         Vector2 velocity = Velocity;
 
-
+        GD.Print(velocity.y);
         // Add the gravity.
         if (!IsOnFloor())
         {   
@@ -96,6 +95,13 @@ public partial class player : CharacterBody2D
                 hasDoubleJump=false;
             }
         }
+
+        if (isJumpingOnEnemy)
+        {
+            velocity.y = JumpVelocity;
+            isJumpingOnEnemy = false;
+        }
+
 
 
         if (Input.IsActionJustReleased("jump") && (velocity.y < JUMP_RELESE_FORCE))
@@ -218,12 +224,18 @@ public partial class player : CharacterBody2D
     {
         GetTree().ReloadCurrentScene();
         QueueFree();
-        GD.Print("I ded");
+        GD.Print("I'm dead");
 
         //EmitSignal("OnPlayerDiedEventHandler");
 
 
 
+    }
+
+    private void PlayerJumpOnEnemy()
+    {
+        GD.Print("Jump");
+        isJumpingOnEnemy = true;
     }
 
 }

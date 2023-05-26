@@ -54,4 +54,19 @@ public partial class walking_spike_enemy : CharacterBody2D
             player.Call("PlayerDie");
         }
     }
+
+    private void _on_death_hit_box_body_entered(CharacterBody2D body)
+    {
+        GD.Print("Body: " + body.Name + "has entered");
+
+        //Call function from player
+        if (body.Name == "player")
+        {
+            GD.Print("Kill me please!");
+            var player = GetNode<CharacterBody2D>(body.GetPath());
+            player.Call("PlayerJumpOnEnemy");
+            this.QueueFree();
+
+        }
+    }
 }

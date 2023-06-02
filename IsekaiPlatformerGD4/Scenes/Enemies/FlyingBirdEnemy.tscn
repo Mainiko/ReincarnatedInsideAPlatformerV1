@@ -1,0 +1,106 @@
+[gd_scene load_steps=13 format=3 uid="uid://bw81furqr13fc"]
+
+[ext_resource type="Texture2D" uid="uid://ba7h5deo7461f" path="res://Assets/Sprites/Characters/character_0024.png" id="1_frvsj"]
+[ext_resource type="Script" path="res://Scenes/Enemies/FlyingBirdEnemy.cs" id="1_l1m13"]
+[ext_resource type="Texture2D" uid="uid://b1hskq2647cva" path="res://Assets/Sprites/Characters/character_0025.png" id="2_ddgpg"]
+[ext_resource type="Texture2D" uid="uid://dmsw0xs1c3lxu" path="res://Assets/Sprites/Characters/character_0026.png" id="3_ewdgy"]
+
+[sub_resource type="Curve2D" id="Curve2D_8rjkj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 56, 0)
+}
+point_count = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yatmt"]
+size = Vector2(13.8881, 6.71671)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_os8p8"]
+size = Vector2(14.3657, 7.15416)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m8gbr"]
+animations = [{
+"frames": [ExtResource("1_frvsj"), ExtResource("2_ddgpg"), ExtResource("3_ewdgy")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3df20"]
+size = Vector2(14.7098, 9.33079)
+
+[sub_resource type="Animation" id="Animation_wpr5x"]
+resource_name = "MovingBirdEnemy"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_8gbdd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s0mwe"]
+_data = {
+"MovingBirdEnemy": SubResource("Animation_wpr5x"),
+"RESET": SubResource("Animation_8gbdd")
+}
+
+[node name="BirdEnemy" type="Path2D"]
+curve = SubResource("Curve2D_8rjkj")
+script = ExtResource("1_l1m13")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(12.3251, 0)
+progress = 4.36054
+
+[node name="DeathHitBox" type="Area2D" parent="PathFollow2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/DeathHitBox"]
+position = Vector2(0.117491, -1.15212)
+shape = SubResource("RectangleShape2D_yatmt")
+
+[node name="Hitbox" type="Area2D" parent="PathFollow2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Hitbox"]
+position = Vector2(0.54905, 3.49018)
+shape = SubResource("RectangleShape2D_os8p8")
+
+[node name="Area2D" type="Area2D" parent="PathFollow2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D/Area2D"]
+frames = SubResource("SpriteFrames_m8gbr")
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Area2D"]
+position = Vector2(0.672808, 2.09735)
+shape = SubResource("RectangleShape2D_3df20")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "MovingBirdEnemy"
+libraries = {
+"": SubResource("AnimationLibrary_s0mwe")
+}
+
+[connection signal="body_entered" from="PathFollow2D/DeathHitBox" to="." method="_on_death_hit_box_body_entered"]
+[connection signal="body_entered" from="PathFollow2D/Hitbox" to="." method="_on_hitbox_body_entered"]

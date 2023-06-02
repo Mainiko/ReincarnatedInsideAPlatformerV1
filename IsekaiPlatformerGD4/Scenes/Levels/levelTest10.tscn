@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlercajd7nd3f"]
+
+[ext_resource type="PackedScene" uid="uid://bsqjrh6eexc7u" path="res://Scenes/Levels/levelTest8.tscn" id="1_8qyxu"]
+[ext_resource type="PackedScene" uid="uid://dc50guqxjlf3v" path="res://Scenes/Enemies/moving_spike_enemyThatLoop.tscn" id="2_vycsy"]
+
+[sub_resource type="Curve2D" id="Curve2D_cgco4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 48, 184, 0, 0, 0, 0, 8, 144)
+}
+point_count = 2
+
+[node name="BaseLevel2" instance=ExtResource("1_8qyxu")]
+
+[node name="TileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(655360, 0, 2, 655361, 65536, 2, 655362, 65536, 2, 655363, 65536, 2, 655364, 65536, 2, 655375, 65536, 2, 655376, 65536, 2, 655377, 65536, 2, 655378, 65536, 2, 655379, 131072, 2, 589843, 131072, 1, 524307, 131072, 1, 458771, 131072, 1, 131091, 131072, 1, 65555, 131072, 1, 196627, 131072, 1, 262163, 131072, 1, 327699, 131072, 1, 393235, 131072, 1, 65536, 0, 1, 131072, 0, 1, 196608, 0, 1, 262144, 0, 1, 327680, 0, 1, 589824, 0, 1, 524288, 0, 1, 458752, 0, 1, 393216, 0, 1, 0, 0, 0, 19, 131072, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 15, 65536, 0, 16, 65536, 0, 5, 65536, 0, 6, 65536, 0, 7, 65536, 0, 8, 65536, 0, 9, 65536, 0, 10, 65536, 0, 11, 65536, 0, 12, 65536, 0, 13, 65536, 0, 14, 65536, 0, 17, 65536, 0, 18, 65536, 0, 458769, 65536, 1, 458770, 65536, 1, 458768, 65536, 1, 655369, 65536, 2, 655370, 65536, 2, 655371, 65536, 2, 655368, 65536, 2, 655372, 65536, 2)
+
+[node name="walking_enemy" parent="." index="5"]
+position = Vector2(160, 144)
+
+[node name="Door" parent="." index="6"]
+target_level_pass = "res://Scenes/Levels/levelTest11.tscn"
+
+[node name="spike_enemy" parent="." index="7"]
+position = Vector2(248, 160)
+
+[node name="MovingSpikeEnemy" parent="." index="8" instance=ExtResource("2_vycsy")]
+position = Vector2(96, -16)
+
+[node name="MovingSpikeEnemy" parent="MovingSpikeEnemy" index="2" instance=ExtResource("2_vycsy")]
+position = Vector2(96, -16)
+curve = SubResource("Curve2D_cgco4")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct8yw3s3kmxmj"]
+[gd_scene load_steps=5 format=3 uid="uid://ct8yw3s3kmxmj"]
 
 [ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_63bbs"]
 [ext_resource type="PackedScene" uid="uid://bw81furqr13fc" path="res://Scenes/Enemies/FlyingBirdEnemy.tscn" id="2_bmreo"]
 [ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="3_5samp"]
+[ext_resource type="PackedScene" uid="uid://ce88ag4tnpq8t" path="res://Scenes/Extra/door.tscn" id="4_2f6kj"]
 
 [node name="BaseLevel2" instance=ExtResource("1_63bbs")]
 
@@ -26,3 +27,7 @@ position = Vector2(216, 160)
 
 [node name="spike_enemy" parent="." index="9" instance=ExtResource("3_5samp")]
 position = Vector2(200, 160)
+
+[node name="Door" parent="." index="10" instance=ExtResource("4_2f6kj")]
+position = Vector2(296, 48)
+target_level_pass = "res://Scenes/Levels/levelTest12.tscn"

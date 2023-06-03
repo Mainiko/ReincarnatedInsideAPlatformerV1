@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjvfxtva7483"]
+
+[ext_resource type="Script" path="res://Scenes/Extra/box_that_disappears.cs" id="1_jvc6e"]
+[ext_resource type="Texture2D" uid="uid://5om1lcifuary" path="res://Assets/Sprites/Tiles/tile_0009.png" id="1_tamdu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5w11u"]
+size = Vector2(16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cj3km"]
+animations = [{
+"frames": [ExtResource("1_tamdu")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glnx2"]
+size = Vector2(16, 9)
+
+[node name="Box that disappears" type="StaticBody2D"]
+script = ExtResource("1_jvc6e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5w11u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_cj3km")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_glnx2")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

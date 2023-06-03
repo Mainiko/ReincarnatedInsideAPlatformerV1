@@ -131,12 +131,12 @@ public partial class player : CharacterBody2D
         bool wasOnFloor = IsOnFloor();
 
         //Handles walljump
-        if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && !IsOnFloor()) //&& Input.IsActionPressed("move_right")
+        if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_right")) //&& !IsOnFloor()
         {
             velocity.y = JumpVelocity;
             velocity.x = jumpHeight;
         }
-        else if(Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor()) //&& Input.IsActionPressed("move_left")
+        else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_left")) // && !IsOnFloor())
         {
             velocity.y = JumpVelocity;
             velocity.x = -jumpHeight;

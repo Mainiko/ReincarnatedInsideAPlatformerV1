@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dro7y7hbpdpp8"]
+
+[ext_resource type="PackedScene" uid="uid://bjvfxtva7483" path="res://Scenes/Extra/box_that_disappears.tscn" id="1_8qkys"]
+[ext_resource type="Script" path="res://Scenes/Extra/schrodingers_box.cs" id="2_rya6g"]
+
+[node name="schrodingers_box" instance=ExtResource("1_8qkys")]
+script = ExtResource("2_rya6g")
+timeBeforeDisappear = 100

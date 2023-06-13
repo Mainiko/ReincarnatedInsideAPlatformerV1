@@ -14,6 +14,7 @@ position = Vector2(32, 152)
 
 [node name="Door" parent="." index="5" instance=ExtResource("2_vlq8l")]
 position = Vector2(296, 48)
+target_level_pass = "res://Scenes/Levels/levelTest13.tscn"
 
 [node name="Box that disappears" parent="." index="6" instance=ExtResource("3_0bkfk")]
 position = Vector2(72, 144)

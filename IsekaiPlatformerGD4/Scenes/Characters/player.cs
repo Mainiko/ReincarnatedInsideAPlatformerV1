@@ -55,7 +55,7 @@ public partial class player : CharacterBody2D
     {
         Vector2 velocity = Velocity;
 
-        GD.Print(velocity.y);
+        //GD.Print(velocity.y);
         // Add the gravity.
         if (!IsOnFloor())
         {   

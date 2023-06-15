@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://dv6wxm74qmksh"]
+
+[ext_resource type="PackedScene" uid="uid://nawchfsltjvm" path="res://Scenes/Enemies/walking_enemy.tscn" id="1_v6n08"]
+[ext_resource type="Texture2D" uid="uid://caeqpcn3bdua6" path="res://Assets/Sprites/Characters/character_0021.png" id="2_rx7bg"]
+[ext_resource type="Script" path="res://Scenes/Enemies/walking_enemy_with_spikes_somtimes.cs" id="2_y7jwe"]
+[ext_resource type="Texture2D" uid="uid://dcnggpcu30o55" path="res://Assets/Sprites/Characters/character_0022.png" id="3_wxwnc"]
+[ext_resource type="Texture2D" uid="uid://bm8ejytxqvojf" path="res://Assets/Sprites/Enemies/Spikes.png" id="5_0gsk4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dbfw2"]
+resource_local_to_scene = true
+resource_name = "Walking"
+animations = [{
+"frames": [ExtResource("2_rx7bg"), ExtResource("3_wxwnc")],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bb8t8"]
+size = Vector2(20, 4.32929)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ryt3u"]
+animations = [{
+"frames": [ExtResource("5_0gsk4")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="walking_enemy_with_spikes_somtimes" instance=ExtResource("1_v6n08")]
+script = ExtResource("2_y7jwe")
+timeBeforeDisappear = 100
+timeBeforeRreturning = 100
+timeDelay = 100
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+frames = SubResource("SpriteFrames_dbfw2")
+frame = 1
+playing = false
+
+[node name="CollisionShape2D" parent="Death_HitBox" index="0"]
+position = Vector2(-0.239216, -5.07672)
+
+[node name="Spikes" type="Area2D" parent="." index="6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes" index="0"]
+position = Vector2(0.375, -10.1388)
+shape = SubResource("RectangleShape2D_bb8t8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Spikes" index="1"]
+position = Vector2(0, -16.4814)
+frames = SubResource("SpriteFrames_ryt3u")
+
+[connection signal="body_entered" from="Spikes" to="." method="_on_spikes_body_entered"]

@@ -42,8 +42,8 @@ public partial class schrodingers_box : StaticBody2D
 
         }
         timepast += 1;
-        GD.Print("This is timepast: " + timepast);
+        //GD.Print("This is timepast: " + timepast);
 
-        GD.Print("This is last time: " + lastTime);
+        //GD.Print("This is last time: " + lastTime);
     }
 }

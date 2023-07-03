@@ -56,8 +56,8 @@ _data = {
 curve = SubResource("Curve2D_y7tcj")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(8, 147.94)
-progress = 28.0591
+position = Vector2(8, 107.565)
+progress = 68.2105
 rotates = false
 
 [node name="MovingSpikeEnemy" type="Area2D" parent="PathFollow2D"]

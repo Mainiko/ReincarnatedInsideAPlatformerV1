@@ -24,3 +24,4 @@ position = Vector2(72, 160)
 
 [node name="Door" parent="." index="7" instance=ExtResource("4_pkiyf")]
 position = Vector2(296, 112)
+target_level_pass = "res://Scenes/Levels/levelTest15.tscn"

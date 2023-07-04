@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxxs87p4o4p5q"]
+[gd_scene load_steps=6 format=3 uid="uid://dxxs87p4o4p5q"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/BaseLevel.cs" id="1_nd4ev"]
 [ext_resource type="TileSet" uid="uid://c18q7b77gfsuc" path="res://Assets/Sprites/Tiles/Isekai_Tiles_1/tileset_Isekai_Tiles_1.tres" id="1_sm6hl"]
 [ext_resource type="Texture2D" uid="uid://dvpdxqxkijq33" path="res://Assets/Sprites/Backgrounds/purpletestBG1.png" id="3_gmdih"]
+[ext_resource type="PackedScene" uid="uid://bccee5fwed6hf" path="res://Scenes/Characters/player.tscn" id="5_xnjbj"]
 [ext_resource type="PackedScene" uid="uid://dcm374i48rj4r" path="res://Scenes/Extra/fall_hitbox.tscn" id="8_otbas"]
 
 [node name="BaseLevel2" type="Node"]
@@ -22,11 +23,11 @@ light_mask = 2
 tile_set = ExtResource("1_sm6hl")
 format = 2
 
-[node name="PlayerRoot" type="Node2D" parent="."]
-position = Vector2(232, 116)
-
 [node name="Fall_Hitbox" parent="." instance=ExtResource("8_otbas")]
 position = Vector2(173, 212)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(161, 90)
+
+[node name="player" parent="." instance=ExtResource("5_xnjbj")]
+position = Vector2(24, 160)

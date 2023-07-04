@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://curu02dbm3jyr"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/bossTest1.cs" id="1_l2a8q"]
+[ext_resource type="Texture2D" uid="uid://bm8ejytxqvojf" path="res://Assets/Sprites/Enemies/Spikes.png" id="1_vbrhd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npr1r"]
+size = Vector2(59, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr67o"]
+size = Vector2(57, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff47y"]
+size = Vector2(62, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldwt5"]
+size = Vector2(64, 8)
+
+[node name="Boss" type="CharacterBody2D"]
+script = ExtResource("1_l2a8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_npr1r")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_xr67o")
+
+[node name="Hitboxfrontandback" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxfrontandback"]
+position = Vector2(-1, 3)
+shape = SubResource("RectangleShape2D_ff47y")
+
+[node name="HitboxDeath" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxDeath"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_ldwt5")
+
+[node name="Spikes6" type="Sprite2D" parent="HitboxDeath"]
+position = Vector2(24, -16)
+texture = ExtResource("1_vbrhd")
+
+[node name="Spikes5" type="Sprite2D" parent="HitboxDeath"]
+position = Vector2(8, -16)
+texture = ExtResource("1_vbrhd")
+
+[node name="Spikes4" type="Sprite2D" parent="HitboxDeath"]
+position = Vector2(-8, -16)
+texture = ExtResource("1_vbrhd")
+
+[node name="Spikes3" type="Sprite2D" parent="HitboxDeath"]
+position = Vector2(-24, -16)
+texture = ExtResource("1_vbrhd")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hitboxfrontandback" to="." method="_on_hitboxfrontandback_body_entered"]
+[connection signal="body_entered" from="HitboxDeath" to="." method="_on_hitbox_death_body_entered"]

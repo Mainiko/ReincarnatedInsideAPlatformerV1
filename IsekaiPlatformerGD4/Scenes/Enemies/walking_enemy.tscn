@@ -18,6 +18,7 @@ animations = [{
 size = Vector2(21.1875, 9.625)
 
 [node name="walking_enemy" instance=ExtResource("1_vsi6u")]
+position = Vector2(2, 0)
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 frames = SubResource("SpriteFrames_vyrgb")

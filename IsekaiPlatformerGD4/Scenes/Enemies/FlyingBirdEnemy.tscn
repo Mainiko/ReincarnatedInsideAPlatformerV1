@@ -73,6 +73,7 @@ script = ExtResource("1_l1m13")
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2(12.3251, 0)
 progress = 4.36054
+rotates = false
 
 [node name="DeathHitBox" type="Area2D" parent="PathFollow2D"]
 

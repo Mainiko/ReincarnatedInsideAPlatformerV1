@@ -13,31 +13,31 @@ target_level_pass = "res://Scenes/Levels/levelTest5.tscn"
 [node name="TileMap" parent="." index="2"]
 layer_0/tile_data = PackedInt32Array(655360, 0, 1, 589824, 0, 1, 524288, 0, 1, 458752, 0, 1, 393216, 0, 1, 327680, 0, 1, 262144, 0, 1, 196608, 0, 1, 131072, 0, 1, 65536, 0, 1, 0, 0, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 5, 65536, 0, 6, 65536, 0, 7, 65536, 0, 8, 65536, 0, 9, 65536, 0, 10, 65536, 0, 11, 65536, 0, 12, 65536, 0, 13, 65536, 0, 14, 65536, 0, 15, 65536, 0, 16, 65536, 0, 17, 65536, 0, 18, 65536, 0, 19, 131072, 0, 65555, 131072, 1, 131091, 131072, 1, 196627, 131072, 1, 262163, 131072, 1, 327699, 131072, 1, 393235, 131072, 1, 458771, 131072, 1, 524307, 131072, 1, 589843, 131072, 1, 655379, 131072, 1, 720913, 65536, 0, 720914, 65536, 0, 720915, 65536, 0, 720896, 65536, 0, 262147, 131072, 0, 327683, 131072, 1, 393219, 131072, 1, 720903, 0, 0, 720904, 65536, 0, 262146, 65536, 0, 262145, 65536, 0, 393222, 0, 1, 458758, 196608, 2, 655363, 131072, 1, 720899, 131072, 1, 589827, 131072, 1, 720905, 65536, 0, 720906, 65536, 0, 720907, 65536, 0, 327686, 196608, 1, 262150, 196608, 1, 196614, 196608, 1, 131078, 196608, 1, 65542, 196608, 1, 458764, 196608, 1, 524300, 196608, 1, 589836, 196608, 1, 262158, 131072, 0, 327695, 131072, 2, 327698, 0, 0, 393233, 0, 1, 524304, 65536, 0, 524303, 65536, 0, 720912, 65536, 0, 458769, 0, 1, 327692, 196608, 1, 262157, 65536, 0, 524291, 131072, 1, 458755, 131072, 1, 655372, 196608, 1, 393228, 131072, 1, 458761, 196608, 2, 327689, 196608, 1, 393225, 196608, 1, 262153, 65536, 0, 262156, 0, 0, 720908, 131072, 1, 786444, 131072, 1, 786435, 131072, 1, 786439, 0, 1, 720911, 0, 0, 786447, 0, 1)
 
-[node name="PlayerRoot" parent="." index="3"]
-position = Vector2(24, 32)
-
-[node name="spike_enemy" parent="." index="6" instance=ExtResource("3_v7cnw")]
+[node name="spike_enemy" parent="." index="5" instance=ExtResource("3_v7cnw")]
 position = Vector2(248, 80)
 
-[node name="spike_enemy6" parent="." index="7" instance=ExtResource("3_v7cnw")]
+[node name="spike_enemy6" parent="." index="6" instance=ExtResource("3_v7cnw")]
 position = Vector2(192, 104)
 rotation = -1.57079
 
-[node name="spike_enemy10" parent="." index="8" instance=ExtResource("3_v7cnw")]
+[node name="spike_enemy10" parent="." index="7" instance=ExtResource("3_v7cnw")]
 position = Vector2(240, 136)
 rotation = -1.57079
 
-[node name="spike_enemy8" parent="." index="9" instance=ExtResource("3_v7cnw")]
+[node name="spike_enemy8" parent="." index="8" instance=ExtResource("3_v7cnw")]
 position = Vector2(144, 72)
 rotation = -1.57079
 
-[node name="spike_enemy7" parent="." index="10" instance=ExtResource("3_v7cnw")]
+[node name="spike_enemy7" parent="." index="9" instance=ExtResource("3_v7cnw")]
 position = Vector2(112, 104)
 rotation = 1.57079
 
-[node name="spike_enemy9" parent="." index="11" instance=ExtResource("3_v7cnw")]
+[node name="spike_enemy9" parent="." index="10" instance=ExtResource("3_v7cnw")]
 position = Vector2(160, 72)
 rotation = 1.57079
 
-[node name="spike_enemy2" parent="." index="12" instance=ExtResource("3_v7cnw")]
+[node name="spike_enemy2" parent="." index="11" instance=ExtResource("3_v7cnw")]
 position = Vector2(280, 96)
+
+[node name="player" parent="." index="12"]
+position = Vector2(24, 64)

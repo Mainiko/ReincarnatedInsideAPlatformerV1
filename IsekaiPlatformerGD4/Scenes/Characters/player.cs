@@ -59,21 +59,21 @@ public partial class player : CharacterBody2D
         // Add the gravity.
         if (!IsOnFloor())
         {   
-            if (GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && velocity.y > 0)
+            if (GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && velocity.Y > 0)
             {
-                velocity.y += (gravity - wallGravity) * (float)delta;
+                velocity.Y += (gravity - wallGravity) * (float)delta;
             }
-            else if (GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right") && velocity.y > 0)
+            else if (GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right") && velocity.Y > 0)
             {
-                velocity.y += (gravity - wallGravity) * (float)delta;
+                velocity.Y += (gravity - wallGravity) * (float)delta;
             }
-            else if (Velocity.y > 0) //If player is falling 
+            else if (Velocity.Y > 0) //If player is falling 
             {
-                velocity.y += addiditionalFallGravity * (float)delta; //Apply fast fall
+                velocity.Y += addiditionalFallGravity * (float)delta; //Apply fast fall
             }
             else
             {
-                velocity.y += gravity * (float)delta;
+                velocity.Y += gravity * (float)delta;
             }
 
         }
@@ -89,7 +89,7 @@ public partial class player : CharacterBody2D
         // Handle Jump.
         if (Input.IsActionJustPressed("jump") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump))
         {
-            velocity.y = JumpVelocity;
+            velocity.Y = JumpVelocity;
             if(!IsOnFloor() && coyoteTimer.IsStopped())
             {
                 hasDoubleJump=false;
@@ -98,15 +98,15 @@ public partial class player : CharacterBody2D
 
         if (isJumpingOnEnemy)
         {
-            velocity.y = JumpVelocity;
+            velocity.Y = JumpVelocity;
             isJumpingOnEnemy = false;
         }
 
 
 
-        if (Input.IsActionJustReleased("jump") && (velocity.y < JUMP_RELESE_FORCE))
+        if (Input.IsActionJustReleased("jump") && (velocity.Y < JUMP_RELESE_FORCE))
         {
-            velocity.y = JUMP_RELESE_FORCE;
+            velocity.Y = JUMP_RELESE_FORCE;
         }
 
 
@@ -115,17 +115,17 @@ public partial class player : CharacterBody2D
         if (direction != Vector2.Zero)
         {
             //velocity.x = direction.x * Speed;
-            velocity.x = Mathf.Lerp(velocity.x, direction.x * Speed, acceleration); // om denna kraschar skiten sa....// den gjorde det....
+            velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration); // om denna kraschar skiten sa....// den gjorde det....
             FlipSprite(direction);
         }
         else
             //velocity.x = Mathf.Lerp(0, velocity.x, Mathf.Pow(2, -10 * (float)delta)); 
         {
-            velocity.x = Mathf.Lerp(0, velocity.x, Mathf.Pow(5, -10 * (float)delta)); //This is friction
+            velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(5, -10 * (float)delta)); //This is friction
             //velocity.x = Mathf.MoveToward(Velocity.x, 0, Speed);
         }
         
-        velocity.x = Mathf.Clamp(velocity.x, -maxHorizontalSpeed, maxHorizontalSpeed);
+        velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
 
 
         bool wasOnFloor = IsOnFloor();
@@ -133,23 +133,23 @@ public partial class player : CharacterBody2D
         //Handles walljump
         if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_right")) //&& !IsOnFloor()
         {
-            velocity.y = JumpVelocity;
-            velocity.x = jumpHeight;
+            velocity.Y = JumpVelocity;
+            velocity.X = jumpHeight;
         }
         else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_left")) // && !IsOnFloor())
         {
-            velocity.y = JumpVelocity;
-            velocity.x = -jumpHeight;
+            velocity.Y = JumpVelocity;
+            velocity.X = -jumpHeight;
         }
         else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right") && wallClimbJump == true)
         {
-            velocity.y = JumpVelocity;
-            velocity.x = jumpHeight;
+            velocity.Y = JumpVelocity;
+            velocity.X = jumpHeight;
         }
         else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && wallClimbJump == true)
         {
-            velocity.y = JumpVelocity;
-            velocity.x = -jumpHeight;
+            velocity.Y = JumpVelocity;
+            velocity.X = -jumpHeight;
         }
 
 
@@ -160,11 +160,11 @@ public partial class player : CharacterBody2D
             //Create timer that will signal when the dash is done?
             //So we can start applaying gravity again
             isDashing = true;
-            velocity.y = -100;
+            velocity.Y = -100;
 
 
             //Makes player dash at the facing direction 
-            bool currentFacingDirection = animatedSprite2D.IsFlippedH();
+            bool currentFacingDirection = animatedSprite2D.FlipH;
             int facingDirValue = 0;
             if (currentFacingDirection)
             {
@@ -175,10 +175,10 @@ public partial class player : CharacterBody2D
                 facingDirValue = 1;
             }
 
-            direction.x = facingDirValue;
+            direction.X = facingDirValue;
 
             //velocity.x = Mathf.Lerp(velocity.x, direction.x * dashSpeed, acceleration);
-            velocity.x = Mathf.Lerp(velocity.x, direction.x * dashSpeed, 0.15f);
+            velocity.X = Mathf.Lerp(velocity.X, direction.X * dashSpeed, 0.15f);
             hasDash = false;
             isDashing = false;
 
@@ -199,6 +199,8 @@ public partial class player : CharacterBody2D
         {
             hasDoubleJump = true;
         }
+
+      
     }
 
 
@@ -210,7 +212,7 @@ public partial class player : CharacterBody2D
 
     private void FlipSprite(Vector2 direction) //Flip sprite so it faces input direction
     {
-        if (direction.x < 0)
+        if (direction.X < 0)
         {
             animatedSprite2D.FlipH = true;
         }
@@ -233,6 +235,17 @@ public partial class player : CharacterBody2D
     {
         GD.Print("Jump");
         isJumpingOnEnemy = true;
+    }
+
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event is InputEventKey eventKey)
+            if (eventKey.Pressed && eventKey.Keycode == Key.Escape)
+            {
+                GetTree().ChangeSceneToFile("res://Scenes/UI/menu.tscn");
+            }
+               
     }
 
 }

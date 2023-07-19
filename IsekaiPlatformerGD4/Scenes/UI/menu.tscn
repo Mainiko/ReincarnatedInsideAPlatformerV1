@@ -12,36 +12,32 @@ offset_bottom = 1868.9
 script = ExtResource("1_33a2i")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = -1
+layout_mode = 0
 anchor_right = 0.156
 anchor_bottom = 0.087
 offset_right = 0.511993
 offset_bottom = 5.82399
 texture = ExtResource("2_80s6h")
-ignore_texture_size = true
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 112.0
 offset_top = 64.0
 offset_right = 223.0
 offset_bottom = 165.0
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
-offset_right = 111.0
-offset_bottom = 31.0
+layout_mode = 2
 text = "Start
 "
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
-offset_top = 35.0
-offset_right = 111.0
-offset_bottom = 66.0
+layout_mode = 2
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-offset_top = 70.0
-offset_right = 111.0
-offset_bottom = 101.0
+layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

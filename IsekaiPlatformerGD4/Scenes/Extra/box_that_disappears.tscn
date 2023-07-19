@@ -8,7 +8,10 @@ size = Vector2(16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cj3km"]
 animations = [{
-"frames": [ExtResource("1_tamdu")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tamdu")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
@@ -24,7 +27,7 @@ script = ExtResource("1_jvc6e")
 shape = SubResource("RectangleShape2D_5w11u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-frames = SubResource("SpriteFrames_cj3km")
+sprite_frames = SubResource("SpriteFrames_cj3km")
 
 [node name="Hitbox" type="Area2D" parent="."]
 

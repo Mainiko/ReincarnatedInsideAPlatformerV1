@@ -1,8 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dro7y7hbpdpp8"]
+[gd_scene load_steps=5 format=3 uid="uid://dro7y7hbpdpp8"]
 
 [ext_resource type="PackedScene" uid="uid://bjvfxtva7483" path="res://Scenes/Extra/box_that_disappears.tscn" id="1_8qkys"]
 [ext_resource type="Script" path="res://Scenes/Extra/schrodingers_box.cs" id="2_rya6g"]
+[ext_resource type="Texture2D" uid="uid://5om1lcifuary" path="res://Assets/Sprites/Tiles/tile_0009.png" id="3_3qtae"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cj3km"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3qtae")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="schrodingers_box" instance=ExtResource("1_8qkys")]
 script = ExtResource("2_rya6g")
 timeBeforeDisappear = 100
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_cj3km")

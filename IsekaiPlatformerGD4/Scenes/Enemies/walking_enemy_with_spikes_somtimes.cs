@@ -26,28 +26,28 @@ public partial class walking_enemy_with_spikes_somtimes : CharacterBody2D
 		var ledgeCheckLeft = GetNode<RayCast2D>("LedgeCheckLeft");
 
 		if (!IsOnFloor())
-			velocity.y += gravity * (float)delta;
+			velocity.Y += gravity * (float)delta;
 
 		bool found_wall = IsOnWall();
 		var found_ledge = LedgeCheckRight.IsColliding() && ledgeCheckLeft.IsColliding();
 		if (found_wall || !found_ledge)
 		{
-			GD.Print(direction.x);
+			GD.Print(direction.X);
 			direction *= -1;
-			GD.Print(direction.x);
+			GD.Print(direction.X);
 			GD.Print(found_ledge);
 			GD.Print(animatedSprite2D);
 		}
 
 
-		if (direction.x > 0)
+		if (direction.X > 0)
 			animatedSprite2D.FlipH = true;
-		if (direction.x < 0)
+		if (direction.X < 0)
 			animatedSprite2D.FlipH = false;
 
 
 		float ost = 25.0f;
-		velocity.x = direction.x * ost;
+		velocity.X = direction.X * ost;
 		Velocity = velocity;
 		MoveAndSlide();
 
@@ -87,7 +87,7 @@ public partial class walking_enemy_with_spikes_somtimes : CharacterBody2D
 	}
 
 
-    private void _on_hitbox_body_entered(CharacterBody2D body)
+	private void _on_hitbox_body_entered(CharacterBody2D body)
 	{
 		GD.Print("Body: " + body.Name + "has entered");
 

@@ -20,7 +20,6 @@ timebeforeMoving = 50
 [node name="spike_enemy2" parent="." index="6" instance=ExtResource("3_fcr1n")]
 position = Vector2(16, 128)
 rotation = 1.58821
-scale = Vector2(1, 1)
 
 [node name="spike_enemy" parent="." index="7" instance=ExtResource("3_fcr1n")]
 position = Vector2(304, 128)

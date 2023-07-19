@@ -16,16 +16,16 @@ public partial class jumping_enemy : CharacterBody2D
 	{
 		Vector2 velocity = Velocity;
 		if (!IsOnFloor())
-        {
+		{
 			await Task.Delay(TimeDelayBeforeFall);
-			velocity.y += addiditionalFallGravity;
-			GD.Print(velocity.y);
+			velocity.Y += addiditionalFallGravity;
+			GD.Print(velocity.Y);
 		}
 		else
-        {
+		{
 			await Task.Delay(TimeDelayBeforeJump);
-			velocity.y = JumpVelocity;
-			GD.Print(velocity.y);
+			velocity.Y = JumpVelocity;
+			GD.Print(velocity.Y);
 		}
 
 		Velocity = velocity;

@@ -8,7 +8,13 @@
 resource_local_to_scene = true
 resource_name = "Walking"
 animations = [{
-"frames": [ExtResource("2_72y7x"), ExtResource("3_m7ngi")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_72y7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m7ngi")
+}],
 "loop": true,
 "name": &"Walking",
 "speed": 5.0
@@ -21,7 +27,7 @@ size = Vector2(21.1875, 9.625)
 position = Vector2(2, 0)
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-frames = SubResource("SpriteFrames_vyrgb")
+sprite_frames = SubResource("SpriteFrames_vyrgb")
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0.375, 1.56182)

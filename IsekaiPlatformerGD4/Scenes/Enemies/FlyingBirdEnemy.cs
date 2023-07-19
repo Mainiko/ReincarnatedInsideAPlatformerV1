@@ -24,9 +24,9 @@ public partial class FlyingBirdEnemy : Path2D
 		GD.Print(lastPosition);
 
 		if (newPosistion > lastPosition)
-            animatedSprite2D.FlipH = true;
-        if (newPosistion < lastPosition)
-            animatedSprite2D.FlipH = false;
+			animatedSprite2D.FlipH = true;
+		if (newPosistion < lastPosition)
+			animatedSprite2D.FlipH = false;
 
 		lastPosition = newPosistion;
 	}

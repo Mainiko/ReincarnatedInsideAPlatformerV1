@@ -9,7 +9,13 @@ size = Vector2(9, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fudt0"]
 animations = [{
-"frames": [ExtResource("1_jxmsr"), ExtResource("2_wo61n")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jxmsr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wo61n")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
@@ -27,8 +33,7 @@ shape = SubResource("RectangleShape2D_ms8yj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
-frames = SubResource("SpriteFrames_fudt0")
-playing = true
+sprite_frames = SubResource("SpriteFrames_fudt0")
 
 [node name="Hitbox" type="Area2D" parent="."]
 

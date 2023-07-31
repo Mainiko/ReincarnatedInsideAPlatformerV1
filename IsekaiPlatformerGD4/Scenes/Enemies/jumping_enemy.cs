@@ -48,8 +48,9 @@ public partial class jumping_enemy : CharacterBody2D
 	}
 	
 	private void _on_timer_timeout()
-	{
-		isJumping = true;
+    {
+        isJumping = true;
+    //ost
 	}
 }
 

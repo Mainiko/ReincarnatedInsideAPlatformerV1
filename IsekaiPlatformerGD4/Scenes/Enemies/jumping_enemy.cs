@@ -13,7 +13,7 @@ public partial class jumping_enemy : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
-	public async override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 		if (!IsOnFloor())
@@ -48,9 +48,9 @@ public partial class jumping_enemy : CharacterBody2D
 	}
 	
 	private void _on_timer_timeout()
-    {
-        isJumping = true;
-    //ost
+	{
+		isJumping = true;
+	//ost
 	}
 }
 

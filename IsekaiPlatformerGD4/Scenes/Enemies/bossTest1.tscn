@@ -1,37 +1,40 @@
-[gd_scene load_steps=7 format=3 uid="uid://curu02dbm3jyr"]
+[gd_scene load_steps=9 format=3 uid="uid://curu02dbm3jyr"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/bossTest1.cs" id="1_l2a8q"]
 [ext_resource type="Texture2D" uid="uid://bm8ejytxqvojf" path="res://Assets/Sprites/Enemies/Spikes.png" id="1_vbrhd"]
+[ext_resource type="Texture2D" uid="uid://i74dybloxa3g" path="res://Assets/Sprites/Characters/character_0014.png" id="3_84wuc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npr1r"]
-size = Vector2(59, 16)
+size = Vector2(58, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr67o"]
-size = Vector2(57, 22)
+size = Vector2(58, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff47y"]
-size = Vector2(62, 14)
+size = Vector2(62, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldwt5"]
 size = Vector2(64, 8)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m2jf6"]
 
 [node name="Boss" type="CharacterBody2D"]
 script = ExtResource("1_l2a8q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 0)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_npr1r")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0.5, -1)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_xr67o")
 
 [node name="Hitboxfrontandback" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxfrontandback"]
-position = Vector2(-1, 3)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ff47y")
 
 [node name="HitboxDeath" type="Area2D" parent="."]
@@ -56,6 +59,17 @@ texture = ExtResource("1_vbrhd")
 position = Vector2(-24, -16)
 texture = ExtResource("1_vbrhd")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_m2jf6")
+position = Vector2(3.8147e-06, 0)
+scale = Vector2(3.53322, 1.125)
+texture = ExtResource("3_84wuc")
+
+[node name="ChargeModeTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="Hitboxfrontandback" to="." method="_on_hitboxfrontandback_body_entered"]
 [connection signal="body_entered" from="HitboxDeath" to="." method="_on_hitbox_death_body_entered"]
+[connection signal="timeout" from="ChargeModeTimer" to="." method="_on_charge_mode_timer_timeout"]

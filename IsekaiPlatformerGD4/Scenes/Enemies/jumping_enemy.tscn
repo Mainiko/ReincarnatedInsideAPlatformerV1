@@ -41,4 +41,8 @@ sprite_frames = SubResource("SpriteFrames_fudt0")
 position = Vector2(-0.5, -7.5)
 shape = SubResource("RectangleShape2D_yp0ua")
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

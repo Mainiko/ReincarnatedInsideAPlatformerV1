@@ -33,10 +33,12 @@ text = "Start
 "
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 text = "Quit"
 

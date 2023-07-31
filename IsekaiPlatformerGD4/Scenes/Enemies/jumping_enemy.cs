@@ -8,24 +8,25 @@ public partial class jumping_enemy : CharacterBody2D
 	[Export] private int TimeDelayBeforeJump = 1000;
 	[Export] private int TimeDelayBeforeFall = 1000;
 	[Export] private int addiditionalFallGravity = 100;
+	private bool isJumping = false;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
-//	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 	public async override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 		if (!IsOnFloor())
 		{
-			await Task.Delay(TimeDelayBeforeFall);
-			velocity.Y += addiditionalFallGravity;
-			GD.Print(velocity.Y);
+			velocity.Y += gravity * (float)delta;
+			isJumping = false;
 		}
 		else
 		{
-			await Task.Delay(TimeDelayBeforeJump);
-			velocity.Y = JumpVelocity;
-			GD.Print(velocity.Y);
+			if(isJumping)
+			{
+				velocity.Y = JumpVelocity ;
+			}
 		}
 
 		Velocity = velocity;
@@ -45,4 +46,11 @@ public partial class jumping_enemy : CharacterBody2D
 			player.Call("PlayerDie");
 		}
 	}
+	
+	private void _on_timer_timeout()
+	{
+		isJumping = true;
+	}
 }
+
+

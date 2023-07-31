@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://7pcyu174u0l3"]
+[gd_scene load_steps=6 format=3 uid="uid://7pcyu174u0l3"]
 
 [ext_resource type="Texture2D" uid="uid://pf2chn43kbs6" path="res://Assets/Sprites/Background/background_0011.png" id="1_a7xys"]
 [ext_resource type="TileSet" uid="uid://c18q7b77gfsuc" path="res://Assets/Sprites/Tiles/Isekai_Tiles_1/tileset_Isekai_Tiles_1.tres" id="2_ybpkf"]
 [ext_resource type="PackedScene" uid="uid://bccee5fwed6hf" path="res://Scenes/Characters/player.tscn" id="3_yq4s0"]
 [ext_resource type="PackedScene" uid="uid://ce88ag4tnpq8t" path="res://Scenes/Extra/door.tscn" id="4_d7ul8"]
+[ext_resource type="PackedScene" uid="uid://bv4gsnv5atavu" path="res://Scenes/Enemies/jumping_enemy.tscn" id="5_n0h56"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -19,11 +20,11 @@ tile_set = ExtResource("2_ybpkf")
 format = 2
 layer_0/tile_data = PackedInt32Array(720889, 65536, 1, 720890, 65536, 1, 720891, 65536, 1, 720892, 65536, 1, 720893, 65536, 1, 720894, 65536, 1, 720895, 65536, 1, 655360, 65536, 1, 720888, 65536, 1, 655361, 65536, 1, 655362, 65536, 1, 655363, 65536, 1, 655364, 65536, 1, 655365, 65536, 1, 655366, 65536, 1, 655367, 65536, 1, 655368, 65536, 1, 655369, 65536, 1, 655370, 65536, 1, 655371, 65536, 1, 720907, 65536, 1, 720906, 65536, 1, 720905, 65536, 1, 720904, 65536, 1, 720903, 65536, 1, 720902, 65536, 1, 720901, 65536, 1, 720900, 65536, 1, 720899, 65536, 1, 720898, 65536, 1, 720897, 65536, 1, 720896, 65536, 1, 786431, 65536, 1, 786430, 65536, 1, 786429, 65536, 1, 786428, 65536, 1, 786427, 65536, 1, 786426, 65536, 1, 786425, 65536, 1, 786424, 65536, 1, 589828, 65536, 1, 589831, 65536, 1, 589835, 65536, 1, 589834, 65536, 1)
 
-[node name="player" parent="." instance=ExtResource("3_yq4s0")]
-position = Vector2(24, 144)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 96)
+
+[node name="player" parent="." instance=ExtResource("3_yq4s0")]
+position = Vector2(24, 144)
 
 [node name="LabelLevel" type="Label" parent="."]
 offset_left = 192.0
@@ -48,3 +49,13 @@ target_level_pass = "res://Scenes/Levels/bossStageTest1.tscn"
 [node name="DoorLevels" parent="." instance=ExtResource("4_d7ul8")]
 position = Vector2(224, 152)
 target_level_pass = "res://Scenes/Levels/levelTest2.tscn"
+
+[node name="JumpingEnemy2" parent="." instance=ExtResource("5_n0h56")]
+position = Vector2(131, 131)
+JumpVelocity = -250.0
+addiditionalFallGravity = 1000
+
+[node name="JumpingEnemy" parent="." instance=ExtResource("5_n0h56")]
+position = Vector2(96, 136)
+JumpVelocity = -250.0
+addiditionalFallGravity = 1000

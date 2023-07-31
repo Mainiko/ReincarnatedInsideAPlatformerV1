@@ -14,8 +14,8 @@ public partial class menu : Control
 	}
 
 	public void _on_start_button_pressed()
-    {
-        GetTree().ChangeSceneToFile("res://Scenes/Levels/StartWorldtest.tscn");
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/Levels/StartWorldtest.tscn");
 		GD.Print("Game start");
 	}
 

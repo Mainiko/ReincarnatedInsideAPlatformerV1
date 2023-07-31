@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/tile_0085.png-7919e8c9d3a503bc1b8b44df90cd62e
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

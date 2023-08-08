@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://by12xmkbridqd"]
+
+[ext_resource type="Texture2D" uid="uid://i74dybloxa3g" path="res://Assets/Sprites/Characters/character_0014.png" id="1_gcowf"]
+[ext_resource type="Script" path="res://Scenes/Enemies/second_boss_test.cs" id="1_w7u7v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_df6vu"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqoxy"]
+size = Vector2(50, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l14pq"]
+size = Vector2(60, 53)
+
+[node name="secondBossTest" type="CharacterBody2D"]
+script = ExtResource("1_w7u7v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.5, -0.499998)
+scale = Vector2(3.29167, 3.125)
+texture = ExtResource("1_gcowf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_df6vu")
+
+[node name="Hitbox_BossHurt" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox_BossHurt"]
+position = Vector2(0, -19.5)
+shape = SubResource("RectangleShape2D_jqoxy")
+
+[node name="Hitbox_playerHurt" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox_playerHurt"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_l14pq")
+
+[connection signal="body_entered" from="Hitbox_BossHurt" to="." method="_on_hitbox_boss_hurt_body_entered"]
+[connection signal="body_entered" from="Hitbox_playerHurt" to="." method="_on_hitbox_player_hurt_body_entered"]

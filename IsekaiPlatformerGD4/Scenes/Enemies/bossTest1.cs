@@ -15,6 +15,7 @@ public partial class bossTest1 : CharacterBody2D
 	int timeSinceStoped = 0;
 	bool spikeIsActive = false;
 	bool chargeMode = false;
+	bool confused = false;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -29,44 +30,49 @@ public partial class bossTest1 : CharacterBody2D
 
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
 
-
-		if (IsOnWall())
-		{
-			if (chargeMode)
+	
+			if (IsOnWall())
 			{
-				Speed = 0;
-//					await get_tree().create_timer(1.0).timeout;
+				if (chargeMode)
+				{
+					if (confused)
+					{
+					   Speed = 0;
+					   spikeIsActive = true;
+				 	}
+					else
+					{
+					confused = true;
 					await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
-//				if (timeSinceStoped > timebeforeMoving)
-					
 					spikeIsActive = false;
-//					timeSinceStoped = 0;
 					chargeMode = false;
-//				timeSinceStoped += 1;
-//					queue_free()
-				//GD.Print("timeSinceStoped: " +timeSinceStoped);
-				GD.Print("My speed" + Speed);
-				GD.Print("On wall?" + IsOnWall());
-				
-			}
-			else{
-				GD.Print("outside of chargemode ");
+					confused = false;
+					direction *= -1;
+					Speed = 100;
+					GD.Print("My speed" + Speed);
+					GD.Print("On wall?" + IsOnWall());
+				 	}
+				  
+				}
+				else
+				{
+					GD.Print("outside of chargemode ");
 					direction *= -1;
 					Speed = 100;
 				}
-			
+			}
+
+			if (spikeIsActive)
+			{
+				Spikes.Visible = true;
+				Spikes.CollisionLayer = 1;
+			}
+			else if (!spikeIsActive)
+			{
+				Spikes.Visible = false;
+				Spikes.CollisionLayer = 0;
+			}
 		
-		}
-		if (spikeIsActive)
-		{
-			Spikes.Visible = true;
-			Spikes.CollisionLayer = 1;
-		}
-		else if (!spikeIsActive)
-		{
-			Spikes.Visible = false;
-			Spikes.CollisionLayer = 0;
-		}
 		velocity.X = direction.X * Speed;
 		Velocity = velocity;
 		MoveAndSlide();

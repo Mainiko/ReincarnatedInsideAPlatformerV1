@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcu0hkalytmk2"]
+[gd_scene load_steps=5 format=3 uid="uid://dcu0hkalytmk2"]
 
 [ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_gnxty"]
 [ext_resource type="PackedScene" uid="uid://dprtvow5s0cf3" path="res://Scenes/Extra/moving_platform.tscn" id="2_d1xxc"]
 [ext_resource type="PackedScene" uid="uid://ce88ag4tnpq8t" path="res://Scenes/Extra/door.tscn" id="3_wi1f2"]
+[ext_resource type="PackedScene" uid="uid://b02uq5gsfdlj4" path="res://Scenes/Enemies/stomp_enemy.tscn" id="4_aw2mm"]
 
 [node name="BaseLevel2" instance=ExtResource("1_gnxty")]
 
@@ -17,3 +18,9 @@ position = Vector2(72, 136)
 
 [node name="Door" parent="." index="6" instance=ExtResource("3_wi1f2")]
 position = Vector2(144, 48)
+
+[node name="StompEnemy2" parent="." index="7" instance=ExtResource("4_aw2mm")]
+position = Vector2(244.178, 99.5007)
+
+[node name="StompEnemy" parent="." index="8" instance=ExtResource("4_aw2mm")]
+position = Vector2(275.305, 99.5007)

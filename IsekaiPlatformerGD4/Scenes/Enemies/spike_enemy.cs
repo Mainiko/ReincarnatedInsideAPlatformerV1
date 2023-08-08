@@ -25,9 +25,9 @@ public partial class spike_enemy : Node2D
 
 	}
 
-    private void _on_area_2d_body_entered(CharacterBody2D body) // Get called when a chacarterBody2D collides with spike
-    {
-        GD.Print("Body: " + body.Name + "has entered");
+	private void _on_area_2d_body_entered(CharacterBody2D body) // Get called when a chacarterBody2D collides with spike
+	{
+		GD.Print("Body: " + body.Name + "has entered");
 
 		timer.Start();
 
@@ -41,18 +41,18 @@ public partial class spike_enemy : Node2D
 			//var world = GetTree().GetRoot().GetNode<Node>("parent");
 			//world.Call("SpawnPlayer");
 			//GD.Print(GetTree().GetRoot().GetNode<Node>("parent").Name);
-            //GetNode("../../")
+			//GetNode("../../")
 
 
-        }
+		}
 
 
 
 
 
-    }
+	}
 
-    private void _on_timer_timeout()
+	private void _on_timer_timeout()
 	{
 		GD.Print("cya im out");
 		QueueFree();

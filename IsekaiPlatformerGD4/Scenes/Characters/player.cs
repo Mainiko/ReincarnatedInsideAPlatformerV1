@@ -71,7 +71,7 @@ public partial class player : CharacterBody2D
 			}
 			else
 			{
-				GD.Print("Falling gravity");
+				
 				velocity.Y += gravity * (float)delta;
 			}
 

@@ -1,17 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://dehbe87gs0ac2"]
+[gd_scene load_steps=4 format=3 uid="uid://q0cxlmiicgwj"]
 
 [ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_re2i6"]
 [ext_resource type="PackedScene" uid="uid://by12xmkbridqd" path="res://Scenes/Enemies/second_boss_test.tscn" id="2_pirv0"]
-[ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="3_um182"]
+[ext_resource type="PackedScene" uid="uid://xr74rd4nyilm" path="res://Scenes/Extra/JumpPlatform.tscn" id="3_548b1"]
 
 [node name="BaseLevel2" instance=ExtResource("1_re2i6")]
 
 [node name="TileMap" parent="." index="1"]
 layer_0/tile_data = PackedInt32Array(655361, 65536, 2, 655362, 65536, 2, 655363, 65536, 2, 655364, 65536, 2, 655365, 65536, 2, 655366, 65536, 2, 655367, 65536, 2, 655368, 65536, 2, 655369, 65536, 2, 655370, 65536, 2, 655371, 65536, 2, 655372, 65536, 2, 655373, 65536, 2, 655374, 65536, 2, 655375, 65536, 2, 655376, 65536, 2, 655377, 65536, 2, 655378, 65536, 2, 655360, 0, 2, 655379, 131072, 2, 65536, 0, 1, 131072, 0, 1, 196608, 0, 1, 262144, 0, 1, 327680, 0, 1, 393216, 0, 1, 458752, 0, 1, 524288, 0, 1, 589824, 0, 1, 0, 0, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 5, 65536, 0, 6, 65536, 0, 7, 65536, 0, 8, 65536, 0, 9, 65536, 0, 10, 65536, 0, 11, 65536, 0, 12, 65536, 0, 13, 65536, 0, 14, 65536, 0, 15, 65536, 0, 16, 65536, 0, 17, 65536, 0, 18, 65536, 0, 19, 131072, 0, 65555, 131072, 1, 131091, 131072, 1, 196627, 131072, 1, 262163, 131072, 1, 327699, 131072, 1, 393235, 131072, 1, 458771, 131072, 1, 524307, 131072, 1, 589843, 131072, 1)
 
-[node name="secondBossTest" parent="." index="5" instance=ExtResource("2_pirv0")]
-position = Vector2(160, 88)
+[node name="player" parent="." index="4"]
+position = Vector2(146, 152)
 
-[node name="spike_enemy" parent="." index="6" instance=ExtResource("3_um182")]
-position = Vector2(16, 112)
-rotation = 1.5644
+[node name="secondBossTest" parent="." index="5" instance=ExtResource("2_pirv0")]
+position = Vector2(70, 70)
+goingUppSpeed = -100
+timeBeforeGoingUpp = 0.1
+
+[node name="JumpPlatform2" parent="." index="6" instance=ExtResource("3_548b1")]
+position = Vector2(294, 150)
+
+[node name="JumpPlatform" parent="." index="7" instance=ExtResource("3_548b1")]
+position = Vector2(26, 150)

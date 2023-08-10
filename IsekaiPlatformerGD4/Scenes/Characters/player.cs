@@ -38,6 +38,8 @@ public partial class player : CharacterBody2D
 	private bool isStateNew = true;
 	private bool isDying = false;
 	private bool isJumpingOnEnemy = false;
+	private bool isJumpingOnJumpPlatform = false;
+
 	//Celeste tutorial
 	[Export]private int jumpHeight = 300;
 	[Export]private int dashSpeed = 1500;
@@ -53,7 +55,6 @@ public partial class player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
-
 		// Add the gravity.
 		if (!IsOnFloor())
 		{   
@@ -101,6 +102,12 @@ public partial class player : CharacterBody2D
 			isJumpingOnEnemy = false;
 		}
 
+
+		if (isJumpingOnJumpPlatform)
+		{
+			velocity.Y = (float)(JumpVelocity * 1.5);
+			isJumpingOnJumpPlatform = false;
+		}
 
 
 		if (Input.IsActionJustReleased("jump") && (velocity.Y < JUMP_RELESE_FORCE))
@@ -237,6 +244,13 @@ public partial class player : CharacterBody2D
 	{
 		GD.Print("Jump");
 		isJumpingOnEnemy = true;
+
+	}
+
+	private void PlayerJumpOnJumpPlatform()
+	{
+		GD.Print("Jump");
+		isJumpingOnJumpPlatform = true;
 	}
 
 

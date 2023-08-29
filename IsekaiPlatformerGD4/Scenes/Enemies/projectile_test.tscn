@@ -14,8 +14,6 @@ script = ExtResource("1_lktsd")
 position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_ebs4d")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
 [node name="Character0012" type="Sprite2D" parent="."]
 position = Vector2(1, 2)
 rotation = 1.59453

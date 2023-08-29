@@ -1,14 +1,12 @@
 using Godot;
 using System;
 
-public partial class projectile_test : Area2D
+public partial class boss_2_projectile_1 : Area2D
 {
-
-
 	[Export] private int Speed = 200;
 	private Vector2 direction = new Vector2(1, 0);
 	private float rotation;
-	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -43,10 +41,5 @@ public partial class projectile_test : Area2D
 	}
 
 }
-
-
-
-
-
 
 

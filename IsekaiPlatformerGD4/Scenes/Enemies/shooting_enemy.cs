@@ -15,12 +15,12 @@ public partial class shooting_enemy : StaticBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override async void _Process(double delta)
 	{
-		
+		//res://Scenes/Enemies/projectile_test.tscn
 		if (shot)
 		{
 			Vector2 direction = new Vector2(-1, 0);
 			var projectile = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/projectile_test.tscn").Instantiate();
-			projectile.Call("SetDirection", direction);
+			projectile.Call("SetDirection", direction, 180);
 			shot = false;
 			await ToSignal(GetTree().CreateTimer(shotSpeed), "timeout");
 			AddChild(projectile);
@@ -29,7 +29,7 @@ public partial class shooting_enemy : StaticBody2D
 
 	}
 
-
+		
 	private void _on_hitbox_body_entered(Node2D body)
 	{
 		//GD.Print("Body: " + body.Name + "has entered");

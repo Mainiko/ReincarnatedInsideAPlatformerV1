@@ -38,6 +38,7 @@ public partial class second_boss_test : CharacterBody2D
 
 		//160,88
 
+
 		if (!stomping)
 		{
 			if (t >= 1)
@@ -167,6 +168,16 @@ public partial class second_boss_test : CharacterBody2D
 
 		if (rotate)
 		{
+
+			var Hitbox_BossHurt = GetNode<Area2D>("Hitbox_BossHurt");
+			var Hitbox_playerHurt = GetNode<Area2D>("Hitbox_playerHurt");
+			this.CollisionLayer = 0;
+			Hitbox_BossHurt.CollisionLayer = 0;
+			Hitbox_playerHurt.CollisionLayer = 0;
+			this.CollisionMask = 0;
+			Hitbox_BossHurt.CollisionMask = 0;
+			Hitbox_playerHurt.CollisionMask = 0;
+
 			moving = false;
 			this.Rotate((float)0.1);
 			if (this.RotationDegrees > 0 && this.RotationDegrees < 1)
@@ -174,6 +185,13 @@ public partial class second_boss_test : CharacterBody2D
 				this.RotationDegrees = 0;
 				rotate = false;
 				moving = true;
+				this.CollisionLayer = 1;
+				Hitbox_BossHurt.CollisionLayer = 1;
+				Hitbox_playerHurt.CollisionLayer = 1;
+				this.CollisionMask = 1;
+				Hitbox_BossHurt.CollisionMask = 1;
+				Hitbox_playerHurt.CollisionMask = 1;
+
 			}
 		}
 
@@ -215,7 +233,7 @@ public partial class second_boss_test : CharacterBody2D
 		GD.Print("Body: " + body.Name + "has entered");
 
 		//Call function from player
-		if (body.Name == "player")
+		if (body.Name == "player" && !rotate)
 		{
 			var player = GetNode<CharacterBody2D>(body.GetPath());
 			player.Call("PlayerDie");

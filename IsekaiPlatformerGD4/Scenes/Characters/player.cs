@@ -20,7 +20,10 @@ public partial class player : CharacterBody2D
 
 	private enum State { NORMAL, DASHING, INPUT_DISABLED }
 
-	[Export]private float Speed = 125.0f;
+	[Export]private float GroundSpeed = 125.0f;
+	[Export]private int airTurnSpeed = 30;
+	[Export] private int airTurnFinaleSpeed = 85;
+	[Export]private int friction = 23;
 	[Export]private int maxHorizontalSpeed = 200;
 //	[Export]private int horizontalAcceleration = 2000;
 	[Export]private float JumpVelocity = -250.0f;
@@ -39,9 +42,15 @@ public partial class player : CharacterBody2D
 	private bool isDying = false;
 	private bool isJumpingOnEnemy = false;
 	private bool isJumpingOnJumpPlatform = false;
+	private bool isWallJumping = false;
+	private bool justOnWall = false;
+	private float myPosition = 0;
+	private float myLastPosition = 0;
 
+
+	private float Speed = 125.0f;
 	//Celeste tutorial
-	[Export]private int jumpHeight = 300;
+	[Export]private int jumpSpeed = 300;
 	[Export]private int dashSpeed = 1500;
 
 	[Export] private int defaultHazardMask = 0;
@@ -52,9 +61,47 @@ public partial class player : CharacterBody2D
 		coyoteTimer = GetNode<Timer>("CoyoteTimer");
 	}
 
-	public override void _PhysicsProcess(double delta)
+	public override  void _PhysicsProcess(double delta)
 	{
+
+
+
 		Vector2 velocity = Velocity;
+		Vector2 direction = GetDirectionVector();
+
+
+
+		GD.Print(Speed);
+
+
+		if (IsOnFloor())
+		{
+			Speed = GroundSpeed;
+			justOnWall = false;
+
+		}
+
+		else if (IsOnWall())
+		{
+			Speed = GroundSpeed;
+			if(GetNode<RayCast2D>("RayCastLeft").IsColliding() && direction.X > 0 || (GetNode<RayCast2D>("RayCastRight").IsColliding() && direction.X < 0))
+			{
+				justOnWall = true;
+			}
+		}
+
+		else
+		{
+			myLastPosition = myPosition;
+			myPosition = this.Position.X;
+			if ((myLastPosition > myPosition && direction.X > 0 && !justOnWall) || (myLastPosition < myPosition && direction.X < 0 && !justOnWall))
+			{
+				Speed = Mathf.Lerp(airTurnSpeed, airTurnFinaleSpeed, acceleration);
+			}
+		}
+
+		
+
 		// Add the gravity.
 		if (!IsOnFloor())
 		{   
@@ -84,19 +131,21 @@ public partial class player : CharacterBody2D
 			hasDash = true;
 
 		}
-	 
 
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump))
 		{
 			velocity.Y = JumpVelocity;
-			if(!IsOnFloor() && coyoteTimer.IsStopped())
+
+			if (!IsOnFloor() && coyoteTimer.IsStopped())
 			{
 				hasDoubleJump=false;
 			}
 		}
 
-		if (isJumpingOnEnemy)
+ 
+
+			if (isJumpingOnEnemy)
 		{
 			velocity.Y = JumpVelocity;
 			isJumpingOnEnemy = false;
@@ -112,16 +161,10 @@ public partial class player : CharacterBody2D
 
 		if (Input.IsActionJustReleased("jump") && (velocity.Y < JUMP_RELESE_FORCE))
 		{
-			
-			GD.Print("jump release force");
-			GD.Print(velocity.Y);
 			velocity.Y = JUMP_RELESE_FORCE;
-			GD.Print(velocity.Y);
-			
 		}
 
 
-		Vector2 direction = GetDirectionVector();
 
 		if (direction != Vector2.Zero)
 		{
@@ -131,34 +174,36 @@ public partial class player : CharacterBody2D
 		else
 			//velocity.x = Mathf.Lerp(0, velocity.x, Mathf.Pow(2, -10 * (float)delta)); 
 		{
-			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(5, -10 * (float)delta)); //This is friction
+			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
 		}
-		
+
 		velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
 
 
 		bool wasOnFloor = IsOnFloor();
 
 		//Handles walljump
-		if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_right")) //&& !IsOnFloor()
+		if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && !IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
-			velocity.X = jumpHeight;
+			velocity.X = jumpSpeed;
 		}
-		else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_left")) // && !IsOnFloor())
+		else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
-			velocity.X = -jumpHeight;
+			velocity.X = -jumpSpeed;
+
 		}
-		else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right") && wallClimbJump == true)
+		else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && wallClimbJump == true)
 		{
 			velocity.Y = JumpVelocity;
-			velocity.X = jumpHeight;
+			velocity.X = jumpSpeed;
+
 		}
-		else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && wallClimbJump == true)
+		else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding()  && wallClimbJump == true)
 		{
 			velocity.Y = JumpVelocity;
-			velocity.X = -jumpHeight;
+			velocity.X = -jumpSpeed;
 		}
 
 

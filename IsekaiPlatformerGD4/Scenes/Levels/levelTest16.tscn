@@ -47,3 +47,4 @@ timeBeforeFirstFall = 0.1
 
 [node name="Door" parent="." index="14" instance=ExtResource("3_862nk")]
 position = Vector2(291, 160)
+target_level_pass = "res://Scenes/Levels/levelTest17.tscn"

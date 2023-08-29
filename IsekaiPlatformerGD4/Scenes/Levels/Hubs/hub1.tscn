@@ -1,0 +1,248 @@
+[gd_scene load_steps=31 format=3 uid="uid://cmvujeh0qpx8a"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/BaseLevel.cs" id="1_tx5sm"]
+[ext_resource type="Texture2D" uid="uid://bu65m123xefwi" path="res://Assets/Sprites/Village/transparent mirror clouds 3v2.png" id="2_a7i46"]
+[ext_resource type="Texture2D" uid="uid://nuq5c1raeha0" path="res://Assets/Sprites/Backgrounds/bottom hills.png" id="2_iqfu4"]
+[ext_resource type="Texture2D" uid="uid://befv51ytpees1" path="res://Assets/Sprites/Village/clouds2.png" id="3_op86a"]
+[ext_resource type="TileSet" uid="uid://c18q7b77gfsuc" path="res://Assets/Sprites/Tiles/Isekai_Tiles_1/tileset_Isekai_Tiles_1.tres" id="3_rqgn5"]
+[ext_resource type="PackedScene" uid="uid://dcm374i48rj4r" path="res://Scenes/Extra/fall_hitbox.tscn" id="4_7u4x1"]
+[ext_resource type="Texture2D" uid="uid://bch3cwqxl3cqe" path="res://Assets/Sprites/Village/mirrored bottom hills transparent.png" id="4_px2g7"]
+[ext_resource type="PackedScene" uid="uid://bccee5fwed6hf" path="res://Scenes/Characters/player.tscn" id="5_c6dlf"]
+[ext_resource type="Texture2D" uid="uid://fe80st1p8ojp" path="res://Assets/Sprites/Village/dark bushes bottom layer_transparent x5.png" id="5_pu8a1"]
+[ext_resource type="Texture2D" uid="uid://dpi8hcnay7sp7" path="res://Assets/Sprites/Village/castle x10_transparent.png" id="6_55yc5"]
+[ext_resource type="Texture2D" uid="uid://dj0yas3eiby2c" path="res://Assets/Sprites/Village/fruitstand x5x5.png" id="7_sqx2m"]
+[ext_resource type="Texture2D" uid="uid://cy2ij2ojgglr0" path="res://Assets/Sprites/Village/village_House_v1.png" id="8_e1kup"]
+[ext_resource type="Texture2D" uid="uid://b6qqgx4h666wy" path="res://Assets/Sprites/Village/VillageHouse4Px7V1.png" id="9_k4ief"]
+[ext_resource type="Texture2D" uid="uid://biqe2r0g65lvk" path="res://Assets/Sprites/Village/village_house_x8_v2.png" id="10_vi0va"]
+[ext_resource type="Texture2D" uid="uid://5bxuctjjuhrr" path="res://Assets/Sprites/Village/VillageHouse2Px8V1.png" id="11_dbdul"]
+[ext_resource type="Texture2D" uid="uid://bvsrimpqhnpq0" path="res://Assets/Sprites/Village/VillageHouse3Px6V1.png" id="12_00lty"]
+[ext_resource type="Texture2D" uid="uid://chc4b2alamntq" path="res://Assets/Sprites/Village/smithy x10 transparent.png" id="13_djhtc"]
+[ext_resource type="Texture2D" uid="uid://dtdyxwogq4mvf" path="res://Assets/Sprites/Village/fruitstand_transparent_3.png" id="14_abuxd"]
+[ext_resource type="Texture2D" uid="uid://cwfvmc5hrploe" path="res://Assets/Sprites/Village/fruitstand_transparent_1.png" id="15_27ctc"]
+[ext_resource type="Texture2D" uid="uid://bcouu5oliakr0" path="res://Assets/Sprites/Village/fruitstand_transparent_4.png" id="16_h80p4"]
+[ext_resource type="Texture2D" uid="uid://duyf8i4cc0yyg" path="res://Assets/Sprites/Village/fruitstand_transparent_5.png" id="17_lb82e"]
+[ext_resource type="Texture2D" uid="uid://c8kjhe6ovvjxu" path="res://Assets/Sprites/Village/fruitstand_transparent_6.png" id="18_piavn"]
+[ext_resource type="Texture2D" uid="uid://cr4yc7e6pkatx" path="res://Assets/Sprites/Village/fruitstand_transparent_8.png" id="19_l1vvf"]
+[ext_resource type="Texture2D" uid="uid://blay56mo2g7mt" path="res://Assets/Sprites/Village/fruitstand_transparent_7.png" id="20_jptw0"]
+[ext_resource type="Script" path="res://Scenes/Levels/Hubs/Camera2D.cs" id="25_0nblk"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v4mer"]
+particle_flag_disable_z = true
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mme7g"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldhsk"]
+size = Vector2(18, 0.683)
+
+[sub_resource type="Gradient" id="Gradient_o7jng"]
+interpolation_mode = 2
+colors = PackedColorArray(2.21401e-06, 0.632604, 0.85177, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2x4f2"]
+gradient = SubResource("Gradient_o7jng")
+
+[node name="hub1" type="Node"]
+script = ExtResource("1_tx5sm")
+
+[node name="VillageSprites" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="VillageSprites"]
+
+[node name="ParallaxLayerClouds2" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+motion_scale = Vector2(0.02, 1)
+motion_mirroring = Vector2(311, 0)
+
+[node name="TransparentMirrorClouds3v2" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerClouds2"]
+texture_filter = 1
+position = Vector2(72, 50)
+texture = ExtResource("2_a7i46")
+
+[node name="ParallaxLayerClouds" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+
+[node name="Clouds2" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerClouds"]
+texture_filter = 1
+texture = ExtResource("3_op86a")
+
+[node name="ParallaxLayerBottomHills" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+motion_scale = Vector2(0.1, 1)
+motion_mirroring = Vector2(410, 0)
+
+[node name="MirroredBottomHillsTransparent" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerBottomHills"]
+texture_filter = 1
+position = Vector2(0, 80)
+texture = ExtResource("4_px2g7")
+
+[node name="ParallaxLayerBottomBushes" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+visible = false
+motion_scale = Vector2(0.9, 1)
+motion_mirroring = Vector2(538, 0)
+
+[node name="DarkBushesBottomLayerTransparentX5" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerBottomBushes"]
+position = Vector2(0, 80)
+texture = ExtResource("5_pu8a1")
+
+[node name="ParallaxLayerCastle" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+motion_scale = Vector2(0.85, 0.95)
+
+[node name="Castlex10Transparent" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerCastle"]
+texture_filter = 1
+position = Vector2(-145.706, 120)
+scale = Vector2(2.588, 2.588)
+texture = ExtResource("6_55yc5")
+
+[node name="ParallaxLayerStand1" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+motion_scale = Vector2(0.95, 1)
+
+[node name="FruitstandX5X5" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerStand1"]
+texture_filter = 1
+position = Vector2(0, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("7_sqx2m")
+
+[node name="ParallaxLayerVillageHouse1" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+motion_scale = Vector2(0.9, 1)
+
+[node name="VillageHouseV1" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerVillageHouse1"]
+texture_filter = 1
+position = Vector2(-2, 115)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_e1kup")
+
+[node name="VillageHouse4Px7V1" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerVillageHouse1"]
+texture_filter = 1
+position = Vector2(-743, 93)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("9_k4ief")
+
+[node name="VillageHouseX8V2" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerVillageHouse1"]
+texture_filter = 1
+position = Vector2(-600, 107)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("10_vi0va")
+
+[node name="VillageHouse2Px8V1" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerVillageHouse1"]
+texture_filter = 1
+position = Vector2(-405, 100)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("11_dbdul")
+
+[node name="ParallaxLayerHouse3" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+motion_scale = Vector2(0.9, 1)
+
+[node name="VillageHouse3Px6V1" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerHouse3"]
+texture_filter = 1
+position = Vector2(263, 87)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("12_00lty")
+
+[node name="ParallaxLayerSmithy" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+motion_scale = Vector2(1.05, 1)
+
+[node name="SmithyX10Transparent" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerSmithy"]
+texture_filter = 1
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("13_djhtc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerSmithy/SmithyX10Transparent"]
+visible = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_v4mer")
+lifetime = 2.0
+trail_enabled = true
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerSmithy/SmithyX10Transparent"]
+visible = false
+process_material = SubResource("ParticleProcessMaterial_mme7g")
+
+[node name="ParallaxLayerFruitStand" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+motion_scale = Vector2(1.05, 1)
+
+[node name="FruitstandTransparent3" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+texture_filter = 1
+position = Vector2(454, 140)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_abuxd")
+
+[node name="FruitstandTransparent1" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+texture_filter = 1
+position = Vector2(383, 151)
+texture = ExtResource("15_27ctc")
+
+[node name="FruitstrandTransparent2" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+texture_filter = 1
+
+[node name="Area2D" type="Area2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand/FruitstrandTransparent2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand/FruitstrandTransparent2/Area2D"]
+position = Vector2(-1.333, -19.489)
+shape = SubResource("RectangleShape2D_ldhsk")
+
+[node name="FruitstandTransparent4" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+texture_filter = 1
+position = Vector2(126, 153)
+texture = ExtResource("16_h80p4")
+
+[node name="FruitstandTransparent5" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+texture_filter = 1
+position = Vector2(-245, 150)
+texture = ExtResource("17_lb82e")
+
+[node name="FruitstandTransparent6" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+texture_filter = 1
+position = Vector2(552, 150)
+texture = ExtResource("18_piavn")
+
+[node name="FruitstandTransparent8" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+texture_filter = 1
+position = Vector2(673, 153)
+texture = ExtResource("19_l1vvf")
+
+[node name="FruitstandTransparent7" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+texture_filter = 1
+position = Vector2(764, 150)
+texture = ExtResource("20_jptw0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(172, 34)
+rotation = -1.56352
+scale = Vector2(0.957146, 419.287)
+texture = SubResource("GradientTexture1D_2x4f2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -27.0
+offset_right = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_iqfu4")
+
+[node name="TileMap" type="TileMap" parent="."]
+light_mask = 2
+tile_set = ExtResource("3_rqgn5")
+format = 2
+layer_0/tile_data = PackedInt32Array(720896, 65536, 0, 720897, 65536, 0, 720898, 65536, 0, 720899, 65536, 0, 720900, 65536, 0, 720901, 65536, 0, 720902, 65536, 0, 720903, 65536, 0, 720904, 65536, 0, 720905, 65536, 0, 720906, 65536, 0, 720907, 65536, 0, 720908, 65536, 0, 720909, 65536, 0, 720910, 65536, 0, 720911, 65536, 0, 720912, 65536, 0, 720913, 65536, 0, 720914, 65536, 0, 720915, 65536, 0, 720916, 65536, 0, 786431, 65536, 0, 786430, 65536, 0, 786429, 65536, 0, 786428, 65536, 0, 786427, 65536, 0, 786426, 65536, 0, 786425, 65536, 0, 786424, 65536, 0, 786423, 65536, 0, 786422, 65536, 0, 786421, 65536, 0, 786420, 65536, 0, 786419, 65536, 0, 786418, 65536, 0, 786417, 65536, 0, 720917, 65536, 0, 720918, 65536, 0, 720919, 65536, 0, 720920, 65536, 0, 720921, 65536, 0, 720922, 65536, 0, 720923, 65536, 0, 720924, 65536, 0, 720925, 65536, 0, 720926, 65536, 0, 720927, 65536, 0, 720928, 65536, 0, 720929, 65536, 0, 720930, 65536, 0, 720931, 65536, 0, 720932, 65536, 0, 720933, 65536, 0, 786416, 65536, 0, 786415, 65536, 0, 786414, 65536, 0, 786413, 65536, 0, 786412, 65536, 0, 786411, 65536, 0, 786410, 65536, 0, 786409, 65536, 0, 786408, 65536, 0, 786407, 65536, 0, 786406, 65536, 0, 786405, 65536, 0, 786404, 65536, 0, 786403, 65536, 0, 786402, 65536, 0, 786401, 65536, 0, 786400, 65536, 0, 786399, 65536, 0, 786398, 65536, 0, 786397, 65536, 0, 786396, 65536, 0, 786395, 65536, 0, 786394, 65536, 0, 786393, 65536, 0, 786392, 65536, 0, 786391, 65536, 0, 786390, 65536, 0, 786389, 65536, 0, 786388, 65536, 0, 786387, 65536, 0, 786386, 65536, 0, 786385, 65536, 0, 786384, 65536, 0, 786383, 65536, 0, 720847, 65536, 0, 720934, 65536, 0, 720935, 65536, 0, 720936, 65536, 0, 720937, 65536, 0, 720938, 65536, 0, 720939, 65536, 0, 720940, 65536, 0, 720941, 65536, 0, 720942, 65536, 0, 720943, 65536, 0, 720944, 65536, 0, 720945, 65536, 0, 720946, 65536, 0, 720947, 65536, 0, 720948, 65536, 0, 720949, 65536, 0, 720950, 65536, 0, 720951, 65536, 0, 720952, 65536, 0, 720953, 65536, 0, 720954, 65536, 0, 720955, 65536, 0, 720956, 65536, 0, 786382, 65536, 0, 786381, 65536, 0, 786380, 65536, 0, 786379, 65536, 0, 786378, 65536, 0, 786377, 65536, 0, 786376, 65536, 0, 786375, 65536, 0, 786374, 65536, 0, 786373, 65536, 0, 786372, 65536, 0, 786371, 65536, 0, 786370, 65536, 0, 786369, 65536, 0, 786367, 65536, 0, 786366, 65536, 0, 786368, 65536, 0)
+
+[node name="Fall_Hitbox" parent="." instance=ExtResource("4_7u4x1")]
+position = Vector2(173, 212)
+
+[node name="player" parent="." instance=ExtResource("5_c6dlf")]
+position = Vector2(24, 160)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(1, -74)
+limit_top = 100
+limit_bottom = 100
+script = ExtResource("25_0nblk")

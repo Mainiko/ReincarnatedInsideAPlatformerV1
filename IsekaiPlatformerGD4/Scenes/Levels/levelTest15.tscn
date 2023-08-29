@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_gnxty"]
 [ext_resource type="PackedScene" uid="uid://dprtvow5s0cf3" path="res://Scenes/Extra/moving_platform.tscn" id="2_d1xxc"]
 [ext_resource type="PackedScene" uid="uid://ce88ag4tnpq8t" path="res://Scenes/Extra/door.tscn" id="3_wi1f2"]
-[ext_resource type="PackedScene" uid="uid://b02uq5gsfdlj4" path="res://Scenes/Enemies/stomp_enemy.tscn" id="4_aw2mm"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/stomp_enemy.tscn" id="4_aw2mm"]
 
 [node name="BaseLevel2" instance=ExtResource("1_gnxty")]
 

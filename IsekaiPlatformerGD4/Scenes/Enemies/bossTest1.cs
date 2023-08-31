@@ -172,10 +172,6 @@ public partial class bossTest1 : CharacterBody2D
 			player.Call("PlayerDie");
 		}
 	}
-private void _on_charge_mode_timer_timeout()
-{
-	// Replace with function body.
-}
 
 }
 

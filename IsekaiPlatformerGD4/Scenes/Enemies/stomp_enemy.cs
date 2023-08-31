@@ -3,10 +3,10 @@ using System;
 
 public partial class stomp_enemy : CharacterBody2D
 {
-	[Export] private int fallSpeed = 200;
+	[Export] private int fallSpeed = 300;
 	[Export] private int goingUppSpeed = -50;
-	[Export] private float timeBeforeFall = 1.5f;
-	[Export] private float timeBeforeGoingUpp = 1.5f;
+	[Export] private float timeBeforeFall = 0.5f;
+	[Export] private float timeBeforeGoingUpp = 0.5f;
 	[Export] private float timeBeforeFirstFall = 0;
 
 	bool isFalling = false;
@@ -43,7 +43,7 @@ public partial class stomp_enemy : CharacterBody2D
 
 		if (this.Position.Y < startingPosition && !isFalling)
 		{
-			await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
+			await ToSignal(GetTree().CreateTimer(timeBeforeFall), "timeout");
 			velocity.Y = 0;
 			isFalling = true;
 		}

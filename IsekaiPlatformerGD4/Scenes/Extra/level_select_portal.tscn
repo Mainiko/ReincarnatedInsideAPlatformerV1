@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://5tpil5c20kca"]
+
+[ext_resource type="Texture2D" uid="uid://dhfs2x48o7mge" path="res://Assets/Sprites/Portals/portal v1.png" id="1_k6mua"]
+[ext_resource type="Script" path="res://Scenes/Levels/Hubs/PortalArea.cs" id="2_480qq"]
+
+[sub_resource type="Gradient" id="Gradient_cbsd7"]
+offsets = PackedFloat32Array(0, 0.79661, 0.988701)
+colors = PackedColorArray(0.501961, 0.203922, 0.541176, 0.462745, 0.466667, 0.101961, 0.278431, 0.529412, 0.466667, 0.101961, 0.278431, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_whoof"]
+gradient = SubResource("Gradient_cbsd7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7vlmk"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 8.72
+particle_flag_disable_z = true
+gravity = Vector3(0, -50, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_whoof")
+
+[sub_resource type="Theme" id="Theme_e6e1q"]
+
+[sub_resource type="SystemFont" id="SystemFont_mt81p"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_86v1k"]
+font = SubResource("SystemFont_mt81p")
+font_size = 12
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lv2xp"]
+
+[node name="LevelSelectPortal" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-24, 160)
+texture = ExtResource("1_k6mua")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-24, 161)
+process_material = SubResource("ParticleProcessMaterial_7vlmk")
+trail_lifetime = 0.8
+
+[node name="Label" type="Label" parent="."]
+offset_left = -55.0
+offset_top = 128.0
+offset_right = 31.0
+offset_bottom = 154.0
+theme = SubResource("Theme_e6e1q")
+text = "Level Select"
+label_settings = SubResource("LabelSettings_86v1k")
+
+[node name="PortalArea" type="Area2D" parent="."]
+script = ExtResource("2_480qq")
+
+[node name="PortalCollisionShape2D" type="CollisionShape2D" parent="PortalArea"]
+position = Vector2(-24, 170)
+scale = Vector2(0.106763, 0.389758)
+shape = SubResource("CapsuleShape2D_lv2xp")
+
+[connection signal="body_entered" from="PortalArea" to="PortalArea" method="_on_body_entered"]

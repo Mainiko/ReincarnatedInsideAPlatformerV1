@@ -8,7 +8,13 @@
 resource_local_to_scene = true
 resource_name = "Walking"
 animations = [{
-"frames": [ExtResource("1_infyy"), ExtResource("2_otbs4")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_infyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_otbs4")
+}],
 "loop": true,
 "name": &"Walking",
 "speed": 5.0
@@ -25,9 +31,8 @@ script = ExtResource("1_krdfc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-frames = SubResource("SpriteFrames_jyfum")
+sprite_frames = SubResource("SpriteFrames_jyfum")
 animation = &"Walking"
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.598012, 5.16883)

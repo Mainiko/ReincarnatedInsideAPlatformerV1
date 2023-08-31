@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b02uq5gsfdlj4"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/stomp_enemy.cs" id="1_2qsot"]
+[ext_resource type="Texture2D" uid="uid://i74dybloxa3g" path="res://Assets/Sprites/Characters/character_0014.png" id="1_g4p52"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx7pn"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhbyd"]
+
+[node name="StompEnemy" type="CharacterBody2D"]
+script = ExtResource("1_2qsot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jx7pn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g4p52")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_qhbyd")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

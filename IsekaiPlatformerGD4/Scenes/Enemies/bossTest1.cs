@@ -9,54 +9,70 @@ public partial class bossTest1 : CharacterBody2D
 	[Export] private int timebeforeMoving = 100;
 	[Export] private int timeNeddedtoHit = 5;
 
-
+	
 
 	int timesPlayerHaveHit = 0;
 	int timeSinceStoped = 0;
 	bool spikeIsActive = false;
+	bool chargeMode = false;
+	bool confused = false;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	Vector2 direction = Vector2.Left;
+	
 
+	
 
-	public override void _PhysicsProcess(double delta)
+	public async override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
 
-
-		if (IsOnWall())
-		{
-			if (timesPlayerHaveHit > 0)
+	
+			if (IsOnWall())
 			{
-				Speed = 0;
-
-				if (timeSinceStoped > timebeforeMoving)
+				if (chargeMode)
 				{
-					Speed = 100;
+					if (confused)
+					{
+					   Speed = 0;
+					   spikeIsActive = true;
+				 	}
+					else
+					{
+					confused = true;
+					await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
 					spikeIsActive = false;
-					timeSinceStoped = 0;
+					chargeMode = false;
+					confused = false;
+					direction *= -1;
+					Speed = 100;
+					GD.Print("My speed" + Speed);
+					GD.Print("On wall?" + IsOnWall());
+				 	}
+				  
 				}
-
-				timeSinceStoped += 1;
+				else
+				{
+					GD.Print("outside of chargemode ");
+					direction *= -1;
+					Speed = 100;
+				}
 			}
-			
 
-			direction *= -1;
-
-		}
-		if (spikeIsActive)
-		{
-			Spikes.Visible = true;
-			Spikes.CollisionLayer = 1;
-		}
-		else if (!spikeIsActive)
-		{
-			Spikes.Visible = false;
-			Spikes.CollisionLayer = 0;
-		}
+			if (spikeIsActive)
+			{
+				Spikes.Visible = true;
+				Spikes.CollisionLayer = 1;
+			}
+			else if (!spikeIsActive)
+			{
+				Spikes.Visible = false;
+				Spikes.CollisionLayer = 0;
+			}
+		
 		velocity.X = direction.X * Speed;
 		Velocity = velocity;
 		MoveAndSlide();
@@ -76,6 +92,7 @@ public partial class bossTest1 : CharacterBody2D
 		if (body.Name == "player" && !spikeIsActive)
 		{
 			GD.Print("Kill me please!");
+			chargeMode = true;
 			player.Call("PlayerJumpOnEnemy");
 			spikeIsActive = true;
 			Spikes.Visible = true;
@@ -88,7 +105,7 @@ public partial class bossTest1 : CharacterBody2D
 				this.QueueFree();
 			}
 
-			await Task.Delay(timebeforeCharging);
+			await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
 			GD.Print(player.Position);
 			GD.Print(this.Position);
 			GD.Print(direction);
@@ -133,7 +150,6 @@ public partial class bossTest1 : CharacterBody2D
 		GD.Print("_on_hitbox_death_body_entered");
 
 
-
 		//Call function from player
 		if (body.Name == "player" && spikeIsActive)
 		{
@@ -156,5 +172,11 @@ public partial class bossTest1 : CharacterBody2D
 			player.Call("PlayerDie");
 		}
 	}
+private void _on_charge_mode_timer_timeout()
+{
+	// Replace with function body.
+}
 
 }
+
+

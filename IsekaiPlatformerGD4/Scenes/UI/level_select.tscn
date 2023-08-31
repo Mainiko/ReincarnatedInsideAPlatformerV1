@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn4dcum7pum0l"]
+
+[ext_resource type="Texture2D" uid="uid://dbn4et3lt4nk7" path="res://Assets/Sprites/Backgrounds/mainiko_dont_tell_me_i_got_reincarnated_inside_a_platformer_f59cf096-9389-4ab0-a9d8-e56911158d43.png" id="1_0hgpb"]
+[ext_resource type="Script" path="res://Scenes/UI/level_select.cs" id="1_6hfag"]
+
+[sub_resource type="SystemFont" id="SystemFont_hrkjl"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6hfag")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 322.0
+offset_bottom = 180.0
+texture = ExtResource("1_0hgpb")
+expand_mode = 1
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 320.0
+offset_bottom = 178.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = SubResource("SystemFont_hrkjl")
+item_count = 11
+max_columns = 3
+same_column_width = true
+fixed_column_width = 60
+item_0/text = "Level 1"
+item_1/text = "Level 2"
+item_2/text = "Level 3"
+item_3/text = "Level 4"
+item_4/text = "Level 5"
+item_5/text = "Level 6"
+item_6/text = "Level 7"
+item_7/text = "Level 8"
+item_8/text = "Level 9"
+item_9/text = "Boss 1"
+item_10/text = "Boss 2"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 1.0
+offset_right = 199.0
+offset_bottom = 27.0
+text = "Level Select"
+
+[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]

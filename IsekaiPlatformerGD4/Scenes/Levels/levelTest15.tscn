@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dprtvow5s0cf3" path="res://Scenes/Extra/moving_platform.tscn" id="2_d1xxc"]
 [ext_resource type="PackedScene" uid="uid://ce88ag4tnpq8t" path="res://Scenes/Extra/door.tscn" id="3_wi1f2"]
 
+
 [node name="BaseLevel3" instance=ExtResource("1_gnxty")]
 
 [node name="TileMap" parent="." index="1"]

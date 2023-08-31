@@ -1,0 +1,212 @@
+[gd_scene load_steps=8 format=3 uid="uid://b13h21fo84wgb"]
+
+[sub_resource type="Animation" id="14"]
+resource_name = "Move_Clouds"
+length = 480.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 240),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1200, 0)]
+}
+
+[sub_resource type="Animation" id="15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eh3ow"]
+_data = {
+"Move_Clouds": SubResource("14"),
+"RESET": SubResource("15")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="3"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 78.18
+gravity = Vector3(0, -20, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="10"]
+emission_shape = 2
+emission_sphere_radius = 1.0
+spread = 142.54
+gravity = Vector3(0, -5, 0)
+
+[sub_resource type="PhysicsMaterial" id="13"]
+friction = 0.0
+rough = true
+
+[sub_resource type="RectangleShape2D" id="12"]
+size = Vector2(36, 1.3669)
+
+[node name="VillageSprites" type="Node2D"]
+
+[node name="FruitstandTransparent9" type="Sprite2D" parent="."]
+position = Vector2(-1692, 4)
+scale = Vector2(1.5, 1.39)
+
+[node name="FruitstandX5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(45, 9)
+scale = Vector2(0.5, 0.5)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayerClouds2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -40)
+motion_scale = Vector2(0.02, 1)
+motion_mirroring = Vector2(311, 0)
+
+[node name="TransparentMirrorClouds3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerClouds2"]
+modulate = Color(0.972549, 0.945098, 0.945098, 0.698039)
+position = Vector2(72, 0)
+
+[node name="ParallaxLayerClouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.09, 1)
+motion_mirroring = Vector2(311, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/ParallaxLayerClouds"]
+root_node = NodePath("../Clouds2")
+libraries = {
+"": SubResource("AnimationLibrary_eh3ow")
+}
+
+[node name="Clouds2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerClouds"]
+modulate = Color(1, 1, 1, 0.909804)
+
+[node name="ParallaxLayerBottomHills" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 1)
+motion_mirroring = Vector2(410, 0)
+
+[node name="MirroredBottomHillsTransparent" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerBottomHills"]
+position = Vector2(168, -18)
+region_enabled = true
+region_rect = Rect2(0, 0, 410, 205)
+
+[node name="ParallaxLayerBottomBushes" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 1)
+motion_mirroring = Vector2(538, 0)
+
+[node name="DarkBushesBottomLayerTransparentX5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerBottomBushes"]
+visible = false
+position = Vector2(0, 15)
+
+[node name="ParallaxLayerCastle" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.85, 0.95)
+
+[node name="CastleX10Transparent" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerCastle"]
+position = Vector2(-145.706, -24.2353)
+scale = Vector2(2.58824, 2.52941)
+
+[node name="ParallaxLayerStand1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.95, 1)
+
+[node name="FruitstandX5X5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerStand1"]
+position = Vector2(0, 18)
+scale = Vector2(2, 2)
+
+[node name="ParallaxLayerVillageHouse1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 1)
+
+[node name="VillageHouseV1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerVillageHouse1"]
+position = Vector2(-370, -24)
+scale = Vector2(2.5, 2.5)
+
+[node name="VillageHouse4Px7V1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerVillageHouse1"]
+position = Vector2(-747, -44)
+scale = Vector2(2.25, 2.25)
+
+[node name="VillageHouseX8V2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerVillageHouse1"]
+position = Vector2(-1200, -40)
+scale = Vector2(2.5, 2.5)
+flip_h = true
+
+[node name="VillageHouse2Px8V1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerVillageHouse1"]
+position = Vector2(-950, -43)
+scale = Vector2(2.5, 2.5)
+
+[node name="ParallaxLayerHouse3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 1)
+
+[node name="VillageHouse3Px6V1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerHouse3"]
+position = Vector2(-560, -58)
+scale = Vector2(2.25, 2.25)
+
+[node name="ParallaxLayerSmithy" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.05, 1)
+
+[node name="SmithyX10Transparent" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerSmithy"]
+position = Vector2(-320, 9)
+scale = Vector2(1.20523, 1.16284)
+
+[node name="Particles2D" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayerSmithy/SmithyX10Transparent"]
+position = Vector2(-14.9349, -23.219)
+amount = 16
+process_material = SubResource("3")
+lifetime = 2.0
+
+[node name="Particles2D2" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayerSmithy/SmithyX10Transparent"]
+position = Vector2(-15.7646, 6.01974)
+amount = 10
+process_material = SubResource("10")
+
+[node name="ParallaxLayerFruitstand1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.05, 1)
+
+[node name="FruitstandTransparent3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerFruitstand1"]
+position = Vector2(-828, 3)
+scale = Vector2(1.5, 1.39)
+
+[node name="FruitstandTransparent1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerFruitstand1"]
+position = Vector2(-518.255, 1.25)
+scale = Vector2(1.5, 1.39)
+
+[node name="FruitstandTransparent2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerFruitstand1"]
+position = Vector2(-690, 2.14)
+scale = Vector2(1.5, 1.39)
+
+[node name="Area2D" type="StaticBody2D" parent="ParallaxBackground/ParallaxLayerFruitstand1/FruitstandTransparent2"]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayerFruitstand1/FruitstandTransparent2/Area2D"]
+position = Vector2(-1.33331, -19.4892)
+shape = SubResource("12")
+
+[node name="FruitstandTransparent4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerFruitstand1"]
+position = Vector2(-971, 3)
+scale = Vector2(1.5, 1.39)
+
+[node name="FruitstandTransparent5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerFruitstand1"]
+position = Vector2(-1117, 10.14)
+scale = Vector2(1.5, 1.39)
+
+[node name="FruitstandTransparent6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerFruitstand1"]
+position = Vector2(-1260, 2)
+scale = Vector2(1.5, 1.39)
+
+[node name="FruitstandTransparent8" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerFruitstand1"]
+position = Vector2(-1548, 4)
+scale = Vector2(1.5, 1.39)
+
+[node name="FruitstandTransparent7" type="Sprite2D" parent="ParallaxBackground/ParallaxLayerFruitstand1"]
+position = Vector2(-1404, 4)
+scale = Vector2(1.5, 1.39)

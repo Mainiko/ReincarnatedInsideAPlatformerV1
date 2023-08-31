@@ -16,13 +16,13 @@ public partial class Door : Area2D
 		{
 			GD.Print(target_level_pass);
 			if (target_level_pass == null || target_level_pass == "")
-            {
+			{
 				GD.Print("funkar inte");
 
 			}
 
 			else
-            {
+			{
 				GD.Print("fungarar ish");
 				GetTree().ChangeSceneToFile(target_level_pass);
 

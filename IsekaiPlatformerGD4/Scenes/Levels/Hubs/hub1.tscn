@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://c8kjhe6ovvjxu" path="res://Assets/Sprites/Village/fruitstand_transparent_6.png" id="18_piavn"]
 [ext_resource type="Texture2D" uid="uid://cr4yc7e6pkatx" path="res://Assets/Sprites/Village/fruitstand_transparent_8.png" id="19_l1vvf"]
 [ext_resource type="Texture2D" uid="uid://blay56mo2g7mt" path="res://Assets/Sprites/Village/fruitstand_transparent_7.png" id="20_jptw0"]
-[ext_resource type="Script" path="res://Scenes/Levels/Hubs/Camera2D.cs" id="25_0nblk"]
+[ext_resource type="PackedScene" uid="uid://5tpil5c20kca" path="res://Scenes/Extra/level_select_portal.tscn" id="24_v8tcl"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v4mer"]
 particle_flag_disable_z = true
@@ -55,28 +55,30 @@ script = ExtResource("1_tx5sm")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="VillageSprites"]
 
 [node name="ParallaxLayerClouds2" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
-motion_scale = Vector2(0.02, 1)
-motion_mirroring = Vector2(311, 0)
+motion_scale = Vector2(0.005, 1)
+motion_mirroring = Vector2(640, 0)
 
 [node name="TransparentMirrorClouds3v2" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerClouds2"]
 texture_filter = 1
-position = Vector2(72, 50)
 texture = ExtResource("2_a7i46")
+centered = false
 
 [node name="ParallaxLayerClouds" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
 
 [node name="Clouds2" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerClouds"]
+visible = false
 texture_filter = 1
 texture = ExtResource("3_op86a")
 
 [node name="ParallaxLayerBottomHills" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
 motion_scale = Vector2(0.1, 1)
-motion_mirroring = Vector2(410, 0)
+motion_mirroring = Vector2(640, 0)
 
 [node name="MirroredBottomHillsTransparent" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerBottomHills"]
 texture_filter = 1
-position = Vector2(0, 80)
+position = Vector2(0, -24)
 texture = ExtResource("4_px2g7")
+centered = false
 
 [node name="ParallaxLayerBottomBushes" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
 visible = false
@@ -87,125 +89,127 @@ motion_mirroring = Vector2(538, 0)
 position = Vector2(0, 80)
 texture = ExtResource("5_pu8a1")
 
-[node name="ParallaxLayerCastle" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+[node name="ParallaxForeground" type="ParallaxBackground" parent="VillageSprites"]
+
+[node name="ParallaxLayerCastle" type="ParallaxLayer" parent="VillageSprites/ParallaxForeground"]
 motion_scale = Vector2(0.85, 0.95)
 
-[node name="Castlex10Transparent" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerCastle"]
+[node name="Castlex10Transparent" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerCastle"]
 texture_filter = 1
-position = Vector2(-145.706, 120)
+position = Vector2(106, 111)
 scale = Vector2(2.588, 2.588)
 texture = ExtResource("6_55yc5")
 
-[node name="ParallaxLayerStand1" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+[node name="ParallaxLayerStand1" type="ParallaxLayer" parent="VillageSprites/ParallaxForeground"]
 motion_scale = Vector2(0.95, 1)
 
-[node name="FruitstandX5X5" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerStand1"]
+[node name="FruitstandX5X5" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerStand1"]
 texture_filter = 1
-position = Vector2(0, 160)
+position = Vector2(1304, 157)
 scale = Vector2(2, 2)
 texture = ExtResource("7_sqx2m")
 
-[node name="ParallaxLayerVillageHouse1" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+[node name="ParallaxLayerVillageHouse1" type="ParallaxLayer" parent="VillageSprites/ParallaxForeground"]
 motion_scale = Vector2(0.9, 1)
 
-[node name="VillageHouseV1" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerVillageHouse1"]
+[node name="VillageHouseV1" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerVillageHouse1"]
 texture_filter = 1
-position = Vector2(-2, 115)
+position = Vector2(606.75, 114)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("8_e1kup")
 
-[node name="VillageHouse4Px7V1" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerVillageHouse1"]
+[node name="VillageHouse4Px7V1" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerVillageHouse1"]
 texture_filter = 1
-position = Vector2(-743, 93)
+position = Vector2(851.125, 93.125)
 scale = Vector2(2.25, 2.25)
 texture = ExtResource("9_k4ief")
 
-[node name="VillageHouseX8V2" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerVillageHouse1"]
+[node name="VillageHouseX8V2" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerVillageHouse1"]
 texture_filter = 1
-position = Vector2(-600, 107)
+position = Vector2(1102, 104)
 scale = Vector2(2.25, 2.25)
 texture = ExtResource("10_vi0va")
 
-[node name="VillageHouse2Px8V1" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerVillageHouse1"]
+[node name="VillageHouse2Px8V1" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerVillageHouse1"]
 texture_filter = 1
-position = Vector2(-405, 100)
+position = Vector2(1402, 98)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("11_dbdul")
 
-[node name="ParallaxLayerHouse3" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+[node name="ParallaxLayerHouse3" type="ParallaxLayer" parent="VillageSprites/ParallaxForeground"]
 motion_scale = Vector2(0.9, 1)
 
-[node name="VillageHouse3Px6V1" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerHouse3"]
+[node name="VillageHouse3Px6V1" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerHouse3"]
 texture_filter = 1
-position = Vector2(263, 87)
+position = Vector2(363, 87)
 scale = Vector2(2.25, 2.25)
 texture = ExtResource("12_00lty")
 
-[node name="ParallaxLayerSmithy" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+[node name="ParallaxLayerSmithy" type="ParallaxLayer" parent="VillageSprites/ParallaxForeground"]
 motion_scale = Vector2(1.05, 1)
 
-[node name="SmithyX10Transparent" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerSmithy"]
+[node name="SmithyX10Transparent" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerSmithy"]
 texture_filter = 1
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("13_djhtc")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerSmithy/SmithyX10Transparent"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerSmithy/SmithyX10Transparent"]
 visible = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_v4mer")
 lifetime = 2.0
 trail_enabled = true
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerSmithy/SmithyX10Transparent"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerSmithy/SmithyX10Transparent"]
 visible = false
 process_material = SubResource("ParticleProcessMaterial_mme7g")
 
-[node name="ParallaxLayerFruitStand" type="ParallaxLayer" parent="VillageSprites/ParallaxBackground"]
+[node name="ParallaxLayerFruitStand" type="ParallaxLayer" parent="VillageSprites/ParallaxForeground"]
 motion_scale = Vector2(1.05, 1)
 
-[node name="FruitstandTransparent3" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+[node name="FruitstandTransparent3" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerFruitStand"]
 texture_filter = 1
-position = Vector2(454, 140)
+position = Vector2(-1397, 137)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("14_abuxd")
 
-[node name="FruitstandTransparent1" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+[node name="FruitstandTransparent1" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerFruitStand"]
 texture_filter = 1
-position = Vector2(383, 151)
+position = Vector2(-215, 151)
 texture = ExtResource("15_27ctc")
 
-[node name="FruitstrandTransparent2" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+[node name="FruitstrandTransparent2" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerFruitStand"]
 texture_filter = 1
 
-[node name="Area2D" type="Area2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand/FruitstrandTransparent2"]
+[node name="Area2D" type="Area2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerFruitStand/FruitstrandTransparent2"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand/FruitstrandTransparent2/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerFruitStand/FruitstrandTransparent2/Area2D"]
 position = Vector2(-1.333, -19.489)
 shape = SubResource("RectangleShape2D_ldhsk")
 
-[node name="FruitstandTransparent4" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+[node name="FruitstandTransparent4" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerFruitStand"]
 texture_filter = 1
-position = Vector2(126, 153)
+position = Vector2(-123, 150)
 texture = ExtResource("16_h80p4")
 
-[node name="FruitstandTransparent5" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+[node name="FruitstandTransparent5" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerFruitStand"]
 texture_filter = 1
-position = Vector2(-245, 150)
+position = Vector2(1037, 151)
 texture = ExtResource("17_lb82e")
 
-[node name="FruitstandTransparent6" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+[node name="FruitstandTransparent6" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerFruitStand"]
 texture_filter = 1
-position = Vector2(552, 150)
+position = Vector2(229, 151)
 texture = ExtResource("18_piavn")
 
-[node name="FruitstandTransparent8" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+[node name="FruitstandTransparent8" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerFruitStand"]
 texture_filter = 1
-position = Vector2(673, 153)
+position = Vector2(504, 152)
 texture = ExtResource("19_l1vvf")
 
-[node name="FruitstandTransparent7" type="Sprite2D" parent="VillageSprites/ParallaxBackground/ParallaxLayerFruitStand"]
+[node name="FruitstandTransparent7" type="Sprite2D" parent="VillageSprites/ParallaxForeground/ParallaxLayerFruitStand"]
 texture_filter = 1
-position = Vector2(764, 150)
+position = Vector2(720, 153)
 texture = ExtResource("20_jptw0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -231,18 +235,21 @@ texture = ExtResource("2_iqfu4")
 
 [node name="TileMap" type="TileMap" parent="."]
 light_mask = 2
+texture_filter = 1
 tile_set = ExtResource("3_rqgn5")
 format = 2
-layer_0/tile_data = PackedInt32Array(720896, 65536, 0, 720897, 65536, 0, 720898, 65536, 0, 720899, 65536, 0, 720900, 65536, 0, 720901, 65536, 0, 720902, 65536, 0, 720903, 65536, 0, 720904, 65536, 0, 720905, 65536, 0, 720906, 65536, 0, 720907, 65536, 0, 720908, 65536, 0, 720909, 65536, 0, 720910, 65536, 0, 720911, 65536, 0, 720912, 65536, 0, 720913, 65536, 0, 720914, 65536, 0, 720915, 65536, 0, 720916, 65536, 0, 786431, 65536, 0, 786430, 65536, 0, 786429, 65536, 0, 786428, 65536, 0, 786427, 65536, 0, 786426, 65536, 0, 786425, 65536, 0, 786424, 65536, 0, 786423, 65536, 0, 786422, 65536, 0, 786421, 65536, 0, 786420, 65536, 0, 786419, 65536, 0, 786418, 65536, 0, 786417, 65536, 0, 720917, 65536, 0, 720918, 65536, 0, 720919, 65536, 0, 720920, 65536, 0, 720921, 65536, 0, 720922, 65536, 0, 720923, 65536, 0, 720924, 65536, 0, 720925, 65536, 0, 720926, 65536, 0, 720927, 65536, 0, 720928, 65536, 0, 720929, 65536, 0, 720930, 65536, 0, 720931, 65536, 0, 720932, 65536, 0, 720933, 65536, 0, 786416, 65536, 0, 786415, 65536, 0, 786414, 65536, 0, 786413, 65536, 0, 786412, 65536, 0, 786411, 65536, 0, 786410, 65536, 0, 786409, 65536, 0, 786408, 65536, 0, 786407, 65536, 0, 786406, 65536, 0, 786405, 65536, 0, 786404, 65536, 0, 786403, 65536, 0, 786402, 65536, 0, 786401, 65536, 0, 786400, 65536, 0, 786399, 65536, 0, 786398, 65536, 0, 786397, 65536, 0, 786396, 65536, 0, 786395, 65536, 0, 786394, 65536, 0, 786393, 65536, 0, 786392, 65536, 0, 786391, 65536, 0, 786390, 65536, 0, 786389, 65536, 0, 786388, 65536, 0, 786387, 65536, 0, 786386, 65536, 0, 786385, 65536, 0, 786384, 65536, 0, 786383, 65536, 0, 720847, 65536, 0, 720934, 65536, 0, 720935, 65536, 0, 720936, 65536, 0, 720937, 65536, 0, 720938, 65536, 0, 720939, 65536, 0, 720940, 65536, 0, 720941, 65536, 0, 720942, 65536, 0, 720943, 65536, 0, 720944, 65536, 0, 720945, 65536, 0, 720946, 65536, 0, 720947, 65536, 0, 720948, 65536, 0, 720949, 65536, 0, 720950, 65536, 0, 720951, 65536, 0, 720952, 65536, 0, 720953, 65536, 0, 720954, 65536, 0, 720955, 65536, 0, 720956, 65536, 0, 786382, 65536, 0, 786381, 65536, 0, 786380, 65536, 0, 786379, 65536, 0, 786378, 65536, 0, 786377, 65536, 0, 786376, 65536, 0, 786375, 65536, 0, 786374, 65536, 0, 786373, 65536, 0, 786372, 65536, 0, 786371, 65536, 0, 786370, 65536, 0, 786369, 65536, 0, 786367, 65536, 0, 786366, 65536, 0, 786368, 65536, 0)
+layer_0/tile_data = PackedInt32Array(720902, 65536, 0, 720903, 65536, 0, 720904, 65536, 0, 720905, 65536, 0, 720906, 65536, 0, 720907, 65536, 0, 720908, 65536, 0, 720909, 65536, 0, 720910, 65536, 0, 720911, 65536, 0, 720912, 65536, 0, 720913, 65536, 0, 720914, 65536, 0, 720915, 65536, 0, 720916, 65536, 0, 786431, 65536, 0, 786430, 65536, 0, 786429, 65536, 0, 786428, 65536, 0, 786427, 65536, 0, 786426, 0, 0, 786425, 131075, 0, 786424, 65539, 0, 786423, 65539, 0, 786422, 65539, 0, 786421, 65539, 0, 786420, 65539, 0, 786419, 65539, 0, 786418, 65539, 0, 786417, 65539, 0, 720917, 65536, 0, 720918, 65536, 0, 720919, 65536, 0, 720920, 65536, 0, 720921, 65536, 0, 720922, 65536, 0, 720923, 65536, 0, 720924, 65536, 0, 720925, 65536, 0, 720926, 65536, 0, 720927, 65536, 0, 720928, 65536, 0, 720929, 65536, 0, 720930, 65536, 0, 720931, 65536, 0, 720932, 65536, 0, 720933, 65536, 0, 786416, 65539, 0, 786415, 65539, 0, 786414, 65539, 0, 786413, 65539, 0, 786412, 65539, 0, 786411, 65539, 0, 786410, 65539, 0, 786409, 65539, 0, 786408, 65539, 0, 786407, 65539, 0, 786406, 65539, 0, 786405, 65539, 0, 786404, 65539, 0, 786403, 65539, 0, 786402, 65539, 0, 786401, 65539, 0, 786400, 65539, 0, 786399, 65539, 0, 786398, 65539, 0, 786397, 65539, 0, 786396, 65539, 0, 786395, 65539, 0, 786394, 65539, 0, 786393, 65539, 0, 786392, 65539, 0, 786391, 65539, 0, 786390, 65539, 0, 786389, 65539, 0, 786388, 65539, 0, 786387, 65539, 0, 786386, 65539, 0, 786385, 65539, 0, 786384, 65539, 0, 786383, 65539, 0, 720934, 65536, 0, 720935, 65536, 0, 720936, 65536, 0, 720937, 65536, 0, 720938, 65536, 0, 720939, 65536, 0, 720940, 65536, 0, 720941, 65536, 0, 720942, 65536, 0, 720943, 65536, 0, 720944, 65536, 0, 720945, 65536, 0, 720946, 65536, 0, 720947, 65536, 0, 720948, 65536, 0, 720949, 65536, 0, 720950, 65536, 0, 720951, 65536, 0, 720952, 65536, 0, 720953, 65536, 0, 720954, 65536, 0, 720955, 65536, 0, 720956, 65536, 0, 786382, 65539, 0, 786381, 65539, 0, 786380, 65539, 0, 786379, 65539, 0, 786378, 65539, 0, 786377, 65539, 0, 786376, 65539, 0, 786375, 65539, 0, 786374, 65539, 0, 786373, 65539, 0, 786372, 65539, 0, 786371, 65539, 0, 786370, 65539, 0, 786369, 65539, 0, 786367, 65539, 0, 786366, 65539, 0, 786368, 65539, 0, 720957, 65536, 0, 720958, 65536, 0, 720959, 65536, 0, 720960, 65536, 0, 720961, 65536, 0, 720962, 65536, 0, 720963, 65536, 0, 720964, 65536, 0, 720965, 65536, 0, 720966, 65536, 0, 720967, 65536, 0, 720968, 65536, 0, 720969, 65536, 0, 720970, 65536, 0, 720971, 65536, 0, 720972, 65536, 0, 720973, 65536, 0, 720974, 65536, 0, 720975, 65536, 0, 720976, 65536, 0, 720977, 65536, 0, 720978, 65536, 0, 720979, 65536, 0, 720980, 65536, 0, 720981, 65536, 0, 720982, 65536, 0, 720983, 65536, 0, 720984, 65536, 0, 720985, 65536, 0, 720986, 65536, 0, 720987, 65536, 0, 720988, 65536, 0, 720989, 65536, 0, 720990, 65536, 0, 720991, 65536, 0, 720992, 65536, 0, 720993, 65536, 0, 720994, 65536, 0, 720995, 65536, 0, 720996, 65536, 0, 720997, 65536, 0, 720998, 65536, 0, 720999, 65536, 0, 721000, 65536, 0, 721001, 65536, 0, 721002, 65536, 0, 721003, 65536, 0, 721004, 65536, 0, 721005, 65536, 0, 786365, 65539, 0, 786364, 65539, 0, 786363, 65539, 0, 786362, 65539, 0, 786361, 65539, 0, 786360, 65539, 0, 786359, 65539, 0, 786358, 65536, 0, 786357, 65536, 0, 786356, 65536, 0, 786355, 65536, 0, 786354, 65536, 0, 786353, 65536, 0, 786352, 65536, 0, 786351, 65536, 0, 786350, 65536, 0, 786349, 65536, 0, 786348, 65536, 0, 786347, 65536, 0, 786346, 65536, 0, 786345, 65536, 0, 786344, 65536, 0, 786343, 65536, 0, 786342, 65536, 0, 720901, 65536, 0, 720897, 65536, 0, 720896, 65536, 0, 720900, 65536, 0, 720899, 65536, 0, 720898, 65536, 0)
 
 [node name="Fall_Hitbox" parent="." instance=ExtResource("4_7u4x1")]
 position = Vector2(173, 212)
+
+[node name="LevelSelectPortal" parent="." instance=ExtResource("24_v8tcl")]
 
 [node name="player" parent="." instance=ExtResource("5_c6dlf")]
 position = Vector2(24, 160)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(1, -74)
-limit_top = 100
+limit_top = 0
 limit_bottom = 100
-script = ExtResource("25_0nblk")
+position_smoothing_speed = 30.0

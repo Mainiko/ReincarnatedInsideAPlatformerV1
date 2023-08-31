@@ -37,8 +37,8 @@ public partial class walking_spike_enemy : CharacterBody2D
 		   animatedSprite2D.FlipH = false;
 
 
-		float ost = 25.0f;
-		velocity.X = direction.X * ost;
+		float Speed = 25.0f;
+		velocity.X = direction.X * Speed;
 		Velocity = velocity;
 		MoveAndSlide();
 	}

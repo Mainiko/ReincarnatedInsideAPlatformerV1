@@ -33,6 +33,7 @@ script = ExtResource("1_krdfc")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_jyfum")
 animation = &"Walking"
+autoplay = "Walking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.598012, 5.16883)

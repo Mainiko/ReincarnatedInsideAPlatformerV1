@@ -15,7 +15,6 @@ public partial class shooting_enemy : StaticBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override async void _Process(double delta)
 	{
-		//res://Scenes/Enemies/projectile_test.tscn
 		if (shot)
 		{
 			Vector2 direction = new Vector2(-1, 0);

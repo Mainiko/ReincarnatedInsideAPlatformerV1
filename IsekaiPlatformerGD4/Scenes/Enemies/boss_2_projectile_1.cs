@@ -33,7 +33,6 @@ public partial class boss_2_projectile_1 : Area2D
 			player.Call("PlayerDie");
 		}
 	}
-
 	private void SetDirection(Vector2 vector, float degrees)
 	{
 		direction = vector;

@@ -71,7 +71,6 @@ public partial class player : CharacterBody2D
 
 
 
-		GD.Print(Speed);
 
 
 		if (IsOnFloor())

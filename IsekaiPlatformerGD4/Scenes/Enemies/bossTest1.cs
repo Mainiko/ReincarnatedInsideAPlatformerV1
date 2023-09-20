@@ -7,7 +7,7 @@ public partial class bossTest1 : CharacterBody2D
 	[Export] private int Speed = 100;
 	[Export] private int timebeforeCharging = 1000;
 	[Export] private int timebeforeMoving = 100;
-	[Export] private int timeNeddedtoHit = 5;
+	[Export] private int timeNeddedtoHit = 3;
 
 	
 

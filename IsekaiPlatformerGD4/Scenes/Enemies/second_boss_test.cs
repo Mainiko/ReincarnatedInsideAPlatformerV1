@@ -71,13 +71,11 @@ public partial class second_boss_test : CharacterBody2D
 		{
 			count += 1;
 
-
-
 			if (count == 4)
 			{
 				moving = false;
 				goingToStomp = false;
-				await ShotLeft();
+				await ShotLeftBig();
 				moving = true;
 			}
 
@@ -85,11 +83,10 @@ public partial class second_boss_test : CharacterBody2D
 			{
 				moving = false;
 				goingToStomp = false;
-				await ShotRight();
+				await ShotRightBig();
 				moving = true;
 
 			}
-
 
 			//if (count == 15)
 			//{
@@ -100,7 +97,7 @@ public partial class second_boss_test : CharacterBody2D
 			//	moving = true;
 			//}
 
-			if (count == 14 || count == 21)
+			if (count == 14)
 			{
 				//else if(count == 21)
 				//{
@@ -124,7 +121,7 @@ public partial class second_boss_test : CharacterBody2D
 
 
 			}
-			if (count == 22)
+			if (count == 23)
 			{
 				count = 0;
 			}
@@ -595,17 +592,50 @@ public partial class second_boss_test : CharacterBody2D
 	}
 
 
-	private async Task<bool> ShotLeftBig()
+	private async Task<bool> ShotBig(Vector2 direction, int degrees)
 	{
-			var projectile = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_2_projectile_1.tscn").Instantiate();
-			projectile.Call("SetDirection", -1,1, 100);
+		
+		var projectile = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_2_projectile_1.tscn").Instantiate();
+			projectile.Call("SetDirection", direction, degrees);
 			shot = false;
 			await ToSignal(GetTree().CreateTimer(shotSpeed), "timeout");
 			AddChild(projectile);
 			shot = true;
 		return true;
 	}
-	
+
+	private async Task<bool> ShotLeftBig()
+	{
+
+		await ShotBig(new Vector2(-1f, 0.3f), -120);
+		await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+		await ShotBig(new Vector2(-1f, 1f), -150);
+		await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+		await ShotBig(new Vector2(-0f, 1), 180);
+		await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+		await ShotBig(new Vector2(-1f, 0.4f), -120);
+		await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+		await ShotBig(new Vector2(-0, 1f), 180);
+		await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+		return true;
+	}
+
+	private async Task<bool> ShotRightBig()
+	{
+
+		await ShotBig(new Vector2(1, 0.3f), 120);
+		await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+		await ShotBig(new Vector2(1f, 1f),150);
+		await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+		await ShotBig(new Vector2(0f, 1), 180);
+		await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+		await ShotBig(new Vector2(1f, 0.4f), 120);
+		await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+		await ShotBig(new Vector2(0, 1f), 180);
+		await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+		return true;
+	}
+
 }
 
 

@@ -9,12 +9,16 @@ public partial class walking_spike_enemy : CharacterBody2D
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	Vector2 direction = Vector2.Right;
 
+	bool hasDied = false;
+
+
 	public override void _PhysicsProcess(double delta)
-	{
+	{	
 		Vector2 velocity = Velocity;
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		var LedgeCheckRight = GetNode<RayCast2D>("LedgeCheckRight");
 		var ledgeCheckLeft = GetNode<RayCast2D>("LedgeCheckLeft");
+
 
 		if (!IsOnFloor())
 			velocity.Y += gravity * (float)delta;
@@ -23,11 +27,11 @@ public partial class walking_spike_enemy : CharacterBody2D
 		 var found_ledge = LedgeCheckRight.IsColliding() && ledgeCheckLeft.IsColliding();
 		if (found_wall || !found_ledge)
 		{
-			GD.Print(direction.X);
+			//GD.Print(direction.X);
 			direction *= -1;
-			GD.Print(direction.X);
-			GD.Print(found_ledge);
-			GD.Print(animatedSprite2D);
+			//GD.Print(direction.X);
+			//GD.Print(found_ledge);
+			//GD.Print(animatedSprite2D);
 		}
 
 
@@ -41,6 +45,7 @@ public partial class walking_spike_enemy : CharacterBody2D
 		velocity.X = direction.X * Speed;
 		Velocity = velocity;
 		MoveAndSlide();
+		CheckIfDead();
 	}
 
 	private void _on_hitbox_body_entered(CharacterBody2D body)
@@ -52,6 +57,7 @@ public partial class walking_spike_enemy : CharacterBody2D
 		{
 			var player = GetNode<CharacterBody2D>(body.GetPath());
 			player.Call("PlayerDie");
+
 		}
 	}
 
@@ -65,8 +71,29 @@ public partial class walking_spike_enemy : CharacterBody2D
 			GD.Print("Kill me please!");
 			var player = GetNode<CharacterBody2D>(body.GetPath());
 			player.Call("PlayerJumpOnEnemy");
-			this.QueueFree();
-
+			hasDied = true;
+			animatedSprite2D.Play("Explode");
+			RemoveHitBoxes();
 		}
+	}
+
+	private void CheckIfDead()
+	{
+		if (hasDied)
+		{
+			if (animatedSprite2D.Animation == "Explode" && animatedSprite2D.IsPlaying() == false)
+			{
+				this.QueueFree();
+			}
+		}
+	}
+
+	private void RemoveHitBoxes()
+	{
+		var deathHitbox = GetNode<Area2D>("Death_HitBox");
+		var hitbox = GetNode<Area2D>("Hitbox");
+
+		deathHitbox.QueueFree();
+		hitbox.QueueFree();
 	}
 }

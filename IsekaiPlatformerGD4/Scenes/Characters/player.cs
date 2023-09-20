@@ -42,10 +42,11 @@ public partial class player : CharacterBody2D
 	private bool isDying = false;
 	private bool isJumpingOnEnemy = false;
 	private bool isJumpingOnJumpPlatform = false;
+
 	private float lastJumpDirection = 0;
+
 	private float myPosition = 0;
 	private float myLastPosition = 0;
-
 
 	private float Speed = 125.0f;
 	//Celeste tutorial
@@ -62,9 +63,39 @@ public partial class player : CharacterBody2D
 
 	public override  void _PhysicsProcess(double delta)
 	{
+
 		Vector2 velocity = Velocity;
 		Vector2 direction = GetDirectionVector();
 
+		// Handle the animation.
+		if (!IsOnFloor())
+		{
+			if(velocity.Y < 0)
+			{
+				hasJumped = true;
+				animatedSprite2D.Play("JumpUp");
+
+			}
+			else if(velocity.Y > 0)
+			{
+				animatedSprite2D.Play("JumpDown");
+
+			}
+		}
+		else if (animatedSprite2D.Animation == "JumpDown" && IsOnFloor())
+		{
+			animatedSprite2D.Play("JumpImpact");
+		}
+		else if (direction == Vector2.Zero && (animatedSprite2D.IsPlaying() && animatedSprite2D.Animation == "JumpImpact" ) == false)
+		{
+			animatedSprite2D.Play("Idle");
+		}
+		
+		else if (IsOnFloor() && direction != Vector2.Zero)
+		{
+			animatedSprite2D.Play("Run");
+		}
+		
 
 		if (IsOnFloor())
 		{
@@ -72,10 +103,11 @@ public partial class player : CharacterBody2D
 			lastJumpDirection = 0;
 
 		}
-
 		// Add the gravity.
 		if (!IsOnFloor())
-		{   
+		{
+
+
 			if (GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && velocity.Y > 0)
 			{
 				velocity.Y += (gravity - wallGravity) * (float)delta;
@@ -90,7 +122,6 @@ public partial class player : CharacterBody2D
 			}
 			else
 			{
-				
 				velocity.Y += gravity * (float)delta;
 			}
 
@@ -116,8 +147,9 @@ public partial class player : CharacterBody2D
 
 		if (isJumpingOnEnemy)
 		{
-			velocity.Y = JumpVelocity;
-			isJumpingOnEnemy = false;
+			velocity.Y = (float)(JumpVelocity * 1.035);
+
+            isJumpingOnEnemy = false;
 		}
 
 

@@ -12,8 +12,10 @@ public partial class walking_enemy_with_spikes_somtimes : CharacterBody2D
 	[Export] private int timeDelay = 100;
 
 	bool spikeIsActive = true;
+	bool hasDied = false;
 	int lastTime = 0;
 	int timepast = 0;
+	
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -108,9 +110,19 @@ public partial class walking_enemy_with_spikes_somtimes : CharacterBody2D
 		{
 			GD.Print("Kill me please!");
 			var player = GetNode<CharacterBody2D>(body.GetPath());
+			hasDied = true;
 			player.Call("PlayerJumpOnEnemy");
-			this.QueueFree();
+			animatedSprite2D.Play("Explode");
+			//this.QueueFree();
 
+		}
+	}
+
+	private void CheckIfDead()
+	{
+		if(animatedSprite2D.Animation == "Explode" && animatedSprite2D.IsPlaying() == false)
+		{
+			this.QueueFree();
 		}
 	}
 

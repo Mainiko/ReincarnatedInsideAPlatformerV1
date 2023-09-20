@@ -22,16 +22,19 @@ public partial class bossTest1 : CharacterBody2D
 	Vector2 direction = Vector2.Left;
 	
 
-	
+
+
 
 	public async override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
+		AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-	
-			if (IsOnWall())
+
+
+		if (IsOnWall())
 			{
 				if (chargeMode)
 				{
@@ -51,11 +54,13 @@ public partial class bossTest1 : CharacterBody2D
 					Speed = 100;
 					GD.Print("My speed" + Speed);
 					GD.Print("On wall?" + IsOnWall());
-				 	}
-				  
+					animatedSprite2D.Play("Walking");
 				}
+
+			}
 				else
 				{
+					animatedSprite2D.Play("Walking");
 					GD.Print("outside of chargemode ");
 					direction *= -1;
 					Speed = 100;
@@ -91,6 +96,9 @@ public partial class bossTest1 : CharacterBody2D
 
 		if (body.Name == "player" && !spikeIsActive)
 		{
+			AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
+			animatedSprite2D.Play("Squish");
 			GD.Print("Kill me please!");
 			chargeMode = true;
 			player.Call("PlayerJumpOnEnemy");
@@ -139,6 +147,8 @@ public partial class bossTest1 : CharacterBody2D
 				}
 			}
 
+			//animatedSprite2D.Play("Walking");
+
 			Speed = 200;
 
 		}
@@ -173,6 +183,24 @@ public partial class bossTest1 : CharacterBody2D
 		}
 	}
 
+	private void _on_animated_sprite_2d_animation_finished()
+	{
+		AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
+		if (animatedSprite2D.Animation == "Squish")
+		{
+			animatedSprite2D.Play("AngryWalking");
+		}
+		else if (chargeMode == false)
+		{
+			animatedSprite2D.Play("Walking");
+		}
+		// Replace with function body.
+	}
+
 }
+
+
+
 
 

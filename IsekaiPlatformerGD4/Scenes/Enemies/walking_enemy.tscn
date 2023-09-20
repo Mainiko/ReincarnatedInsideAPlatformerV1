@@ -15,7 +15,7 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-color = Color(0.32549, 0.827451, 0.85098, 0.682353)
+color = Color(0.729412, 0.937255, 0.937255, 0.792157)
 
 [sub_resource type="Curve" id="Curve_gx6tu"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.509294, 0.747368), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -739,8 +739,9 @@ position = Vector2(2, 0)
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="0"]
 position = Vector2(-7, 11)
-amount = 30
+amount = 60
 process_material = SubResource("ParticleProcessMaterial_iwul3")
+lifetime = 2.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
 texture_filter = 1

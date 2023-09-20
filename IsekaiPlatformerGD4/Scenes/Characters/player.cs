@@ -42,6 +42,7 @@ public partial class player : CharacterBody2D
 	private bool isDying = false;
 	private bool isJumpingOnEnemy = false;
 	private bool isJumpingOnJumpPlatform = false;
+	private bool hasJumped = false;
 
 	private float lastJumpDirection = 0;
 
@@ -149,7 +150,7 @@ public partial class player : CharacterBody2D
 		{
 			velocity.Y = (float)(JumpVelocity * 1.035);
 
-            isJumpingOnEnemy = false;
+			isJumpingOnEnemy = false;
 		}
 
 

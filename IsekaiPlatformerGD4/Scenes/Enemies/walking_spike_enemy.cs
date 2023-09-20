@@ -9,8 +9,11 @@ public partial class walking_spike_enemy : CharacterBody2D
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	Vector2 direction = Vector2.Right;
 
+	bool hasDied = false;
+
+
 	public override void _PhysicsProcess(double delta)
-	{
+	{	
 		Vector2 velocity = Velocity;
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		var LedgeCheckRight = GetNode<RayCast2D>("LedgeCheckRight");
@@ -41,6 +44,8 @@ public partial class walking_spike_enemy : CharacterBody2D
 		velocity.X = direction.X * Speed;
 		Velocity = velocity;
 		MoveAndSlide();
+		CheckIfDead();
+		GD.Print("hasDied = " + hasDied);
 	}
 
 	private void _on_hitbox_body_entered(CharacterBody2D body)
@@ -52,6 +57,7 @@ public partial class walking_spike_enemy : CharacterBody2D
 		{
 			var player = GetNode<CharacterBody2D>(body.GetPath());
 			player.Call("PlayerDie");
+
 		}
 	}
 
@@ -65,8 +71,22 @@ public partial class walking_spike_enemy : CharacterBody2D
 			GD.Print("Kill me please!");
 			var player = GetNode<CharacterBody2D>(body.GetPath());
 			player.Call("PlayerJumpOnEnemy");
-			this.QueueFree();
+			hasDied = true;
+			//GD.Print("")
+			animatedSprite2D.Play("Explode");
+			//this.QueueFree();
 
+		}
+	}
+
+	private void CheckIfDead()
+	{
+		if (hasDied)
+		{
+			if (animatedSprite2D.Animation == "Explode" && animatedSprite2D.IsPlaying() == false)
+			{
+				this.QueueFree();
+			}
 		}
 	}
 }

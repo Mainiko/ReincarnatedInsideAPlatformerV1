@@ -169,8 +169,9 @@ public partial class player : CharacterBody2D
 
 		if (isJumpingOnEnemy)
 		{
-			velocity.Y = JumpVelocity;
-			isJumpingOnEnemy = false;
+			velocity.Y = (float)(JumpVelocity * 1.02);
+
+            isJumpingOnEnemy = false;
 		}
 
 

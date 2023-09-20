@@ -758,7 +758,7 @@ position = Vector2(-0.0937504, 4.61793)
 [node name="Death_HitBox" type="Area2D" parent="." index="6"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death_HitBox" index="0"]
-position = Vector2(-0.03125, -4.5)
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_nssh7")
 
 [connection signal="body_entered" from="Death_HitBox" to="." method="_on_death_hit_box_body_entered"]

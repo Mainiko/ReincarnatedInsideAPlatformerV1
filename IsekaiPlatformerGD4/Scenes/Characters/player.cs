@@ -284,11 +284,10 @@ public partial class player : CharacterBody2D
 
 	private void PlayerDie()
 	{
-		//GetTree().ReloadCurrentScene();
-		//QueueFree();
+		GetTree().ReloadCurrentScene();
+		QueueFree();
 		GD.Print("I'm dead");
 
-		//EmitSignal("OnPlayerDiedEventHandler");
 	}
 
 	private void PlayerJumpOnEnemy()

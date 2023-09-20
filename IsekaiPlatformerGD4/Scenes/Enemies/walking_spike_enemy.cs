@@ -19,6 +19,7 @@ public partial class walking_spike_enemy : CharacterBody2D
 		var LedgeCheckRight = GetNode<RayCast2D>("LedgeCheckRight");
 		var ledgeCheckLeft = GetNode<RayCast2D>("LedgeCheckLeft");
 
+
 		if (!IsOnFloor())
 			velocity.Y += gravity * (float)delta;
 
@@ -45,7 +46,6 @@ public partial class walking_spike_enemy : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 		CheckIfDead();
-		GD.Print("hasDied = " + hasDied);
 	}
 
 	private void _on_hitbox_body_entered(CharacterBody2D body)
@@ -72,10 +72,8 @@ public partial class walking_spike_enemy : CharacterBody2D
 			var player = GetNode<CharacterBody2D>(body.GetPath());
 			player.Call("PlayerJumpOnEnemy");
 			hasDied = true;
-			//GD.Print("")
 			animatedSprite2D.Play("Explode");
-			//this.QueueFree();
-
+			RemoveHitBoxes();
 		}
 	}
 
@@ -88,5 +86,14 @@ public partial class walking_spike_enemy : CharacterBody2D
 				this.QueueFree();
 			}
 		}
+	}
+
+	private void RemoveHitBoxes()
+	{
+		var deathHitbox = GetNode<Area2D>("Death_HitBox");
+		var hitbox = GetNode<Area2D>("Hitbox");
+
+		deathHitbox.QueueFree();
+		hitbox.QueueFree();
 	}
 }

@@ -74,32 +74,25 @@ public partial class player : CharacterBody2D
 			{
 				hasJumped = true;
 				animatedSprite2D.Play("JumpUp");
-				GD.Print("Now playing JUmpup");
 
 			}
 			else if(velocity.Y > 0)
 			{
 				animatedSprite2D.Play("JumpDown");
-				GD.Print("Now playing JumpDown");
 
 			}
 		}
 		else if (animatedSprite2D.Animation == "JumpDown" && IsOnFloor())
 		{
-			GD.Print("Now playing Jumpimpact");
 			animatedSprite2D.Play("JumpImpact");
 		}
 		else if (direction == Vector2.Zero && (animatedSprite2D.IsPlaying() && animatedSprite2D.Animation == "JumpImpact" ) == false)
 		{
-			GD.Print("Now playing Idle");
 			animatedSprite2D.Play("Idle");
 		}
 		
 		else if (IsOnFloor() && direction != Vector2.Zero)
 		{
-			GD.Print("Now playing Run");
-
-
 			animatedSprite2D.Play("Run");
 		}
 		

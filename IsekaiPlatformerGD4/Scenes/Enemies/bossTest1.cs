@@ -16,6 +16,7 @@ public partial class bossTest1 : CharacterBody2D
 	bool spikeIsActive = false;
 	bool chargeMode = false;
 	bool confused = false;
+	bool shot = true;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -46,6 +47,18 @@ public partial class bossTest1 : CharacterBody2D
 					else
 					{
 					confused = true;
+
+					if(GetNode<RayCast2D>("RayCastLeft").IsColliding())
+					{
+						await shotRight();
+
+					}
+					else if (GetNode<RayCast2D>("RayCastRight").IsColliding())
+					{
+						await shotLeft();
+
+					}
+
 					await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
 					spikeIsActive = false;
 					chargeMode = false;
@@ -197,6 +210,62 @@ public partial class bossTest1 : CharacterBody2D
 		}
 		// Replace with function body.
 	}
+
+	private async Task<bool> shotLeft()
+	{
+
+	
+
+		if (shot)
+		{
+			shot = false;
+
+			for (int i = 0; i < 3; i++)
+		{
+				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+				Vector2 direction = new Vector2(-1, 0);
+				var projectile = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_1_projectile.tscn").Instantiate();
+				projectile.Call("SetDirection", direction, 180);
+				AddChild(projectile);
+
+		}
+			shot = true;
+
+		}
+
+
+		return true;
+
+	}
+
+
+	private async Task<bool> shotRight()
+	{
+
+
+
+		if (shot)
+		{
+			shot = false;
+
+			for (int i = 0; i < 3; i++)
+			{
+				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+				Vector2 direction = new Vector2(1, 0);
+				var projectile = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_1_projectile.tscn").Instantiate();
+				projectile.Call("SetDirection", direction, 180);
+				AddChild(projectile);
+
+			}
+			shot = true;
+
+		}
+
+
+		return true;
+
+	}
+
 
 }
 

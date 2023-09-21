@@ -2275,6 +2275,12 @@ sprite_frames = SubResource("SpriteFrames_dtfsi")
 animation = &"AngryWalking"
 autoplay = "Walking"
 
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-36, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(37, 0)
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="Hitboxfrontandback" to="." method="_on_hitboxfrontandback_body_entered"]
 [connection signal="body_entered" from="HitboxDeath" to="." method="_on_hitbox_death_body_entered"]

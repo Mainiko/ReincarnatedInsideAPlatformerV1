@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfq0mdrbxvunn"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/boss_2_birds.cs" id="1_bhojl"]
+[ext_resource type="Texture2D" uid="uid://dmsw0xs1c3lxu" path="res://Assets/Sprites/Characters/character_0026.png" id="1_mvu83"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5d1yo"]
+size = Vector2(20, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lde7q"]
+size = Vector2(20, 14)
+
+[node name="Boss2Birds" type="Node2D"]
+script = ExtResource("1_bhojl")
+
+[node name="AreaHitboxDeath" type="Area2D" parent="."]
+
+[node name="HitboxDeath" type="CollisionShape2D" parent="AreaHitboxDeath"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_5d1yo")
+
+[node name="AreaDeathPlayer" type="Area2D" parent="."]
+
+[node name="HitboxDeathPlayer" type="CollisionShape2D" parent="AreaDeathPlayer"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_lde7q")
+
+[node name="Bird" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("1_mvu83")
+
+[connection signal="body_entered" from="AreaHitboxDeath" to="." method="_on_area_hitbox_death_body_entered"]
+[connection signal="body_entered" from="AreaDeathPlayer" to="." method="_on_area_death_player_body_entered"]

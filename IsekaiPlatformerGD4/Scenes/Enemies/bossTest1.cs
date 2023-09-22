@@ -17,7 +17,8 @@ public partial class bossTest1 : CharacterBody2D
 	bool chargeMode = false;
 	bool confused = false;
 	bool shot = true;
-
+	bool firstime = true;
+	bool firsttimeSplit = true;
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	Vector2 direction = Vector2.Left;
@@ -33,7 +34,13 @@ public partial class bossTest1 : CharacterBody2D
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
 		AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-
+		if(firstime)
+		{
+			Speed = 0;
+			firstime = false;
+			await ToSignal(GetTree().CreateTimer(1.0), "timeout");
+			Speed = 100;
+		}
 
 		if (IsOnWall())
 			{
@@ -113,8 +120,73 @@ public partial class bossTest1 : CharacterBody2D
 
 			animatedSprite2D.Play("Squish");
 			GD.Print("Kill me please!");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			if(firsttimeSplit)
+			{
+				player.Call("PlayerJumpOnEnemy");
+
+				Speed = 0;
+
+				await ToSignal(GetTree().CreateTimer(1.0), "timeout");
+
+				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_state_2.tscn").Instantiate();
+				Node2D instance2 = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_state_2.tscn").Instantiate();
+				instance.Call("turnOfSplit");
+				instance2.Call("turnOfSplit");
+				GetTree().Root.AddChild(instance);
+				GetTree().Root.AddChild(instance2);
+				var Slimeposition = this.Position;
+				instance.GlobalPosition = new Vector2(Slimeposition.X + 50, 166);
+				instance2.GlobalPosition = new Vector2(Slimeposition.X - 50, 166);
+				firsttimeSplit = false;
+
+
+
+
+				this.QueueFree();
+			}
+
+			else
+			{
+				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemy.tscn").Instantiate();
+				Node2D instance2 = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemy.tscn").Instantiate();
+				GetTree().Root.AddChild(instance);
+				GetTree().Root.AddChild(instance2);
+				var Slimeposition = this.Position;
+				instance.GlobalPosition = new Vector2(Slimeposition.X + 50, 166);
+				instance2.GlobalPosition = new Vector2(Slimeposition.X - 50, 166);
+				this.QueueFree();
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			chargeMode = true;
-			player.Call("PlayerJumpOnEnemy");
 			spikeIsActive = true;
 			Spikes.Visible = true;
 			Spikes.CollisionLayer = 1;
@@ -241,9 +313,6 @@ public partial class bossTest1 : CharacterBody2D
 
 	private async Task<bool> shotRight()
 	{
-
-
-
 		if (shot)
 		{
 			shot = false;
@@ -261,11 +330,15 @@ public partial class bossTest1 : CharacterBody2D
 
 		}
 
-
 		return true;
 
 	}
 
+
+	private void turnOfSplit()
+	{
+		firsttimeSplit = false;
+	}
 
 }
 

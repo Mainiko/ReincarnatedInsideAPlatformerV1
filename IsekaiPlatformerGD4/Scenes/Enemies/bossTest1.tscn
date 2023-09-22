@@ -10,16 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://gu3h5gkvkiyt" path="res://Assets/Sprites/Enemies/SlimeBoss/Slimeboss v1 teleport animation (teleport).png" id="6_hynp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npr1r"]
-size = Vector2(53, 17)
+size = Vector2(37, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr67o"]
-size = Vector2(55, 18.5)
+size = Vector2(37, 18.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff47y"]
-size = Vector2(57, 16)
+size = Vector2(37, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldwt5"]
-size = Vector2(40, 5)
+size = Vector2(29, 5)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m2jf6"]
 

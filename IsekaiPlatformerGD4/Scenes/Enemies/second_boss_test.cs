@@ -230,7 +230,8 @@ public partial class second_boss_test : CharacterBody2D
 				this.CollisionMask = 1;
 				Hitbox_BossHurt.CollisionMask = 1;
 				Hitbox_playerHurt.CollisionMask = 1;
-
+				CollisionLayer = 0;
+				CollisionMask = 1;
 			}
 		}
 

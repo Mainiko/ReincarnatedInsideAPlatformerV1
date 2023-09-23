@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cof7ce7w4r85s" path="res://Assets/Sprites/Characters/Player/JumpDown Animation v1.png" id="5_6pykr"]
 [ext_resource type="Texture2D" uid="uid://bqokbjpjfm6u3" path="res://Assets/Sprites/Characters/Player/Jump Up Animation v1.png" id="5_dbojr"]
 [ext_resource type="Texture2D" uid="uid://ghmhaws4dbqd" path="res://Assets/Sprites/Characters/Player/JumpImpact animation v1.png" id="6_nx0kf"]
-[ext_resource type="Texture2D" uid="uid://c3bripce1vq3i" path="res://Assets/Sprites/Characters/Player/WallClimb.png" id="9_axegf"]
+[ext_resource type="Texture2D" uid="uid://dqj7qaouv8p3h" path="res://Assets/Sprites/Characters/Player/WallClimbv3.png" id="9_tmpaf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lr5of"]
 size = Vector2(8, 15)
@@ -587,7 +587,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_axegf")
+"texture": ExtResource("9_tmpaf")
 }],
 "loop": true,
 "name": &"Wallclimb",

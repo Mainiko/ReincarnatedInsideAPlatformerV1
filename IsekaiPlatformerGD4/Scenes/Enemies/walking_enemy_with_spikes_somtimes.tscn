@@ -295,13 +295,11 @@ timeBeforeDisappear = 100
 timeBeforeRreturning = 100
 timeDelay = 100
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = SubResource("SpriteFrames_dbfw2")
 animation = &"Explode"
 autoplay = "Idle"
-
-[node name="CollisionShape2D" parent="Death_HitBox" index="0"]
-position = Vector2(-0.239216, -5.07672)
+frame_progress = 0.0
 
 [node name="Spikes" type="Area2D" parent="." index="6"]
 
@@ -312,5 +310,8 @@ shape = SubResource("RectangleShape2D_bb8t8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Spikes" index="1"]
 position = Vector2(0, -16.4814)
 sprite_frames = SubResource("SpriteFrames_ryt3u")
+
+[node name="CollisionShape2D" parent="Death_HitBox" index="0"]
+position = Vector2(-0.239216, -5.07672)
 
 [connection signal="body_entered" from="Spikes" to="." method="_on_spikes_body_entered"]

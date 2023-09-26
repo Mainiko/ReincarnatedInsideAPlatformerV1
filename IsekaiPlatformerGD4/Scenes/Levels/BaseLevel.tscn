@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bccee5fwed6hf" path="res://Scenes/Characters/player.tscn" id="5_xnjbj"]
 [ext_resource type="PackedScene" uid="uid://dcm374i48rj4r" path="res://Scenes/Extra/fall_hitbox.tscn" id="8_otbas"]
 
-[node name="BaseLevel2" type="Node"]
+[node name="BaseLevel3" type="Node"]
 script = ExtResource("1_nd4ev")
 
 [node name="TextureRect" type="TextureRect" parent="."]

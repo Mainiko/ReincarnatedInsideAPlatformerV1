@@ -26,6 +26,7 @@ public partial class walking_spike_enemy : CharacterBody2D
 		{
 			await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
 			firsttime = false;
+			direction.X = -1;
 		}
 
 		else

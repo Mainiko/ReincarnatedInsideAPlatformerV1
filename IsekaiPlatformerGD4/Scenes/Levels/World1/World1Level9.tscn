@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0clpsumij2jb"]
+
+[ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_ul5m4"]
+[ext_resource type="PackedScene" uid="uid://dw5blvgn4i7d2" path="res://Scenes/Enemies/shooting_enemy.tscn" id="2_h8yub"]
+
+[node name="Level1" instance=ExtResource("1_ul5m4")]
+
+[node name="TileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(720913, 65539, 0, 720914, 65539, 0, 720915, 65539, 0, 720912, 327683, 2, 720899, 65539, 0, 720898, 65539, 0, 720897, 65539, 0, 720896, 65539, 0, 0, 65536, 1, 65536, 65536, 1, 131072, 65536, 1, 196608, 65536, 1, 262144, 65536, 1, 327680, 65536, 1, 393216, 65536, 1, 458752, 65536, 1, 524288, 65536, 1, 589824, 65536, 1, 655360, 65536, 1, 720901, 131075, 1, 655365, 131075, 0, 655364, 3, 0, 720911, 3, 1, 655375, 3, 0, 655376, 131075, 0, 655369, 3, 0, 655370, 65539, 0, 655371, 131075, 0, 720905, 3, 1, 720906, 65539, 1, 720907, 131075, 1, 720900, 393219, 2)
+
+[node name="player" parent="." index="4"]
+position = Vector2(24, 176)
+
+[node name="ScenTransport" parent="." index="5"]
+target_level_pass = "res://Scenes/Levels/World1/World1Level10.tscn"
+
+[node name="shootingEnemy" parent="." index="6" instance=ExtResource("2_h8yub")]
+position = Vector2(256, 148)

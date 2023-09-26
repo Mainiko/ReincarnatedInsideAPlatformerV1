@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ys12csiut4di"]
+
+[ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_wgfeh"]
+[ext_resource type="PackedScene" uid="uid://nawchfsltjvm" path="res://Scenes/Enemies/walking_enemy.tscn" id="2_5gvfh"]
+
+[node name="Level1" instance=ExtResource("1_wgfeh")]
+
+[node name="player" parent="." index="4"]
+position = Vector2(24, 176)
+
+[node name="ScenTransport" parent="." index="5"]
+target_level_pass = "res://Scenes/Levels/World1/World1Level4.tscn"
+
+[node name="walking_enemy3" parent="." index="6" instance=ExtResource("2_5gvfh")]
+position = Vector2(145, 165)
+
+[node name="walking_enemy2" parent="." index="7" instance=ExtResource("2_5gvfh")]
+position = Vector2(201, 165)
+
+[node name="walking_enemy" parent="." index="8" instance=ExtResource("2_5gvfh")]
+position = Vector2(263, 165)

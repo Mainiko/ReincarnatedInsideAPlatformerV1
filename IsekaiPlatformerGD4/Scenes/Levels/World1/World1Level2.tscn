@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://3wd25o36p7bj"]
+[gd_scene load_steps=3 format=3 uid="uid://3wd25o36p7bj"]
 
 [ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_ne2p7"]
-[ext_resource type="PackedScene" uid="uid://1tw3rrvhvxqo" path="res://Scenes/Extra/scen_transport.tscn" id="2_dcins"]
 [ext_resource type="PackedScene" uid="uid://nawchfsltjvm" path="res://Scenes/Enemies/walking_enemy.tscn" id="3_hq0ys"]
 
 [node name="Level1" instance=ExtResource("1_ne2p7")]
@@ -12,13 +11,8 @@ layer_0/tile_data = PackedInt32Array(720915, 65539, 0, 720903, 65539, 0, 720898,
 [node name="player" parent="." index="4"]
 position = Vector2(24, 176)
 
-[node name="ScenTransport2" parent="." index="5" instance=ExtResource("2_dcins")]
-position = Vector2(336, 64)
+[node name="walking_enemy" parent="." index="5" instance=ExtResource("3_hq0ys")]
+position = Vector2(216, 165)
+
+[node name="ScenTransport" parent="." index="6"]
 target_level_pass = "res://Scenes/Levels/World1/World1Level3.tscn"
-
-[node name="ScenTransport" parent="." index="6" instance=ExtResource("2_dcins")]
-position = Vector2(-16, 64)
-target_level_pass = "res://Scenes/Levels/World1/World1Level1.tscn"
-
-[node name="walking_enemy" parent="." index="7" instance=ExtResource("3_hq0ys")]
-position = Vector2(203, 164)

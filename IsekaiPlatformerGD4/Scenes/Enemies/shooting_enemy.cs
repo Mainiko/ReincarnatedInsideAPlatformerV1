@@ -18,7 +18,7 @@ public partial class shooting_enemy : StaticBody2D
 		if (shot)
 		{
 			Vector2 direction = new Vector2(-1, 0);
-			var projectile = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/projectile_test.tscn").Instantiate();
+			var projectile = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_1_projectile.tscn").Instantiate();
 			projectile.Call("SetDirection", direction, 180);
 			shot = false;
 			await ToSignal(GetTree().CreateTimer(shotSpeed), "timeout");

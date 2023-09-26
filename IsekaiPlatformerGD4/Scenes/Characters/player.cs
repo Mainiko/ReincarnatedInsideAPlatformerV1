@@ -56,6 +56,7 @@ public partial class player : CharacterBody2D
 
 	[Export] private int defaultHazardMask = 0;
 
+
 	public override void _Ready()
 	{
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
@@ -284,10 +285,11 @@ public partial class player : CharacterBody2D
 
 	private void PlayerDie()
 	{
-		GetTree().ReloadCurrentScene();
 		QueueFree();
+		GetTree().QueueDelete(this);
+		GetTree().ReloadCurrentScene();
 		GD.Print("I'm dead");
-
+		
 	}
 
 	private void PlayerJumpOnEnemy()

@@ -57,4 +57,6 @@ public partial class FlyingBirdEnemy : Path2D
 
 		}
 	}
+
+
 }

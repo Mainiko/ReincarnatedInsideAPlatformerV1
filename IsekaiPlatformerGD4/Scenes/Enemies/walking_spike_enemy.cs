@@ -10,40 +10,52 @@ public partial class walking_spike_enemy : CharacterBody2D
 	Vector2 direction = Vector2.Right;
 
 	bool hasDied = false;
+	bool firsttime = true;
 
 
-	public override void _PhysicsProcess(double delta)
-	{	
+	public async override  void _PhysicsProcess(double delta)
+	{	 
 		Vector2 velocity = Velocity;
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		var LedgeCheckRight = GetNode<RayCast2D>("LedgeCheckRight");
 		var ledgeCheckLeft = GetNode<RayCast2D>("LedgeCheckLeft");
 
 
-		if (!IsOnFloor())
-			velocity.Y += gravity * (float)delta;
 
-		 bool found_wall = IsOnWall();
-		 var found_ledge = LedgeCheckRight.IsColliding() && ledgeCheckLeft.IsColliding();
-		if (found_wall || !found_ledge)
+		if (firsttime)
 		{
-			//GD.Print(direction.X);
-			direction *= -1;
-			//GD.Print(direction.X);
-			//GD.Print(found_ledge);
-			//GD.Print(animatedSprite2D);
+			await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+			firsttime = false;
 		}
 
+		else
+		{
+			if (!IsOnFloor())
+				velocity.Y += gravity * (float)delta;
 
-		if (direction.X > 0)
-			animatedSprite2D.FlipH = true;
-		if (direction.X < 0)
-		   animatedSprite2D.FlipH = false;
+			bool found_wall = IsOnWall();
+			var found_ledge = LedgeCheckRight.IsColliding() && ledgeCheckLeft.IsColliding();
+			if (found_wall || !found_ledge)
+			{
+				//GD.Print(direction.X);
+				direction *= -1;
+				//GD.Print(direction.X);
+				//GD.Print(found_ledge);
+				//GD.Print(animatedSprite2D);
+			}
 
 
-		float Speed = 25.0f;
-		velocity.X = direction.X * Speed;
-		Velocity = velocity;
+			if (direction.X > 0)
+				animatedSprite2D.FlipH = true;
+			if (direction.X < 0)
+				animatedSprite2D.FlipH = false;
+
+
+			float Speed = 25.0f;
+			velocity.X = direction.X * Speed;
+			Velocity = velocity;
+		}
+	
 		MoveAndSlide();
 		CheckIfDead();
 	}

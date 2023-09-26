@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3idox8nmyxnb"]
+[gd_scene load_steps=3 format=3 uid="uid://b3idox8nmyxnb"]
 
 [ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_fu0io"]
 [ext_resource type="PackedScene" uid="uid://curu02dbm3jyr" path="res://Scenes/Enemies/bossTest1.tscn" id="2_hs6np"]
-[ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="3_fcr1n"]
 
 [node name="BaseLevel3" instance=ExtResource("1_fu0io")]
 
@@ -13,14 +12,7 @@ layer_0/tile_data = PackedInt32Array(655360, 0, 1, 655379, 131072, 1, 65536, 0, 
 position = Vector2(24, 168)
 
 [node name="Boss" parent="." index="5" instance=ExtResource("2_hs6np")]
-position = Vector2(208, 166)
+position = Vector2(250, 166)
 Speed = 50
 timebeforeMoving = 50
-
-[node name="spike_enemy2" parent="." index="6" instance=ExtResource("3_fcr1n")]
-position = Vector2(17, 82)
-rotation = 1.58821
-
-[node name="spike_enemy" parent="." index="7" instance=ExtResource("3_fcr1n")]
-position = Vector2(303, 70)
-rotation = -1.56198
+timeNeddedtoHit = 5

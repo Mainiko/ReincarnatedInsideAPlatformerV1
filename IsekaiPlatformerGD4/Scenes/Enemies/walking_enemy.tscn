@@ -757,13 +757,16 @@ frame_progress = 0.377214
 
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0.375, 1.56182)
+one_way_collision = true
 one_way_collision_margin = 0.0
 
 [node name="LedgeCheckRight" parent="." index="4"]
 position = Vector2(9.27436, 8.12837)
+target_position = Vector2(0.0381403, 11.0591)
 
 [node name="LedgeCheckLeft" parent="." index="5"]
 position = Vector2(-7.83094, 9.18068)
+target_position = Vector2(0.14344, 9.69432)
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-0.0937504, 4.61793)

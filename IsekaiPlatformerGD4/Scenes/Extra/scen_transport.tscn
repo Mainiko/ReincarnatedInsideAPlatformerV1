@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1tw3rrvhvxqo"]
+
+[ext_resource type="Script" path="res://Scenes/Extra/scen_transport.cs" id="1_s3hek"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_celbl"]
+size = Vector2(32, 192)
+
+[node name="ScenTransport" type="Area2D"]
+script = ExtResource("1_s3hek")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_celbl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

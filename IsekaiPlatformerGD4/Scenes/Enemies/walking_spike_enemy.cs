@@ -37,11 +37,25 @@ public partial class walking_spike_enemy : CharacterBody2D
 			var found_ledge = LedgeCheckRight.IsColliding() && ledgeCheckLeft.IsColliding();
 			if (found_wall || !found_ledge)
 			{
-				//GD.Print(direction.X);
-				direction *= -1;
-				//GD.Print(direction.X);
-				//GD.Print(found_ledge);
-				//GD.Print(animatedSprite2D);
+				if(direction.X > 0 && LedgeCheckRight.IsColliding())
+				{
+					//do nothing
+
+				}
+				else if(direction.X < 0 && ledgeCheckLeft.IsColliding())
+				{
+					//do nothing
+
+				}
+				else
+				{
+					//GD.Print(direction.X);
+					direction *= -1;
+					//GD.Print(direction.X);
+					//GD.Print(found_ledge);
+					//GD.Print(animatedSprite2D);
+				}
+
 			}
 
 

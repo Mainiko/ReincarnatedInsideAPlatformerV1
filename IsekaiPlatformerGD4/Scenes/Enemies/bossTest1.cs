@@ -178,6 +178,12 @@ public partial class bossTest1 : CharacterBody2D
 			}
 
 
+
+
+
+
+
+
 			player.Call("PlayerJumpOnEnemy");
 
 			Speed = 0;

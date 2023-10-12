@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cof7ce7w4r85s" path="res://Assets/Sprites/Characters/Player/JumpDown Animation v1.png" id="5_6pykr"]
 [ext_resource type="Texture2D" uid="uid://bqokbjpjfm6u3" path="res://Assets/Sprites/Characters/Player/Jump Up Animation v1.png" id="5_dbojr"]
 [ext_resource type="Texture2D" uid="uid://ghmhaws4dbqd" path="res://Assets/Sprites/Characters/Player/JumpImpact animation v1.png" id="6_nx0kf"]
-[ext_resource type="Texture2D" uid="uid://dqj7qaouv8p3h" path="res://Assets/Sprites/Characters/Player/WallClimbv3.png" id="9_tmpaf"]
+[ext_resource type="Texture2D" uid="uid://dqj7qaouv8p3h" path="res://Assets/Sprites/Characters/Player/WallClimbv3.png" id="9_omrou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lr5of"]
 size = Vector2(8, 15)
@@ -587,7 +587,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_tmpaf")
+"texture": ExtResource("9_omrou")
 }],
 "loop": true,
 "name": &"Wallclimb",
@@ -612,7 +612,7 @@ shape = SubResource("RectangleShape2D_lr5of")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-1, -8)
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_peb18")
 animation = &"Wallclimb"
 autoplay = "Idle"

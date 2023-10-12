@@ -22,10 +22,8 @@ public partial class player : CharacterBody2D
 	[Export] private int airTurnFinaleSpeed = 85;
 	[Export]private int friction = 23;
 	[Export]private int maxHorizontalSpeed = 200;
-//	[Export]private int horizontalAcceleration = 2000;
 	[Export]private float JumpVelocity = -250.0f;
 	[Export]private int JUMP_RELESE_FORCE = -100;
-//	[Export]private int jumpTerminationMultiplier = 4;
 	[Export]private int addiditionalFallGravity = 1500;
 	[Export]private float acceleration = 0.25f;
 	[Export]private int wallGravity = 900;
@@ -76,18 +74,12 @@ public partial class player : CharacterBody2D
 			hasDoubleJump = CanGaineDoubleJump;
 		}
 
-		// Add the gravity.
 		HandleGravity(ref velocity, delta);
 
-		// Handle Jump.
 		HandleJump(ref velocity);
 
-		//Handle movement
 		HandleMovement(ref velocity, ref direction, delta);
 
-		//bool wasOnFloor = IsOnFloor();
-
-		//Handles walljump
 		HandleWallJump(ref velocity,ref direction);
 
 

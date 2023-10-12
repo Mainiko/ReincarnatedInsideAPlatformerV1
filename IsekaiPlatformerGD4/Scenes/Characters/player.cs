@@ -8,9 +8,6 @@ public partial class player : CharacterBody2D
 
 	[Signal] public delegate void OnPlayerDiedEventHandler();
 
-
-	
-
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
@@ -67,190 +64,35 @@ public partial class player : CharacterBody2D
 
 		Vector2 velocity = Velocity;
 		Vector2 direction = GetDirectionVector();
+		bool wasOnFloor = IsOnFloor();
 
-		// Handle the animation.
-		if (!IsOnFloor())
-		{
-			if(velocity.Y < 0)
-			{
-				hasJumped = true;
-				animatedSprite2D.Play("JumpUp");
-
-			}
-			else if(velocity.Y > 0)
-			{
-				animatedSprite2D.Play("JumpDown");
-
-			}
-		}
-		else if (animatedSprite2D.Animation == "JumpDown" && IsOnFloor())
-		{
-			animatedSprite2D.Play("JumpImpact");
-		}
-		else if (direction == Vector2.Zero && (animatedSprite2D.IsPlaying() && animatedSprite2D.Animation == "JumpImpact" ) == false)
-		{
-			animatedSprite2D.Play("Idle");
-		}
-		
-		else if (IsOnFloor() && direction != Vector2.Zero)
-		{
-			animatedSprite2D.Play("Run");
-		}
-		
+		// Handle the animation
+		HandleAnimations(velocity, direction);
 
 		if (IsOnFloor())
 		{
 			Speed = GroundSpeed;
 			lastJumpDirection = 0;
-
-		}
-		// Add the gravity.
-		if (!IsOnFloor())
-		{
-
-
-			if (GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && velocity.Y > 0)
-			{
-				velocity.Y += (gravity - wallGravity) * (float)delta;
-				animatedSprite2D.Play("Wallclimb");
-
-			}
-			else if (GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right") && velocity.Y > 0)
-			{
-				velocity.Y += (gravity - wallGravity) * (float)delta;
-				animatedSprite2D.Play("Wallclimb");
-			}
-			else if (Velocity.Y > 0) //If player is falling 
-			{
-				velocity.Y += addiditionalFallGravity * (float)delta; //Apply fast fall
-			}
-			else
-			{
-				velocity.Y += gravity * (float)delta;
-			}
-
-		}
-
-		if (IsOnFloor())
-		{
 			hasDoubleJump = CanGaineDoubleJump;
-			hasDash = true;
-
 		}
+
+		// Add the gravity.
+		HandleGravity(ref velocity, delta);
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump))
-		{
-			velocity.Y = JumpVelocity;
+		HandleJump(ref velocity);
 
-			if (!IsOnFloor() && coyoteTimer.IsStopped())
-			{
-				hasDoubleJump=false;
-			}
-		}
+		//Handle movement
+		HandleMovement(ref velocity, ref direction, delta);
 
-		if (isJumpingOnEnemy)
-		{
-			velocity.Y = (float)(JumpVelocity * 1.035);
-
-			isJumpingOnEnemy = false;
-		}
-
-
-		if (isJumpingOnJumpPlatform)
-		{
-			velocity.Y = (float)(JumpVelocity * 1.5);
-			isJumpingOnJumpPlatform = false;
-		}
-
-
-		if (Input.IsActionJustReleased("jump") && (velocity.Y < JUMP_RELESE_FORCE))
-		{
-			velocity.Y = JUMP_RELESE_FORCE;
-		}
-
-
-
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration); // om denna kraschar skiten sa....// den gjorde det....
-			FlipSprite(direction);
-		}
-		else
-			//velocity.x = Mathf.Lerp(0, velocity.x, Mathf.Pow(2, -10 * (float)delta)); 
-		{
-			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
-		}
-
-		velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
-
-
-		bool wasOnFloor = IsOnFloor();
-
+		//bool wasOnFloor = IsOnFloor();
 
 		//Handles walljump
-		if ((lastJumpDirection != direction.X || lastJumpDirection == 0) && Input.IsActionJustPressed("jump") && !IsOnFloor())
-		{
-			if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && !IsOnFloor())
-			{
-				velocity.Y = JumpVelocity;
-				velocity.X = jumpSpeed;
-			}
-			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor())
-			{
-				velocity.Y = JumpVelocity;
-				velocity.X = -jumpSpeed;
-
-			}
-			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && wallClimbJump == true)
-			{
-				velocity.Y = JumpVelocity;
-				velocity.X = jumpSpeed;
-
-			}
-			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && wallClimbJump == true)
-			{
-				velocity.Y = JumpVelocity;
-				velocity.X = -jumpSpeed;
-			}
-			lastJumpDirection = direction.X;
-		}
-
-		//Handle Dashing
-		if (Input.IsActionJustPressed("dash") && hasDash && !IsOnFloor())
-		{
-
-			//Create timer that will signal when the dash is done?
-			//So we can start applaying gravity again
-			isDashing = true;
-			velocity.Y = -100;
-
-
-			//Makes player dash at the facing direction 
-			bool currentFacingDirection = animatedSprite2D.FlipH;
-			int facingDirValue = 0;
-			if (currentFacingDirection)
-			{
-				facingDirValue = -1;
-			}
-			else
-			{
-				facingDirValue = 1;
-			}
-
-			direction.X = facingDirValue;
-
-			//velocity.x = Mathf.Lerp(velocity.x, direction.x * dashSpeed, acceleration);
-			velocity.X = Mathf.Lerp(velocity.X, direction.X * dashSpeed, 0.15f);
-			hasDash = false;
-			isDashing = false;
-
-		}
-
-		//velocity.y = FastFall(delta);
+		HandleWallJump(ref velocity,ref direction);
 
 
 		Velocity = velocity;
+		
 		MoveAndSlide();
 
 		if (wasOnFloor && !IsOnFloor())
@@ -262,8 +104,6 @@ public partial class player : CharacterBody2D
 		{
 			hasDoubleJump = true;
 		}
-
-	  
 	}
 
 
@@ -275,14 +115,7 @@ public partial class player : CharacterBody2D
 
 	private void FlipSprite(Vector2 direction) //Flip sprite so it faces input direction
 	{
-		if (direction.X < 0)
-		{
-			animatedSprite2D.FlipH = true;
-		}
-		else
-		{
-			animatedSprite2D.FlipH = false;
-		}
+		animatedSprite2D.FlipH = direction.X < 0;
 	}
 
 	private void PlayerDie()
@@ -310,11 +143,147 @@ public partial class player : CharacterBody2D
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		if (@event is InputEventKey eventKey)
+		{
 			if (eventKey.Pressed && eventKey.Keycode == Key.Escape)
 			{
 				GetTree().ChangeSceneToFile("res://Scenes/UI/menu.tscn");
 			}
-			   
+		}
+	}
+
+	private void HandleWallJump(ref Vector2 velocity,ref Vector2 direction)
+	{
+		if ((lastJumpDirection != direction.X || lastJumpDirection == 0) && Input.IsActionJustPressed("jump") && !IsOnFloor())
+		{
+			if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && !IsOnFloor())
+			{
+				velocity.Y = JumpVelocity;
+				velocity.X = jumpSpeed;
+			}
+			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor())
+			{
+				velocity.Y = JumpVelocity;
+				velocity.X = -jumpSpeed;
+			}
+			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && wallClimbJump == true)
+			{
+				velocity.Y = JumpVelocity;
+				velocity.X = jumpSpeed;
+			}
+			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && wallClimbJump == true)
+			{
+				velocity.Y = JumpVelocity;
+				velocity.X = -jumpSpeed;
+			}
+			lastJumpDirection = direction.X;
+		}
+
+	}
+
+	private void HandleGravity(ref Vector2 velocity,double delta)
+	{
+		if (!IsOnFloor())
+		{
+			if (GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && velocity.Y > 0)
+			{
+				velocity.Y += (gravity - wallGravity) * (float)delta;
+				animatedSprite2D.Play("Wallclimb");
+
+			}
+			else if (GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right") && velocity.Y > 0)
+			{
+				velocity.Y += (gravity - wallGravity) * (float)delta;
+				animatedSprite2D.Play("Wallclimb");
+			}
+			else if (Velocity.Y > 0) //If player is falling 
+			{
+				velocity.Y += addiditionalFallGravity * (float)delta; //Apply fast fall
+			}
+			else
+			{
+				velocity.Y += gravity * (float)delta;
+			}
+		}
+	}
+
+	private void HandleJump(ref Vector2 velocity)
+	{
+		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump))
+		{
+			velocity.Y = JumpVelocity;
+
+			if (!IsOnFloor() && coyoteTimer.IsStopped())
+			{
+				hasDoubleJump = false;
+			}
+		}
+
+		if (isJumpingOnEnemy)
+		{
+			velocity.Y = (float)(JumpVelocity * 1.035);
+
+			isJumpingOnEnemy = false;
+		}
+
+
+		if (isJumpingOnJumpPlatform)
+		{
+			velocity.Y = (float)(JumpVelocity * 1.5);
+			isJumpingOnJumpPlatform = false;
+		}
+
+
+		if (Input.IsActionJustReleased("jump") && (velocity.Y < JUMP_RELESE_FORCE))
+		{
+			velocity.Y = JUMP_RELESE_FORCE;
+		}
+	}
+
+	private void HandleAnimations(Vector2 velocity, Vector2 direction)
+	{
+		if (!IsOnFloor())
+		{
+			if (velocity.Y < 0)
+			{
+				hasJumped = true;
+				animatedSprite2D.Play("JumpUp");
+
+			}
+			else if (velocity.Y > 0)
+			{
+				animatedSprite2D.Play("JumpDown");
+
+			}
+		}
+		else if (animatedSprite2D.Animation == "JumpDown" && IsOnFloor())
+		{
+			animatedSprite2D.Play("JumpImpact");
+		}
+		else if (direction == Vector2.Zero && (animatedSprite2D.IsPlaying() && animatedSprite2D.Animation == "JumpImpact") == false)
+		{
+			animatedSprite2D.Play("Idle");
+		}
+
+		else if (IsOnFloor() && direction != Vector2.Zero)
+		{
+			animatedSprite2D.Play("Run");
+		}
+	}
+
+	private void HandleMovement(ref Vector2 velocity,ref Vector2 direction, double delta)
+	{
+		if (direction != Vector2.Zero)
+		{
+			velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
+			FlipSprite(direction);
+		}
+		else
+		{
+			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
+		}
+
+		velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
+
 	}
 
 }

@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d1clqckxonwsc"]
+
+[ext_resource type="FontFile" uid="uid://bllpxu8bv03u5" path="res://Assets/Fonts/Minecraft.ttf" id="1_okb48"]
+
+[resource]
+default_font = ExtResource("1_okb48")
+default_font_size = 16
+/font_sizes/pixelfont = 16
+/fonts/Pixelfont = ExtResource("1_okb48")
+Label/fonts/Pixelfont = ExtResource("1_okb48")

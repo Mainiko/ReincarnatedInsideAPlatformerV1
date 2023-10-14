@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddu84g3o0j10e"]
+
+[ext_resource type="Theme" uid="uid://d1clqckxonwsc" path="res://Scenes/UI/Themes/info_hud.tres" id="1_lbmua"]
+[ext_resource type="Script" path="res://Scenes/UI/info_hud.cs" id="1_ufewb"]
+[ext_resource type="FontFile" uid="uid://bllpxu8bv03u5" path="res://Assets/Fonts/Minecraft.ttf" id="2_vm7lm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pceyh"]
+font = ExtResource("2_vm7lm")
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hpk3p"]
+font = ExtResource("2_vm7lm")
+
+[node name="InfoHUD" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 102.0
+offset_bottom = 64.0
+theme = ExtResource("1_lbmua")
+script = ExtResource("1_ufewb")
+
+[node name="LabelVelocityX" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 46.0
+offset_bottom = 18.0
+label_settings = SubResource("LabelSettings_pceyh")
+
+[node name="LabelVelocityY" type="Label" parent="."]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 40.0
+offset_bottom = 40.0
+label_settings = SubResource("LabelSettings_hpk3p")
+
+[node name="LabelHasReachedMaxSpeed" type="Label" parent="."]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 40.0
+offset_bottom = 53.0

@@ -21,7 +21,7 @@ public partial class player : CharacterBody2D
 	[Export]private int airTurnSpeed = 30;
 	[Export] private int airTurnFinaleSpeed = 85;
 	[Export]private int friction = 23;
-	[Export]private int maxHorizontalSpeed = 200;
+	[Export]private int maxHorizontalSpeed = 124;
 	[Export]private float JumpVelocity = -250.0f;
 	[Export]private int JUMP_RELESE_FORCE = -100;
 	[Export]private int addiditionalFallGravity = 1500;
@@ -45,8 +45,24 @@ public partial class player : CharacterBody2D
 	private float myLastPosition = 0;
 
 	private float Speed = 125.0f;
+
+	private double wallJumpTimer = 0.3f;
+	private double wallJumpTimerReset = 0.3f;
+	private bool isWallJumping = false;
+	public bool hasReachedMaxSpeed { get; set; } = false ;
+	
+
+	[Export] private int wallJumpSpeed = 600;
+	[Export] private int wallJumpTurnSpeed = 5;
+	[Export] private float wallJumpTurnAcceleration = 0.08f;
+	[Export] private float wallJumpAcceleration = 0.2f;
+	[Export] private float wallJumpVelocity = -250.0f;
+
+	[Export] private float airSpeed = 75.0f;
+
+
 	//Celeste tutorial
-	[Export]private int jumpSpeed = 300;
+	[Export]private int jumpSpeed = 200;
 	[Export]private int dashSpeed = 1500;
 
 	[Export] private int defaultHazardMask = 0;
@@ -77,10 +93,28 @@ public partial class player : CharacterBody2D
 		HandleGravity(ref velocity, delta);
 
 		HandleJump(ref velocity);
+		
+		HandleWallJump(ref velocity,ref direction, delta);
+
+		if (isWallJumping)
+		{
+			wallJumpTimer -= delta;
+			if (wallJumpTimer <= 0)
+			{
+				isWallJumping = false;
+				wallJumpTimer = wallJumpTimerReset;
+				GD.Print("walljumptimer = false");
+			}
+			else
+			{
+				//GD.Print("walljumptimer:  " + wallJumpTimer);
+
+			}
+		}
 
 		HandleMovement(ref velocity, ref direction, delta);
 
-		HandleWallJump(ref velocity,ref direction);
+
 
 
 		Velocity = velocity;
@@ -143,32 +177,179 @@ public partial class player : CharacterBody2D
 		}
 	}
 
-	private void HandleWallJump(ref Vector2 velocity,ref Vector2 direction)
+	private void HandleMovement(ref Vector2 velocity, ref Vector2 direction, double delta) //Continue imorgon and check why  movement works forward movement after a walljump
 	{
-		if ((lastJumpDirection != direction.X || lastJumpDirection == 0) && Input.IsActionJustPressed("jump") && !IsOnFloor())
+		if (direction != Vector2.Zero)
 		{
-			if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && !IsOnFloor())
+			FlipSprite(direction);
+			if (!IsOnFloor())
 			{
-				velocity.Y = JumpVelocity;
-				velocity.X = jumpSpeed;
+
+
+				if (isWallJumping && lastJumpDirection != direction.X)
+				{
+					//GD.Print("inside choked movement");
+					//velocity.X = Mathf.Lerp(velocity.X, direction.X * wallJumpTurnSpeed, acceleration);
+					//velocity.X = Mathf.Lerp(velocity.X, direction.X * wallJumpTurnSpeed, wallJumpTurnAcceleration);
+
+					//tog bort
+					//velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
+
+					GD.Print("Inside 1");
+
+					GD.Print("velocity.X === " + velocity.X);
+					if (velocity.X > 199 || velocity.X < -199)
+					{
+						hasReachedMaxSpeed = true;
+					}
+
+					//test 2
+					if (!hasReachedMaxSpeed)
+					{
+						velocity.X = Mathf.Lerp(velocity.X, direction.X * jumpSpeed, acceleration);
+					}
+					else
+					{
+						velocity.X = Mathf.Lerp(velocity.X, 0, acceleration);
+
+					}
+
+					//velocity.X = Mathf.Lerp(velocity.X, direction.X * airSpeed, wallJumpTurnAcceleration);
+				}
+				else if (isWallJumping) //When turning middair
+				{
+					GD.Print("Inside 2 TURN");
+
+					//velocity.X = Mathf.Lerp(velocity.X, direction.X * wallJumpSpeed, wallJumpAcceleration);
+
+					//test 1
+					//velocity.X = Mathf.Lerp(velocity.X, direction.X * jumpSpeed, wallJumpTurnAcceleration);
+					
+	
+
+					velocity.X = Mathf.Lerp(velocity.X, direction.X * jumpSpeed, acceleration);
+
+
+				}
+				else
+				{
+
+					GD.Print("Inside 3");
+					velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
+					//velocity.X = Mathf.Lerp(velocity.X, direction.X * wallJumpTurnSpeed, wallJumpTurnAcceleration);
+
+					//velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
+				}
+
+
+					//Tog bort test
+				//velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
+
 			}
-			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor())
+			else
 			{
-				velocity.Y = JumpVelocity;
-				velocity.X = -jumpSpeed;
+				//GD.Print("lastJumpDirection: " + lastJumpDirection);
+				//GD.Print("direction: " + direction.X);
+				//GD.Print("Is on floor");
+				velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
 			}
-			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && wallClimbJump == true)
-			{
-				velocity.Y = JumpVelocity;
-				velocity.X = jumpSpeed;
-			}
-			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && wallClimbJump == true)
-			{
-				velocity.Y = JumpVelocity;
-				velocity.X = -jumpSpeed;
-			}
-			lastJumpDirection = direction.X;
+
 		}
+		else
+		{
+			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
+		}
+
+		//GD.Print("isWallJumping: " + isWallJumping + " lastJumpDirection: " + lastJumpDirection + " direction.X: " + direction.X + " velocity.X: " + velocity.X);
+
+		//if(isWallJumping)
+		//{
+		//	velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
+		//}
+		//else
+		//{
+		//	velocity.X = Mathf.Clamp(velocity.X, -124, 124);
+		//}
+
+		velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
+
+		//velocity.X = Mathf.Clamp(velocity.X, -124, 124);
+
+
+	}
+
+	private void HandleWallJump(ref Vector2 velocity,ref Vector2 direction, double delta)
+	{
+		//if ((lastJumpDirection != direction.X || lastJumpDirection == 0) && Input.IsActionJustPressed("jump") && !IsOnFloor())
+		//if ((lastJumpDirection != direction.X || lastJumpDirection == 0) && Input.IsActionJustPressed("jump") && !IsOnFloor())
+			//{
+		if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && !IsOnFloor())
+		{
+			GD.Print("WallJUMP LEFT wall");
+			velocity.Y = wallJumpVelocity;
+
+			//velocity.X = wallJumpSpeed;
+			//velocity.X = Mathf.Lerp(velocity.X, wallJumpSpeed, wallJumpAcceleration);
+
+			isWallJumping = true;
+			hasReachedMaxSpeed = false;
+			lastJumpDirection = -1;
+			//GD.Print("inside 1, last jumpdirection: " + lastJumpDirection + " direction: "+ direction.X);
+		}
+		else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor())
+		{
+			GD.Print("WallJUMP RIGHT wall");
+
+			velocity.Y = wallJumpVelocity;
+			//velocity.X = -wallJumpSpeed;
+			//velocity.X = Mathf.Lerp(velocity.X, -wallJumpSpeed, wallJumpAcceleration);
+
+			isWallJumping = true;
+			hasReachedMaxSpeed = false;
+			lastJumpDirection = 1;
+			//GD.Print("inside 2");
+		}
+		//else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && wallClimbJump == true)
+		//{
+		//	velocity.Y = wallJumpVelocity;
+		//	velocity.X = -wallJumpSpeed;
+		//	//velocity.X = Mathf.Lerp(velocity.X, wallJumpSpeed, wallJumpAcceleration);
+
+		//	isWallJumping = true;
+		//	lastJumpDirection = 1;
+
+		//	GD.Print("inside 3");
+
+		//}
+		//else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && wallClimbJump == true)
+		//{
+		//	velocity.Y = wallJumpVelocity;
+		//	velocity.X = wallJumpSpeed;
+		//	//velocity.X = Mathf.Lerp(velocity.X, wallJumpSpeed, wallJumpAcceleration);
+
+		//	isWallJumping = true;
+		//	lastJumpDirection = -1;
+
+		//	GD.Print("inside 4");
+
+		//}
+
+		if(isWallJumping)
+		{
+			//GD.Print("is inside iswallJumping and lastJumpDirection = " + lastJumpDirection);
+			if (lastJumpDirection < 0)
+			{
+				velocity.X = Mathf.Lerp(velocity.X, wallJumpSpeed, wallJumpAcceleration);
+				//GD.Print("Inside isWallJumping, lastJumpDirection");
+			}
+			if(lastJumpDirection > 0)
+			{
+				velocity.X = Mathf.Lerp(velocity.X, -wallJumpSpeed, wallJumpAcceleration);
+			}
+
+		}
+
+		//}
 
 	}
 
@@ -262,20 +443,11 @@ public partial class player : CharacterBody2D
 		}
 	}
 
-	private void HandleMovement(ref Vector2 velocity,ref Vector2 direction, double delta)
+	public bool HasReachedMaxSpeed()
 	{
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
-			FlipSprite(direction);
-		}
-		else
-		{
-			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
-		}
-
-		velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
-
+		return hasReachedMaxSpeed;
 	}
+
+
 
 }

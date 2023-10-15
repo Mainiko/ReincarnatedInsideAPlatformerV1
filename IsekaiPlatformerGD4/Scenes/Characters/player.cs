@@ -333,12 +333,10 @@ public partial class player : CharacterBody2D
 			{
 				hasJumped = true;
 				animatedSprite2D.Play("JumpUp");
-
 			}
 			else if (velocity.Y > 0)
 			{
 				animatedSprite2D.Play("JumpDown");
-
 			}
 		}
 		else if (animatedSprite2D.Animation == "JumpDown" && IsOnFloor())

@@ -12,6 +12,7 @@ public partial class info_hud : Control
 	private Label _labelLastJumpDirection;
 	private Label _labelInputDirectionX;
 	private Label _labelInputDirectionY;
+	private Label _labelIsNormalJumping;
 
 	private double timeElapsed = 0.0f;
 	private double updateInterval = 1.0f / 15.0f; // 15 updates per second
@@ -27,6 +28,7 @@ public partial class info_hud : Control
 		_labelLastJumpDirection = GetNode<Label>("LabelLastJumpDirection");
 		_labelInputDirectionX = GetNode<Label>("LabelInputDirectionX");
 		_labelInputDirectionY = GetNode<Label>("LabelInputDirectionY");
+		_labelIsNormalJumping = GetNode<Label>("LabelIsNormalJumping");
 
 	}
 
@@ -40,6 +42,7 @@ public partial class info_hud : Control
 		bool hasReachedMaxSpeed = player.HasReachedMaxSpeed();
 		bool isWallJumping = player.IsWallJumping();
 		float lastJumpDirection = player.LastJumpDirection();
+		bool isNormalJumping = player.IsNormalJumping();
 
 		Vector2 playerDirection = player.GetDirectionVector();
 
@@ -65,7 +68,9 @@ public partial class info_hud : Control
 				string formatedPlayerDirectionX = playerDirectionX.Substring(0, Math.Min(lengthToExtract, playerDirectionX.Length));
 
 				_labelInputDirectionX.Text = "InputDirection X: " + formatedPlayerDirectionX;
-				//_labelInputDirectionY.Text = "InputDirection Y: " + playerDirection.Y.ToString().Substring(0, Math.Min(5, playerDirection.Y.ToString().Length));
+
+				_labelIsNormalJumping.Text = "IsNormalJumping: " + isNormalJumping;
+
 
 				// Reset the time elapsed.
 				timeElapsed = 0.0f;

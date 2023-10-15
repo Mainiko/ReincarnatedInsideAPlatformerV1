@@ -24,7 +24,8 @@ public partial class player : CharacterBody2D
 	[Export] private int airTurnFinaleSpeed = 85;
 	[Export]private int friction = 23;
 	[Export]private int maxHorizontalSpeed = 124;
-	[Export]private float JumpVelocity = -250.0f;
+	[Export]private float JumpVelocity = -250.0f; //OLd value
+	//[Export]private float JumpVelocity = -260.0f; // new test value
 	[Export]private int JUMP_RELESE_FORCE = -100;
 	[Export]private int addiditionalFallGravity = 1500;
 	[Export]private float acceleration = 0.25f;
@@ -40,6 +41,13 @@ public partial class player : CharacterBody2D
 	private bool isJumpingOnEnemy = false;
 	private bool isJumpingOnJumpPlatform = false;
 	private bool hasJumped = false;
+	private bool isNormalJumping = false;
+	private bool isMotionlessJumping = false;
+	private bool isWallColliding = false;
+
+	private float normalJumpTurnAcceleration = 0.25f;
+	private float normalJumpTurnSpeed = 60f;
+	private float normalJumpStillSpeed = 75f;
 
 	private float lastJumpDirection = 0;
 
@@ -54,11 +62,13 @@ public partial class player : CharacterBody2D
 	public bool hasReachedMaxSpeed { get; set; } = false ;
 	
 
-	[Export] private int wallJumpSpeed = 600;
+	[Export] private int wallJumpSpeed = 500;
 	[Export] private int wallJumpTurnSpeed = 5;
 	[Export] private float wallJumpTurnAcceleration = 0.08f;
 	[Export] private float wallJumpAcceleration = 0.2f;
 	[Export] private float wallJumpVelocity = -250.0f;
+
+	private bool isWallClimbing = false;
 
 	[Export] private float airSpeed = 75.0f;
 
@@ -90,11 +100,17 @@ public partial class player : CharacterBody2D
 			Speed = GroundSpeed;
 			lastJumpDirection = 0;
 			hasDoubleJump = CanGaineDoubleJump;
+			isNormalJumping = false;
+			isMotionlessJumping = false;
+			
 		}
+
+		isWallColliding = IsWallColliding();
+		isWallClimbing = IsWallClimbing();
 
 		HandleGravity(ref velocity, delta);
 
-		HandleJump(ref velocity);
+		HandleJump(ref velocity, direction);
 		
 		HandleWallJump(ref velocity,ref direction, delta);
 
@@ -179,8 +195,8 @@ public partial class player : CharacterBody2D
 			FlipSprite(direction);
 			if (!IsOnFloor())
 			{
-				if (isWallJumping && lastJumpDirection != direction.X) //When applying direction to the same direction as the walljump
-				{
+				if (isWallJumping) //Test
+					{
 					GD.Print("Inside 1");
 
 					GD.Print("velocity.X === " + velocity.X);
@@ -189,7 +205,7 @@ public partial class player : CharacterBody2D
 						hasReachedMaxSpeed = true;
 					}
 
-					if(hasReachedMaxSpeed)
+					if(hasReachedMaxSpeed && !isWallClimbing)
 					{
 						velocity.X = Mathf.Lerp(velocity.X, 0, acceleration); //Start slowing down to 0, to not be able to move in the air
 					}
@@ -199,16 +215,68 @@ public partial class player : CharacterBody2D
 					}
 
 				}
-				else if (isWallJumping) //When turning middair
+				else if (isNormalJumping)
 				{
-					GD.Print("Inside 2 TURN");
+					GD.Print("Is normal jumping");
+					if (lastJumpDirection != 0 && !isMotionlessJumping)
+					{
+						GD.Print("NORMAL");
+						if (lastJumpDirection == 1)
+						{
+							GD.Print("1 NORMAL");
 
-					velocity.X = Mathf.Lerp(velocity.X, direction.X * jumpSpeed, acceleration);
+							if (direction.X < 0)
+							{
+								GD.Print("2 NORMAL");
+
+								//initiate slowdown
+								//velocity.X = Mathf.Lerp(velocity.X, 0, normalJumpTurnAcceleration); //Start slowing down to 0, to not be able to move in the air
+								velocity.X = Mathf.Lerp(velocity.X, direction.X * normalJumpTurnSpeed, normalJumpTurnAcceleration); 
+							}
+							else
+							{ //TESTING
+								GD.Print("3 NORMAL");
+								//velocity.X = Mathf.Lerp(velocity.X, direction.X * normalJumpTurnSpeed, normalJumpTurnAcceleration);
+								velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
+
+
+							}
+
+						}
+						else if (lastJumpDirection == -1)
+						{
+							GD.Print("A NORMAL");
+
+							if (direction.X > 0)
+							{
+								GD.Print("B NORMAL");
+
+								//initiate slowdown
+								//velocity.X = Mathf.Lerp(velocity.X, 0, normalJumpTurnAcceleration); //Start slowing down to 0, to not be able to move in the air
+								velocity.X = Mathf.Lerp(velocity.X, direction.X * normalJumpTurnSpeed, normalJumpTurnAcceleration); 
+							}
+							else
+							{
+								GD.Print("C NORMAL"); //testing
+								velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
+
+							}
+						}
+						else //ny test
+						{
+							velocity.X = Mathf.Lerp(velocity.X, direction.X * normalJumpTurnSpeed, normalJumpTurnAcceleration);
+						}
+					}
+					else
+					{
+						velocity.X = Mathf.Lerp(velocity.X, direction.X * normalJumpTurnSpeed, normalJumpTurnAcceleration);
+					}
 				}
 				else
 				{
 					velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
 				}
+
 			}
 			else
 			{
@@ -234,7 +302,9 @@ public partial class player : CharacterBody2D
 
 			isWallJumping = true;
 			hasReachedMaxSpeed = false;
-			lastJumpDirection = -1;
+			//lastJumpDirection = -1;
+			lastJumpDirection = 1;
+			isNormalJumping = false;
 		}
 		else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor()) //Jump from right wall
 		{
@@ -242,23 +312,26 @@ public partial class player : CharacterBody2D
 
 			isWallJumping = true;
 			hasReachedMaxSpeed = false;
-			lastJumpDirection = 1;
+			//lastJumpDirection = 1;
+			lastJumpDirection = -1;
+			isNormalJumping = false;
+
 		}
 		//Do we want to do anything special here?
-  //      else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && wallClimbJump == true)
+		//      else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && wallClimbJump == true)
 		//{
 		//}
 		//else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && wallClimbJump == true)
 		//{
-  //      }
+		//      }
 
 		if (isWallJumping) //Check if we are walljumping and then continually apply horizontal walljump acceleration
 		{
-			if (lastJumpDirection < 0)
+			if (lastJumpDirection > 0)
 			{
 				velocity.X = Mathf.Lerp(velocity.X, wallJumpSpeed, wallJumpAcceleration);
 			}
-			if(lastJumpDirection > 0)
+			if(lastJumpDirection < 0)
 			{
 				velocity.X = Mathf.Lerp(velocity.X, -wallJumpSpeed, wallJumpAcceleration);
 			}
@@ -292,11 +365,36 @@ public partial class player : CharacterBody2D
 		}
 	}
 
-	private void HandleJump(ref Vector2 velocity)
+	private void HandleJump(ref Vector2 velocity, Vector2 direction)
 	{
 		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump))
 		{
 			velocity.Y = JumpVelocity;
+
+			isNormalJumping = true;
+
+			if (direction.X != 0 && velocity.X == 0) //If player is trying to go to a direction but something is in the way (a wall for example) then its not a still hop
+			{
+				isMotionlessJumping = true;
+			}
+
+			//if(isWallColliding )
+
+
+
+			if (direction.X == 0)
+			{
+				lastJumpDirection = 0;
+			}
+			else if (direction.X > 0)
+			{
+				lastJumpDirection = 1;
+			}
+			else if(direction.X < 0)
+			{
+				lastJumpDirection = -1;
+			}
+
 
 			if (!IsOnFloor() && coyoteTimer.IsStopped())
 			{
@@ -369,8 +467,40 @@ public partial class player : CharacterBody2D
 	{
 		return lastJumpDirection;
 	}
+	public bool IsNormalJumping()
+	{
+		return isNormalJumping;
+	}
 
-	
+	public bool IsWallClimbing()
+	{
+		bool isWallColliding = IsWallColliding();
+
+		if(isWallColliding && !IsOnFloor())
+		{
+			return true;
+		}
+		else 
+		{ 
+			return false; 
+		}
+
+	}
+
+	public bool IsWallColliding()
+	{
+		bool rayCastRightColliding = GetNode<RayCast2D>("RayCastRight").IsColliding();
+		bool rayCastLeftColliding = GetNode<RayCast2D>("RayCastLeft").IsColliding();
+
+		if (rayCastRightColliding || rayCastLeftColliding)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 
 }

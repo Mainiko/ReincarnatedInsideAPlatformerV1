@@ -71,3 +71,10 @@ offset_top = 110.0
 offset_right = 124.0
 offset_bottom = 129.0
 text = "input direction y"
+
+[node name="LabelIsNormalJumping" type="Label" parent="."]
+layout_mode = 0
+offset_top = 110.0
+offset_right = 124.0
+offset_bottom = 129.0
+text = "IsNormalJumping"

@@ -238,10 +238,7 @@ public partial class player : CharacterBody2D
 								GD.Print("3 NORMAL");
 								//velocity.X = Mathf.Lerp(velocity.X, direction.X * normalJumpTurnSpeed, normalJumpTurnAcceleration);
 								velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration);
-
-
 							}
-
 						}
 						else if (lastJumpDirection == -1)
 						{

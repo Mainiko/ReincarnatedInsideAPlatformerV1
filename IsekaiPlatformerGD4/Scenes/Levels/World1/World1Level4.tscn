@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdi684gytwa55"]
+[gd_scene load_steps=3 format=3 uid="uid://bopgtiuxktc6d"]
 
 [ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_wdfpb"]
 [ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="2_1nvi2"]
@@ -8,17 +8,14 @@
 [node name="player" parent="." index="4"]
 position = Vector2(24, 176)
 
-[node name="ScenTransport" parent="." index="5"]
-target_level_pass = "res://Scenes/Levels/World1/World1Level5.tscn"
-
-[node name="spike_enemy2" parent="." index="6" instance=ExtResource("2_1nvi2")]
+[node name="spike_enemy2" parent="." index="5" instance=ExtResource("2_1nvi2")]
 position = Vector2(136, 176)
 
-[node name="spike_enemy" parent="." index="7" instance=ExtResource("2_1nvi2")]
+[node name="spike_enemy" parent="." index="6" instance=ExtResource("2_1nvi2")]
 position = Vector2(120, 176)
 
-[node name="spike_enemy4" parent="." index="8" instance=ExtResource("2_1nvi2")]
+[node name="spike_enemy4" parent="." index="7" instance=ExtResource("2_1nvi2")]
 position = Vector2(200, 176)
 
-[node name="spike_enemy5" parent="." index="9" instance=ExtResource("2_1nvi2")]
+[node name="spike_enemy5" parent="." index="8" instance=ExtResource("2_1nvi2")]
 position = Vector2(216, 176)

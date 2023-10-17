@@ -598,7 +598,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7.5)
+position = Vector2(1, -7.5)
 shape = SubResource("RectangleShape2D_lr5of")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -610,14 +610,14 @@ autoplay = "Idle"
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 rotation = 1.5708
-target_position = Vector2(3.61999e-05, 10)
+target_position = Vector2(1.81e-05, 5)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 rotation = -1.5708
-target_position = Vector2(-3.61999e-05, 10)
+target_position = Vector2(-1.81e-05, 5)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -7.5)
+position = Vector2(1, -7.5)
 shape = SubResource("RectangleShape2D_jk1sr")

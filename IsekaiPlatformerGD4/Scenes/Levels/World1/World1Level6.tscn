@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://3r5p4q7ss7vw"]
+[gd_scene load_steps=3 format=3 uid="uid://cy7snw5dlpkkj"]
 
 [ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_67aly"]
 [ext_resource type="PackedScene" uid="uid://bjvfxtva7483" path="res://Scenes/Extra/box_that_disappears.tscn" id="2_6wung"]
@@ -11,14 +11,11 @@ layer_0/tile_data = PackedInt32Array(720898, 65539, 0, 720897, 65539, 0, 720896,
 [node name="player" parent="." index="4"]
 position = Vector2(24, 48)
 
-[node name="ScenTransport" parent="." index="5"]
-target_level_pass = "res://Scenes/Levels/World1/World1Level7.tscn"
-
-[node name="Box that disappears" parent="." index="6" instance=ExtResource("2_6wung")]
+[node name="Box that disappears" parent="." index="5" instance=ExtResource("2_6wung")]
 position = Vector2(88, 56)
 
-[node name="Box that disappears2" parent="." index="7" instance=ExtResource("2_6wung")]
+[node name="Box that disappears2" parent="." index="6" instance=ExtResource("2_6wung")]
 position = Vector2(152, 56)
 
-[node name="Box that disappears3" parent="." index="8" instance=ExtResource("2_6wung")]
+[node name="Box that disappears3" parent="." index="7" instance=ExtResource("2_6wung")]
 position = Vector2(216, 56)

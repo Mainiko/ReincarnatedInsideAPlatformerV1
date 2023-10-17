@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://3wd25o36p7bj"]
+[gd_scene load_steps=3 format=3 uid="uid://bcoktpfdmb5et"]
 
 [ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_ne2p7"]
 [ext_resource type="PackedScene" uid="uid://nawchfsltjvm" path="res://Scenes/Enemies/walking_enemy.tscn" id="3_hq0ys"]
@@ -13,6 +13,3 @@ position = Vector2(24, 176)
 
 [node name="walking_enemy" parent="." index="5" instance=ExtResource("3_hq0ys")]
 position = Vector2(216, 165)
-
-[node name="ScenTransport" parent="." index="6"]
-target_level_pass = "res://Scenes/Levels/World1/World1Level3.tscn"

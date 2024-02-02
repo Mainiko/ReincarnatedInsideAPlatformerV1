@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bts12a41t6rs6"]
+[gd_scene load_steps=2 format=3 uid="uid://d1c7y2p0ihpol"]
 
 [ext_resource type="PackedScene" uid="uid://curu02dbm3jyr" path="res://Scenes/Enemies/bossTest1.tscn" id="1_14oq5"]
 

@@ -19,3 +19,6 @@ position = Vector2(200, 176)
 
 [node name="spike_enemy5" parent="." index="8" instance=ExtResource("2_1nvi2")]
 position = Vector2(216, 176)
+
+[node name="ScenTransport" parent="." index="9"]
+target_level_pass = "res://Scenes/Levels/World1/World1Level5.tscn"

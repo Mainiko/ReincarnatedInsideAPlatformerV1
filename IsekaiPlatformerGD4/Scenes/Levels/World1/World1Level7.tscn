@@ -25,3 +25,6 @@ position = Vector2(200, 56)
 
 [node name="Box that disappears5" parent="." index="9" instance=ExtResource("2_tvnfi")]
 position = Vector2(248, 56)
+
+[node name="ScenTransport" parent="." index="10"]
+target_level_pass = "res://Scenes/Levels/World1/World1Level8.tscn"

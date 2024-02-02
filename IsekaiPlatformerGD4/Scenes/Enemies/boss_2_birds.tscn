@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfq0mdrbxvunn"]
+[gd_scene load_steps=5 format=3 uid="uid://7b6j3p1d5y4w"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/boss_2_birds.cs" id="1_bhojl"]
 [ext_resource type="Texture2D" uid="uid://dmsw0xs1c3lxu" path="res://Assets/Sprites/Characters/character_0026.png" id="1_mvu83"]

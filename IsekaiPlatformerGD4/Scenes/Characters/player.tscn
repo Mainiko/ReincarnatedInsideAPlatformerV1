@@ -614,7 +614,7 @@ target_position = Vector2(1.81e-05, 5)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 rotation = -1.5708
-target_position = Vector2(-1.81e-05, 5)
+target_position = Vector2(-2.17199e-05, 6)
 
 [node name="Area2D" type="Area2D" parent="."]
 

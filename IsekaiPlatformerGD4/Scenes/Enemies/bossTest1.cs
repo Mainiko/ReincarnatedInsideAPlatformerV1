@@ -136,46 +136,46 @@ public partial class bossTest1 : CharacterBody2D
 
 
 
-			if(firsttimeSplit)
-			{
-				if (timesPlayerHaveHit == 0)
-				{
+			//if(firsttimeSplit)
+			//{
+			//	if (timesPlayerHaveHit == 0)
+			//	{
 				
-					Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_state_2.tscn").Instantiate();
-					Node2D instance2 = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_state_2.tscn").Instantiate();
-					instance.Call("turnOfSplit");
-					instance2.Call("turnOfSplit");
-					GetTree().Root.AddChild(instance);
-					GetTree().Root.AddChild(instance2);
-					var Slimeposition = this.Position;
-					instance.GlobalPosition = new Vector2(Slimeposition.X + 50, 166);
-					instance2.GlobalPosition = new Vector2(Slimeposition.X - 50, 166);
-					firsttimeSplit = false;
+			//		Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_state_2.tscn").Instantiate();
+			//		Node2D instance2 = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_state_2.tscn").Instantiate();
+			//		instance.Call("turnOfSplit");
+			//		instance2.Call("turnOfSplit");
+			//		GetTree().Root.AddChild(instance);
+			//		GetTree().Root.AddChild(instance2);
+			//		var Slimeposition = this.Position;
+			//		instance.GlobalPosition = new Vector2(Slimeposition.X + 50, 166);
+			//		instance2.GlobalPosition = new Vector2(Slimeposition.X - 50, 166);
+			//		firsttimeSplit = false;
 
 
-					this.QueueFree();
-				}
-			}
+			//		this.QueueFree();
+			//	}
+			//}
 
-			else
-			{
-				if (timesPlayerHaveHit == 2)
-				{
+			//else
+			//{
+			//	if (timesPlayerHaveHit == 2)
+			//	{
 
-					await ToSignal(GetTree().CreateTimer(1.0), "timeout");
-					Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemy.tscn").Instantiate();
-					Node2D instance2 = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemy.tscn").Instantiate();
-					GetTree().Root.AddChild(instance);
-					GetTree().Root.AddChild(instance2);
-					var Slimeposition = this.Position;
-					instance.GlobalPosition = new Vector2(Slimeposition.X + 30, 166);
-					instance2.GlobalPosition = new Vector2(Slimeposition.X - 30, 166);
+			//		await ToSignal(GetTree().CreateTimer(1.0), "timeout");
+			//		Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemy.tscn").Instantiate();
+			//		Node2D instance2 = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemy.tscn").Instantiate();
+			//		GetTree().Root.AddChild(instance);
+			//		GetTree().Root.AddChild(instance2);
+			//		var Slimeposition = this.Position;
+			//		instance.GlobalPosition = new Vector2(Slimeposition.X + 30, 166);
+			//		instance2.GlobalPosition = new Vector2(Slimeposition.X - 30, 166);
 
 
 
-					this.QueueFree();
-				}
-			}
+			//		this.QueueFree();
+			//	}
+			//}
 
 
 
@@ -199,6 +199,14 @@ public partial class bossTest1 : CharacterBody2D
 
 			if (timesPlayerHaveHit == timeNeddedtoHit)
 			{
+				var player2 = GetNode<CharacterBody2D>(body.GetPath());
+				GD.Print(body.GetPath());
+
+				var slimeChild1  = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children2");
+				var slimeChild2 = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children");
+				slimeChild1.Call("Spawn");
+				slimeChild2.Call("Spawn");
+				GD.Print("I should be dead");
 				this.QueueFree();
 			}
 

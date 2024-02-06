@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_6c8dg"]
 [ext_resource type="Texture2D" uid="uid://dgnltomotdj3v" path="res://Assets/Sprites/Backgrounds/MarioHills.png" id="2_sle7m"]
-[ext_resource type="PackedScene" uid="uid://1tw3rrvhvxqo" path="res://Scenes/Extra/scen_transport.tscn" id="3_6vom5"]
+[ext_resource type="PackedScene" uid="uid://bv66efhjylasa" path="res://Scenes/Extra/scen_transport.tscn" id="3_6vom5"]
 
 [node name="Level1" instance=ExtResource("1_6c8dg")]
 

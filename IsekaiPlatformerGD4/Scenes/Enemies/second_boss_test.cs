@@ -75,7 +75,7 @@ public partial class second_boss_test : CharacterBody2D
 			{
 				moving = false;
 				goingToStomp = false;
-				await ShotLeftBig();
+				await ShotLeft();
 				moving = true;
 			}
 
@@ -83,7 +83,7 @@ public partial class second_boss_test : CharacterBody2D
 			{
 				moving = false;
 				goingToStomp = false;
-				await ShotRightBig();
+				await ShotRight();
 				moving = true;
 
 			}

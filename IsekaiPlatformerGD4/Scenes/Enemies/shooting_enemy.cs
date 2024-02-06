@@ -4,7 +4,7 @@ using System;
 public partial class shooting_enemy : StaticBody2D
 {
 	bool shot = true;
-	[Export] private double shotSpeed = 1.0;
+	[Export] private double shotSpeed = 5.0;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

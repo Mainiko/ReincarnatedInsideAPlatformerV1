@@ -199,7 +199,6 @@ public partial class bossTest1 : CharacterBody2D
 
 			if (timesPlayerHaveHit == timeNeddedtoHit)
 			{
-				var player2 = GetNode<CharacterBody2D>(body.GetPath());
 				GD.Print(body.GetPath());
 
 				var slimeChild1  = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children2");

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bm1qixqqed7hi"]
 
-[ext_resource type="Texture2D" uid="uid://coertcok4jl0b" path="res://Assets/Sprites/Characters/character_0012.png" id="1_60h3s"]
 [ext_resource type="Script" path="res://Scenes/Enemies/projectile_test.cs" id="1_lktsd"]
+[ext_resource type="Texture2D" uid="uid://dg7e3lg7bt75f" path="res://Assets/Sprites/Enemies/OwlBoss/feather_v1.png" id="2_gfw2i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebs4d"]
 size = Vector2(15, 11)
@@ -15,9 +15,11 @@ position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_ebs4d")
 
 [node name="Character0012" type="Sprite2D" parent="."]
-position = Vector2(1, 2)
-rotation = 1.59453
-texture = ExtResource("1_60h3s")
+texture_filter = 1
+position = Vector2(1, 1)
+rotation = -2.31256
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_gfw2i")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

@@ -155,7 +155,7 @@ public partial class second_boss_test : CharacterBody2D
 		if (!moveLeft && moving)
 		{
 			var a = new Vector2(70, 70);
-			var b = new Vector2(200, 150);
+			var b = new Vector2(200, 180);
 			var c = new Vector2(250, 70);
 			if (t < 1)
 			{
@@ -167,7 +167,7 @@ public partial class second_boss_test : CharacterBody2D
 		if (moveLeft && moving)
 		{
 			var a = new Vector2(250, 70);
-			var b = new Vector2(200, 150);
+			var b = new Vector2(200, 180);
 			var c = new Vector2(70, 70);
 			if (t < 1)
 			{

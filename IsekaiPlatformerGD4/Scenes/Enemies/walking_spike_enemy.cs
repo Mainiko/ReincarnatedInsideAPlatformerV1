@@ -4,6 +4,8 @@ using System;
 public partial class walking_spike_enemy : CharacterBody2D
 {
 	AnimatedSprite2D animatedSprite2D = null;
+	[Export] private float walkingSpeed = 50.0f;
+
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -66,7 +68,7 @@ public partial class walking_spike_enemy : CharacterBody2D
 				animatedSprite2D.FlipH = false;
 
 
-			float Speed = 25.0f;
+			float Speed = walkingSpeed;
 			velocity.X = direction.X * Speed;
 			Velocity = velocity;
 		}
@@ -123,4 +125,10 @@ public partial class walking_spike_enemy : CharacterBody2D
 		deathHitbox.QueueFree();
 		hitbox.QueueFree();
 	}
+
+	private void SetDirection(Vector2 vector, float degrees)
+	{
+		direction = vector;
+	}
+
 }

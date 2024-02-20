@@ -62,7 +62,7 @@ public partial class bossTest1 : CharacterBody2D
 					}
 					else if (GetNode<RayCast2D>("RayCastRight").IsColliding())
 					{
-						await shotLeft();
+						await shotbabysLeft();
 
 					}
 
@@ -317,6 +317,30 @@ public partial class bossTest1 : CharacterBody2D
 
 		}
 
+
+		return true;
+
+	}
+
+	private async Task<bool> shotbabysLeft()
+	{
+
+		if (shot)
+		{
+			shot = false;
+
+			for (int i = 0; i < 10; i++)
+			{
+				await ToSignal(GetTree().CreateTimer(0.7), "timeout");
+				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemySlimeBossBaby.tscn").Instantiate();
+				GetTree().Root.AddChild(instance);
+				var Slimeposition = this.Position;
+				instance.GlobalPosition = new Vector2(Slimeposition.X - 50, Slimeposition.Y + 5);
+			}
+
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
+			shot = true;
+		}
 
 		return true;
 

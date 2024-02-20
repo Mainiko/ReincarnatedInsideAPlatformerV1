@@ -86,7 +86,6 @@ public partial class walking_spike_enemy : CharacterBody2D
 		{
 			var player = GetNode<CharacterBody2D>(body.GetPath());
 			player.Call("PlayerDie");
-
 		}
 	}
 

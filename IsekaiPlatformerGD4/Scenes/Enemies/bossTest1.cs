@@ -329,9 +329,9 @@ public partial class bossTest1 : CharacterBody2D
 		{
 			shot = false;
 
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 50; i++)
 			{
-				await ToSignal(GetTree().CreateTimer(0.7), "timeout");
+				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
 				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemySlimeBossBaby.tscn").Instantiate();
 				GetTree().Root.AddChild(instance);
 				var Slimeposition = this.Position;

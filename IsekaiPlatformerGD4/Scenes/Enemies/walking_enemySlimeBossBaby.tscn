@@ -732,13 +732,13 @@ sub_emitter_mode = 1
 sub_emitter_frequency = 4.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_haq86"]
-size = Vector2(26.8036, 24.553)
+size = Vector2(26.7874, 26.6657)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78dwn"]
-size = Vector2(53.8913, 47.2253)
+size = Vector2(67.4647, 42.9092)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nssh7"]
-size = Vector2(52.556, 14.1897)
+size = Vector2(52.0867, 11.3106)
 
 [node name="walking_enemyBabby" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
@@ -771,7 +771,7 @@ texture = ExtResource("2_qbj63")
 trail_lifetime = 0.7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.600763, 7.45058e-09)
+position = Vector2(0.71546, -0.528172)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_haq86")
 one_way_collision = true
@@ -791,7 +791,7 @@ target_position = Vector2(0.00526714, 7.06383)
 scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(1.26187, 0.0957246)
+position = Vector2(1.92698, 1.17474)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_78dwn")
 
@@ -799,7 +799,7 @@ shape = SubResource("RectangleShape2D_78dwn")
 scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death_HitBox"]
-position = Vector2(1.20153, -13.0246)
+position = Vector2(1.67895, -14.2404)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_nssh7")
 

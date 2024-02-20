@@ -283,14 +283,15 @@ public partial class player : CharacterBody2D
 		}
 	}
 
-	//private void PlayerDie()
-	//{
-	//	QueueFree();
-	//	GetTree().QueueDelete(this);
-	//	GetTree().ReloadCurrentScene();
-	//	GD.Print("I'm dead");
-		
-	//}
+	private void PlayerDie()
+	{
+		foreach (var child in GetTree().Root.GetChildren())
+		{
+			GetTree().QueueDelete(child);
+		}
+		GetTree().ReloadCurrentScene();
+		GD.Print("I'm dead");
+	}
 
 	private void PlayerJumpOnEnemy()
 	{

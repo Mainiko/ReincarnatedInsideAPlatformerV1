@@ -9,8 +9,8 @@ public partial class bossTest1 : CharacterBody2D
 	[Export] private int timebeforeMoving = 100;
 	[Export] private int timeNeddedtoHit = 3;
 
-	
 
+	int bossStage = 1;
 	int timesPlayerHaveHit = 0;
 	int timeSinceStoped = 0;
 	bool spikeIsActive = false;
@@ -19,6 +19,7 @@ public partial class bossTest1 : CharacterBody2D
 	bool shot = true;
 	bool firstime = true;
 	bool firsttimeSplit = true;
+	
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	Vector2 direction = Vector2.Left;
@@ -62,7 +63,20 @@ public partial class bossTest1 : CharacterBody2D
 					}
 					else if (GetNode<RayCast2D>("RayCastRight").IsColliding())
 					{
-						await shotbabysLeft();
+						switch (bossStage)
+						{
+							case 1:
+								await shotbabysLeft(25);
+								break;
+							case 2:
+								await shotbabysLeft(50);
+								break;
+							case 3:
+								await shotbabysLeft(100);
+								break;
+							default:
+								break;
+						}
 
 					}
 
@@ -176,9 +190,6 @@ public partial class bossTest1 : CharacterBody2D
 			//		this.QueueFree();
 			//	}
 			//}
-
-
-
 
 
 
@@ -322,14 +333,17 @@ public partial class bossTest1 : CharacterBody2D
 
 	}
 
-	private async Task<bool> shotbabysLeft()
+	private async Task<bool> shotbabysLeft(int stage)
 	{
 
 		if (shot)
 		{
 			shot = false;
 
-			for (int i = 0; i < 50; i++)
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
+
+
+			for (int i = 0; i < stage; i++)
 			{
 				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
 				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemySlimeBossBaby.tscn").Instantiate();
@@ -342,10 +356,11 @@ public partial class bossTest1 : CharacterBody2D
 			shot = true;
 		}
 
+		bossStage++;
 		return true;
+		
 
 	}
-
 
 	private async Task<bool> shotRight()
 	{

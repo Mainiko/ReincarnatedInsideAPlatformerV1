@@ -19,11 +19,12 @@ public partial class bossTest1 : CharacterBody2D
 	bool shot = true;
 	bool firstime = true;
 	bool firsttimeSplit = true;
-	
+	bool shotAlternator = true;
+
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	Vector2 direction = Vector2.Left;
-	
+
 
 
 
@@ -35,7 +36,7 @@ public partial class bossTest1 : CharacterBody2D
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
 		AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-		if(firstime)
+		if (firstime)
 		{
 			Speed = 0;
 			firstime = false;
@@ -44,42 +45,74 @@ public partial class bossTest1 : CharacterBody2D
 		}
 
 		if (IsOnWall())
+		{
+			if (chargeMode)
 			{
-				if (chargeMode)
+				if (confused)
 				{
-					if (confused)
-					{
-					   Speed = 0;
-					   spikeIsActive = true;
-				 	}
-					else
-					{
+					Speed = 0;
+					spikeIsActive = true;
+				}
+				else
+				{
 					confused = true;
 
-					if(GetNode<RayCast2D>("RayCastLeft").IsColliding())
+					if (GetNode<RayCast2D>("RayCastRight").IsColliding())
 					{
-						await shotRight();
-
-					}
-					else if (GetNode<RayCast2D>("RayCastRight").IsColliding())
-					{
-						switch (bossStage)
+						if (shotAlternator)
 						{
-							case 1:
-								await shotbabysLeft(25);
-								break;
-							case 2:
-								await shotbabysLeft(50);
-								break;
-							case 3:
-								await shotbabysLeft(100);
-								break;
-							default:
-								break;
+							await shotLeft();
 						}
 
+						else
+						{
+							switch (bossStage)
+							{
+								case 1:
+									await shotbabysLeft(10);
+									break;
+								case 2:
+									await shotbabysLeft(20);
+									break;
+								case 3:
+									await shotbabysLeft(40);
+									break;
+								default:
+									break;
+							}
+
+						}
 					}
 
+
+					else if (GetNode<RayCast2D>("RayCastLeft").IsColliding())
+					{
+
+						if (shotAlternator)
+						{
+							await shotRight();
+
+						}
+						else
+						{
+							switch (bossStage)
+							{
+								case 1:
+									await shotbabysRight(10);
+									break;
+								case 2:
+									await shotbabysRight(20);
+									break;
+								case 3:
+									await shotbabysRight(40);
+									break;
+								default:
+									break;
+							}
+						}
+					}
+
+					shotAlternator = !shotAlternator;
 					await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
 					spikeIsActive = false;
 					chargeMode = false;
@@ -92,26 +125,26 @@ public partial class bossTest1 : CharacterBody2D
 				}
 
 			}
-				else
-				{
-					animatedSprite2D.Play("Walking");
-					GD.Print("outside of chargemode ");
-					direction *= -1;
-					Speed = 100;
-				}
+			else
+			{
+				animatedSprite2D.Play("Walking");
+				GD.Print("outside of chargemode ");
+				direction *= -1;
+				Speed = 100;
 			}
+		}
 
-			if (spikeIsActive)
-			{
-				Spikes.Visible = true;
-				Spikes.CollisionLayer = 1;
-			}
-			else if (!spikeIsActive)
-			{
-				Spikes.Visible = false;
-				Spikes.CollisionLayer = 0;
-			}
-		
+		if (spikeIsActive)
+		{
+			Spikes.Visible = true;
+			Spikes.CollisionLayer = 1;
+		}
+		else if (!spikeIsActive)
+		{
+			Spikes.Visible = false;
+			Spikes.CollisionLayer = 0;
+		}
+
 		velocity.X = direction.X * Speed;
 		Velocity = velocity;
 		MoveAndSlide();
@@ -124,7 +157,7 @@ public partial class bossTest1 : CharacterBody2D
 
 
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
-   
+
 		var player = GetNode<CharacterBody2D>(body.GetPath());
 
 
@@ -154,7 +187,7 @@ public partial class bossTest1 : CharacterBody2D
 			//{
 			//	if (timesPlayerHaveHit == 0)
 			//	{
-				
+
 			//		Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_state_2.tscn").Instantiate();
 			//		Node2D instance2 = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_state_2.tscn").Instantiate();
 			//		instance.Call("turnOfSplit");
@@ -212,7 +245,7 @@ public partial class bossTest1 : CharacterBody2D
 			{
 				GD.Print(body.GetPath());
 
-				var slimeChild1  = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children2");
+				var slimeChild1 = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children2");
 				var slimeChild2 = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children");
 				slimeChild1.Call("Spawn");
 				slimeChild2.Call("Spawn");
@@ -228,18 +261,18 @@ public partial class bossTest1 : CharacterBody2D
 			if (player.Position.X > this.Position.X)
 			{
 				GD.Print("right");
-				if(direction.X > 0)
+				if (direction.X > 0)
 				{
 					//do nothing
 				}
 
-				else if(direction.X < 0)
+				else if (direction.X < 0)
 				{
 					direction.X *= -1;
 				}
 			}
 
-			else if(player.Position.X < this.Position.X)
+			else if (player.Position.X < this.Position.X)
 			{
 				GD.Print("left");
 
@@ -261,7 +294,7 @@ public partial class bossTest1 : CharacterBody2D
 		}
 	}
 
-		private void _on_hitbox_death_body_entered(CharacterBody2D body)
+	private void _on_hitbox_death_body_entered(CharacterBody2D body)
 	{
 		GD.Print("Body: " + body.Name + "has entered");
 		GD.Print("_on_hitbox_death_body_entered");
@@ -276,7 +309,7 @@ public partial class bossTest1 : CharacterBody2D
 
 		}
 	}
-	
+
 	private void _on_hitboxfrontandback_body_entered(CharacterBody2D body)
 	{
 		GD.Print("Body: " + body.Name + "has entered");
@@ -309,21 +342,21 @@ public partial class bossTest1 : CharacterBody2D
 	private async Task<bool> shotLeft()
 	{
 
-	
+
 
 		if (shot)
 		{
 			shot = false;
 
 			for (int i = 0; i < 3; i++)
-		{
+			{
 				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
 				Vector2 direction = new Vector2(-1, 0);
 				var projectile = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_1_projectile.tscn").Instantiate();
 				projectile.Call("SetDirection", direction, 180);
 				AddChild(projectile);
 
-		}
+			}
 			shot = true;
 
 		}
@@ -347,6 +380,8 @@ public partial class bossTest1 : CharacterBody2D
 			{
 				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
 				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemySlimeBossBaby.tscn").Instantiate();
+				Vector2 direction = new Vector2(-1, 0);
+				instance.Call("SetDirection", direction, 180);
 				GetTree().Root.AddChild(instance);
 				var Slimeposition = this.Position;
 				instance.GlobalPosition = new Vector2(Slimeposition.X - 50, Slimeposition.Y + 5);
@@ -358,9 +393,42 @@ public partial class bossTest1 : CharacterBody2D
 
 		bossStage++;
 		return true;
-		
+
 
 	}
+
+	private async Task<bool> shotbabysRight(int stage)
+	{
+
+		if (shot)
+		{
+			shot = false;
+
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
+
+
+			for (int i = 0; i < stage; i++)
+			{
+				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemySlimeBossBaby.tscn").Instantiate();
+				Vector2 direction = new Vector2(1, 0);
+				instance.Call("SetDirection", direction, 180);
+				GetTree().Root.AddChild(instance);
+				var Slimeposition = this.Position;
+				instance.GlobalPosition = new Vector2(Slimeposition.X + 50, Slimeposition.Y + 5);
+			}
+
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
+			shot = true;
+		}
+
+		bossStage++;
+		return true;
+
+
+	}
+
+
 
 	private async Task<bool> shotRight()
 	{

@@ -26,9 +26,7 @@ public partial class walking_spike_enemy : CharacterBody2D
 
 		if (firsttime)
 		{
-			await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
 			firsttime = false;
-			direction.X = -1;
 		}
 
 		else
@@ -127,6 +125,7 @@ public partial class walking_spike_enemy : CharacterBody2D
 
 	private void SetDirection(Vector2 vector, float degrees)
 	{
+		GD.Print("ost");
 		direction = vector;
 	}
 

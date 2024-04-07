@@ -41,6 +41,7 @@ public partial class player : CharacterBody2D
 	private bool isStateNew = true;
 	private bool isDying = false;
 	private bool isJumpingOnEnemy = false;
+	private bool isInAirAfterJumpingOnEnemy = false;
 	private bool isJumpingOnJumpPlatform = false;
 	private bool hasJumped = false;
 
@@ -72,6 +73,7 @@ public partial class player : CharacterBody2D
 		// Handle the animation.
 		if (!IsOnFloor())
 		{
+			GD.Print("in air: " + isInAirAfterJumpingOnEnemy);
 			if(velocity.Y < 0)
 			{
 				hasJumped = true;
@@ -136,54 +138,57 @@ public partial class player : CharacterBody2D
 
 		}
 
-		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump))
-		{
-			velocity.Y = JumpVelocity;
-
-			if (!IsOnFloor() && coyoteTimer.IsStopped())
-			{
-				hasDoubleJump=false;
-			}
-		}
-
 		if (isJumpingOnEnemy)
 		{
 			velocity.Y = (float)(JumpVelocity * 1.035);
 
 			isJumpingOnEnemy = false;
 		}
+		// Handle Jump.
+
+		
+
+			if (Input.IsActionJustPressed("jump") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump))
+			{
+				velocity.Y = JumpVelocity;
+
+				if (!IsOnFloor() && coyoteTimer.IsStopped())
+				{
+					hasDoubleJump=false;
+				}
+			}
 
 
-		if (isJumpingOnJumpPlatform)
-		{
-			velocity.Y = (float)(JumpVelocity * 1.5);
-			isJumpingOnJumpPlatform = false;
-		}
+
+			if (isJumpingOnJumpPlatform)
+			{
+				velocity.Y = (float)(JumpVelocity * 1.5);
+				isJumpingOnJumpPlatform = false;
+			}
 
 
-		if (Input.IsActionJustReleased("jump") && (velocity.Y < JUMP_RELESE_FORCE))
-		{
-			velocity.Y = JUMP_RELESE_FORCE;
-		}
+			if (Input.IsActionJustReleased("jump") && (velocity.Y < JUMP_RELESE_FORCE) && !isInAirAfterJumpingOnEnemy)
+			{
+				velocity.Y = JUMP_RELESE_FORCE;
+			}
 
 
 
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration); // om denna kraschar skiten sa....// den gjorde det....
-			FlipSprite(direction);
-		}
-		else
-			//velocity.x = Mathf.Lerp(0, velocity.x, Mathf.Pow(2, -10 * (float)delta)); 
-		{
-			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
-		}
+			if (direction != Vector2.Zero)
+			{
+				velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration); // om denna kraschar skiten sa....// den gjorde det....
+				FlipSprite(direction);
+			}
+			else
+				//velocity.x = Mathf.Lerp(0, velocity.x, Mathf.Pow(2, -10 * (float)delta)); 
+			{
+				velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
+			}
 
-		velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
+			velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
 
 
-		bool wasOnFloor = IsOnFloor();
+			bool wasOnFloor = IsOnFloor();
 
 
 		//Handles walljump
@@ -259,6 +264,7 @@ public partial class player : CharacterBody2D
 		if (IsOnFloor())
 		{
 			hasDoubleJump = true;
+			isInAirAfterJumpingOnEnemy = false;
 		}
 
 	  
@@ -290,19 +296,20 @@ public partial class player : CharacterBody2D
 			GetTree().QueueDelete(child);
 		}
 		GetTree().ReloadCurrentScene();
-		GD.Print("I'm dead");
+		GD.Print("Player dead");
 	}
 
 	private void PlayerJumpOnEnemy()
 	{
-		GD.Print("Jump");
+		GD.Print("Player Jumped on enemey");
 		isJumpingOnEnemy = true;
 
+		isInAirAfterJumpingOnEnemy = true;
 	}
 
 	private void PlayerJumpOnJumpPlatform()
 	{
-		GD.Print("Jump");
+		GD.Print("Player Jumped on platform");
 		isJumpingOnJumpPlatform = true;
 	}
 

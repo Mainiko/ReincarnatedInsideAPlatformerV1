@@ -61,7 +61,20 @@ public partial class bossTest1 : CharacterBody2D
 					{
 						if (shotAlternator)
 						{
-							await shotLeft();
+							switch (bossStage)
+							{
+								case 1:
+									await shotLeft(3);
+									break;
+								case 2:
+									await shotLeft(6);
+									break;
+								case 3:
+									await shotLeft(9);
+									break;
+								default:
+									break;
+							}
 						}
 
 						else
@@ -75,7 +88,7 @@ public partial class bossTest1 : CharacterBody2D
 									await shotbabysLeft(20);
 									break;
 								case 3:
-									await shotbabysLeft(40);
+									await shotbabysLeft(30);
 									break;
 								default:
 									break;
@@ -90,8 +103,20 @@ public partial class bossTest1 : CharacterBody2D
 
 						if (shotAlternator)
 						{
-							await shotRight();
-
+							switch (bossStage)
+							{
+								case 1:
+									await shotRight(3);
+									break;
+								case 2:
+									await shotRight(6);
+									break;
+								case 3:
+									await shotRight(9);
+									break;
+								default:
+									break;
+							}
 						}
 						else
 						{
@@ -104,7 +129,7 @@ public partial class bossTest1 : CharacterBody2D
 									await shotbabysRight(20);
 									break;
 								case 3:
-									await shotbabysRight(40);
+									await shotbabysRight(30);
 									break;
 								default:
 									break;
@@ -119,8 +144,8 @@ public partial class bossTest1 : CharacterBody2D
 					confused = false;
 					direction *= -1;
 					Speed = 100;
-					GD.Print("My speed" + Speed);
-					GD.Print("On wall?" + IsOnWall());
+					//GD.Print("My speed" + Speed);
+					//GD.Print("On wall?" + IsOnWall());
 					animatedSprite2D.Play("Walking");
 				}
 
@@ -128,7 +153,7 @@ public partial class bossTest1 : CharacterBody2D
 			else
 			{
 				animatedSprite2D.Play("Walking");
-				GD.Print("outside of chargemode ");
+				//GD.Print("outside of chargemode ");
 				direction *= -1;
 				Speed = 100;
 			}
@@ -152,8 +177,8 @@ public partial class bossTest1 : CharacterBody2D
 
 	private async void _on_hitbox_body_entered(CharacterBody2D body)
 	{
-		GD.Print("Body: " + body.Name + "has entered");
-		GD.Print("_on_hitbox_body_entered");
+		//GD.Print("Body: " + body.Name + "has entered");
+		//GD.Print("_on_hitbox_body_entered");
 
 
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
@@ -166,22 +191,7 @@ public partial class bossTest1 : CharacterBody2D
 			AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
 			animatedSprite2D.Play("Squish");
-			GD.Print("Kill me please!");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			//GD.Print("Kill me please!");
 
 			//if(firsttimeSplit)
 			//{
@@ -225,9 +235,6 @@ public partial class bossTest1 : CharacterBody2D
 			//}
 
 
-
-
-
 			player.Call("PlayerJumpOnEnemy");
 
 			Speed = 0;
@@ -243,20 +250,20 @@ public partial class bossTest1 : CharacterBody2D
 
 			if (timesPlayerHaveHit == timeNeddedtoHit)
 			{
-				GD.Print(body.GetPath());
+				//GD.Print(body.GetPath());
 
 				var slimeChild1 = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children2");
 				var slimeChild2 = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children");
 				slimeChild1.Call("Spawn");
 				slimeChild2.Call("Spawn");
-				GD.Print("I should be dead");
+				//GD.Print("I should be dead");
 				this.QueueFree();
 			}
 
 			await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
-			GD.Print(player.Position);
-			GD.Print(this.Position);
-			GD.Print(direction);
+			//GD.Print(player.Position);
+			//GD.Print(this.Position);
+			//GD.Print(direction);
 
 			if (player.Position.X > this.Position.X)
 			{
@@ -296,7 +303,7 @@ public partial class bossTest1 : CharacterBody2D
 
 	private void _on_hitbox_death_body_entered(CharacterBody2D body)
 	{
-		GD.Print("Body: " + body.Name + "has entered");
+		//GD.Print("Body: " + body.Name + "has entered");
 		GD.Print("_on_hitbox_death_body_entered");
 
 
@@ -306,13 +313,13 @@ public partial class bossTest1 : CharacterBody2D
 			this.Free();
 			var player = GetNode<CharacterBody2D>(body.GetPath());
 			player.Call("PlayerDie");
-
+			GD.Print("PlayerDie");
 		}
 	}
 
 	private void _on_hitboxfrontandback_body_entered(CharacterBody2D body)
 	{
-		GD.Print("Body: " + body.Name + "has entered");
+		//GD.Print("Body: " + body.Name + "has entered");
 
 		GD.Print("_on_hitboxfrontandback_body_entered");
 
@@ -339,16 +346,16 @@ public partial class bossTest1 : CharacterBody2D
 		// Replace with function body.
 	}
 
-	private async Task<bool> shotLeft()
+
+
+	private async Task<bool> shotLeft(int stage)
 	{
-
-
 
 		if (shot)
 		{
 			shot = false;
 
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < stage; i++)
 			{
 				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
 				Vector2 direction = new Vector2(-1, 0);
@@ -360,7 +367,6 @@ public partial class bossTest1 : CharacterBody2D
 			shot = true;
 
 		}
-
 
 		return true;
 
@@ -428,15 +434,13 @@ public partial class bossTest1 : CharacterBody2D
 
 	}
 
-
-
-	private async Task<bool> shotRight()
+	private async Task<bool> shotRight(int stage)
 	{
 		if (shot)
 		{
 			shot = false;
 
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < stage; i++)
 			{
 				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
 				Vector2 direction = new Vector2(1, 0);

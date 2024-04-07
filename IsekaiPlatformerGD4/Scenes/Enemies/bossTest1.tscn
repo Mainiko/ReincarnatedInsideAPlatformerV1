@@ -9,20 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://pnv614nnvcp3" path="res://Assets/Sprites/Enemies/SlimeBoss/Slimeboss v1 squish animation (land) 80x20.png" id="5_votfp"]
 [ext_resource type="Texture2D" uid="uid://gu3h5gkvkiyt" path="res://Assets/Sprites/Enemies/SlimeBoss/Slimeboss v1 teleport animation (teleport).png" id="6_hynp3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_npr1r"]
-size = Vector2(37, 17)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr67o"]
-size = Vector2(37, 19.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff47y"]
-size = Vector2(39, 17)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldwt5"]
-size = Vector2(29, 5)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m2jf6"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rod1b"]
 atlas = ExtResource("4_ffvvc")
 region = Rect2(0, 0, 60, 20)
@@ -1115,10 +1101,6 @@ region = Rect2(360, 40, 60, 20)
 atlas = ExtResource("4_h7khu")
 region = Rect2(420, 40, 60, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m5oyu"]
-atlas = ExtResource("4_h7khu")
-region = Rect2(0, 60, 60, 20)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbxrr"]
 atlas = ExtResource("4_h7khu")
 region = Rect2(60, 60, 60, 20)
@@ -1130,6 +1112,10 @@ region = Rect2(120, 60, 60, 20)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ctjev"]
 atlas = ExtResource("4_h7khu")
 region = Rect2(180, 60, 60, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5oyu"]
+atlas = ExtResource("4_h7khu")
+region = Rect2(0, 60, 60, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7y77"]
 atlas = ExtResource("4_h7khu")
@@ -2102,9 +2088,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_h6e0k")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m5oyu")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_gbxrr")
 }, {
 "duration": 1.0,
@@ -2112,6 +2095,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ctjev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5oyu")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a7y77")
@@ -2214,30 +2200,57 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npr1r"]
+size = Vector2(50, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr67o"]
+size = Vector2(55, 1.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff47y"]
+size = Vector2(55, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldwt5"]
+size = Vector2(51.5, 5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m2jf6"]
+
 [node name="Boss" type="CharacterBody2D"]
 script = ExtResource("1_l2a8q")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_dtfsi")
+animation = &"AngryWalking"
+autoplay = "Walking"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1.5)
+position = Vector2(1, 9.5)
 shape = SubResource("RectangleShape2D_npr1r")
+debug_color = Color(0, 0.847059, 0.996078, 0.862745)
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0.5, -0.25)
+position = Vector2(1.5, -8.75)
 shape = SubResource("RectangleShape2D_xr67o")
+one_way_collision_margin = 0.0
+debug_color = Color(0.921569, 0.729412, 0.239216, 0.74902)
 
 [node name="Hitboxfrontandback" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxfrontandback"]
-position = Vector2(0.5, 1.5)
+position = Vector2(1.5, 4.5)
 shape = SubResource("RectangleShape2D_ff47y")
+debug_color = Color(0.996078, 0, 0, 0.388235)
 
 [node name="HitboxDeath" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxDeath"]
-position = Vector2(0, -8)
+position = Vector2(1.75, -4)
 shape = SubResource("RectangleShape2D_ldwt5")
+debug_color = Color(0.992157, 0, 0, 0.419608)
 
 [node name="Spikes6" type="Sprite2D" parent="HitboxDeath"]
 visible = false
@@ -2269,20 +2282,14 @@ texture = ExtResource("3_84wuc")
 [node name="ChargeModeTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_dtfsi")
-animation = &"AngryWalking"
-autoplay = "Walking"
-
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-36, 0)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 target_position = Vector2(37, 0)
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="Hitboxfrontandback" to="." method="_on_hitboxfrontandback_body_entered"]
 [connection signal="body_entered" from="HitboxDeath" to="." method="_on_hitbox_death_body_entered"]
 [connection signal="timeout" from="ChargeModeTimer" to="." method="_on_charge_mode_timer_timeout"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

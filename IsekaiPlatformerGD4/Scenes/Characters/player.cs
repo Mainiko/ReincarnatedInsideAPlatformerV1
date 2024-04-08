@@ -75,7 +75,7 @@ public partial class player : CharacterBody2D
 		// Handle the animation.
 		if (!IsOnFloor())
 		{
-			GD.Print("in air: " + isInAirAfterJumpingOnEnemy);
+			//GD.Print("in air: " + isInAirAfterJumpingOnEnemy);
 			if(velocity.Y < 0)
 			{
 				hasJumped = true;

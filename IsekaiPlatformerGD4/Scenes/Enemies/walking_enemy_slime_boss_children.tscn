@@ -711,3 +711,6 @@ shotSpeed = 0.5
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = SubResource("SpriteFrames_dwagw")
 frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, 1.56182)

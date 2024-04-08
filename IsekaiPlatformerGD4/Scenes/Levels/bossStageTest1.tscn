@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3idox8nmyxnb"]
+[gd_scene load_steps=6 format=3 uid="uid://b3idox8nmyxnb"]
 
 [ext_resource type="PackedScene" uid="uid://dxxs87p4o4p5q" path="res://Scenes/Levels/BaseLevel.tscn" id="1_fu0io"]
 [ext_resource type="PackedScene" uid="uid://curu02dbm3jyr" path="res://Scenes/Enemies/bossTest1.tscn" id="2_hs6np"]
 [ext_resource type="PackedScene" uid="uid://bwgvlvhahxjmi" path="res://Scenes/Enemies/walking_enemy_slime_boss_children.tscn" id="3_up1dy"]
+[ext_resource type="Script" path="res://Scenes/Levels/wallBox.cs" id="4_kkxye"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_uey44"]
+a = Vector2(15, 16)
+b = Vector2(15, 177)
 
 [node name="SlimeBoss" instance=ExtResource("1_fu0io")]
 
@@ -27,3 +32,15 @@ shotSpeed = 2.0
 visible = false
 position = Vector2(98, 163)
 shotSpeed = 2.0
+
+[node name="wallBox" type="Area2D" parent="." index="8"]
+script = ExtResource("4_kkxye")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallBox" index="0"]
+shape = SubResource("SegmentShape2D_uey44")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="wallBox" index="1"]
+position = Vector2(290, -1)
+shape = SubResource("SegmentShape2D_uey44")
+
+[connection signal="area_entered" from="wallBox" to="wallBox" method="_on_area_entered"]

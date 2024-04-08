@@ -182,7 +182,6 @@ public partial class bossTest1 : CharacterBody2D
 
 		//("res://Assets/Sounds/FX/EX_West_Mine_Wet_Gravel_Hit_Clip.wav");
 
-		playSound("squish");
 
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
 
@@ -193,6 +192,7 @@ public partial class bossTest1 : CharacterBody2D
 		{
 			AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
+			playSound("squish");
 			animatedSprite2D.Play("Squish");
 			//GD.Print("Kill me please!");
 
@@ -368,6 +368,10 @@ public partial class bossTest1 : CharacterBody2D
 				projectile.Call("SetDirection", direction, 180);
 				AddChild(projectile);
 				playSound("projectile");
+				projectile.Name = "Boss1Projectile";
+
+
+				GD.Print("just shot :" + projectile.Name);
 
 			}
 			shot = true;
@@ -457,6 +461,9 @@ public partial class bossTest1 : CharacterBody2D
 				projectile.Call("SetDirection", direction, 180);
 				AddChild(projectile);
 				playSound("projectile");
+				projectile.Name = "Boss1Projectile";
+
+				GD.Print("just shot :"+projectile.Name);
 			}
 			shot = true;
 

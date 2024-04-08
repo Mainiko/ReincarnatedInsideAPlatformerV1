@@ -82,13 +82,13 @@ public partial class bossTest1 : CharacterBody2D
 							switch (bossStage)
 							{
 								case 1:
-									await shotbabysLeft(10);
+									await shotbabysLeft(5);
 									break;
 								case 2:
-									await shotbabysLeft(20);
+									await shotbabysLeft(10);
 									break;
 								case 3:
-									await shotbabysLeft(30);
+									await shotbabysLeft(15);
 									break;
 								default:
 									break;
@@ -123,13 +123,13 @@ public partial class bossTest1 : CharacterBody2D
 							switch (bossStage)
 							{
 								case 1:
-									await shotbabysRight(10);
+									await shotbabysRight(5);
 									break;
 								case 2:
-									await shotbabysRight(20);
+									await shotbabysRight(10);
 									break;
 								case 3:
-									await shotbabysRight(30);
+									await shotbabysRight(15);
 									break;
 								default:
 									break;
@@ -180,6 +180,9 @@ public partial class bossTest1 : CharacterBody2D
 		//GD.Print("Body: " + body.Name + "has entered");
 		//GD.Print("_on_hitbox_body_entered");
 
+		//("res://Assets/Sounds/FX/EX_West_Mine_Wet_Gravel_Hit_Clip.wav");
+
+		playSound("squish");
 
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
 
@@ -192,6 +195,8 @@ public partial class bossTest1 : CharacterBody2D
 
 			animatedSprite2D.Play("Squish");
 			//GD.Print("Kill me please!");
+
+			
 
 			//if(firsttimeSplit)
 			//{
@@ -362,6 +367,7 @@ public partial class bossTest1 : CharacterBody2D
 				var projectile = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_1_projectile.tscn").Instantiate();
 				projectile.Call("SetDirection", direction, 180);
 				AddChild(projectile);
+				playSound("projectile");
 
 			}
 			shot = true;
@@ -391,6 +397,8 @@ public partial class bossTest1 : CharacterBody2D
 				GetTree().Root.AddChild(instance);
 				var Slimeposition = this.Position;
 				instance.GlobalPosition = new Vector2(Slimeposition.X - 50, Slimeposition.Y + 5);
+				playSound("baby");
+
 			}
 
 			await ToSignal(GetTree().CreateTimer(1), "timeout");
@@ -422,6 +430,7 @@ public partial class bossTest1 : CharacterBody2D
 				GetTree().Root.AddChild(instance);
 				var Slimeposition = this.Position;
 				instance.GlobalPosition = new Vector2(Slimeposition.X + 50, Slimeposition.Y + 5);
+				playSound("baby");
 			}
 
 			await ToSignal(GetTree().CreateTimer(1), "timeout");
@@ -447,7 +456,7 @@ public partial class bossTest1 : CharacterBody2D
 				var projectile = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/boss_1_projectile.tscn").Instantiate();
 				projectile.Call("SetDirection", direction, 180);
 				AddChild(projectile);
-
+				playSound("projectile");
 			}
 			shot = true;
 
@@ -461,6 +470,31 @@ public partial class bossTest1 : CharacterBody2D
 	private void turnOfSplit()
 	{
 		firsttimeSplit = false;
+	}
+
+	private void playSound(string sound)
+	{
+
+		AudioStreamPlayer audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+		string path = "";
+
+		switch (sound)
+			{
+			case ("baby"):
+				path = "res://Assets/Sounds/FX/ESM_War_UI_Source_Old_Match_Strike_Light_1_Fire_Foley.wav";
+				break;
+			case ("projectile"):
+				path = "res://Assets/Sounds/FX/FF_CF_foley_plip_yellow.wav";
+				break;
+			case ("squish"):
+				path = "res://Assets/Sounds/FX/EX_West_Mine_Wet_Gravel_Hit_Clip.wav";
+				break;
+			default:
+				break;
+			}
+
+		audioStreamPlayer.Stream = (AudioStream)ResourceLoader.Load(path);
+		audioStreamPlayer.Play();
 	}
 
 }

@@ -94,11 +94,14 @@ public partial class walking_spike_enemy : CharacterBody2D
 		//Call function from player
 		if (body.Name == "player")
 		{
+			playSound("crunch");
+
 			GD.Print("Kill me please!");
 			var player = GetNode<CharacterBody2D>(body.GetPath());
 			player.Call("PlayerJumpOnEnemy");
 			hasDied = true;
 			animatedSprite2D.Play("Explode");
+
 			RemoveHitBoxes();
 		}
 	}
@@ -127,6 +130,33 @@ public partial class walking_spike_enemy : CharacterBody2D
 	{
 		GD.Print("ost");
 		direction = vector;
+	}
+	private void playSound(string sound)
+	{
+
+		AudioStreamPlayer audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+		string path = "";
+
+		switch (sound)
+		{
+			case ("baby"):
+				path = "res://Assets/Sounds/FX/ESM_War_UI_Source_Old_Match_Strike_Light_1_Fire_Foley.wav";
+				break;
+			case ("projectile"):
+				path = "res://Assets/Sounds/FX/FF_CF_foley_plip_yellow.wav";
+				break;
+			case ("squish"):
+				path = "res://Assets/Sounds/FX/EX_West_Mine_Wet_Gravel_Hit_Clip.wav";
+				break;
+			case ("crunch"):
+				path = "res://Assets/Sounds/FX/OLIVER_fx_foley_lapsung_ice_crunch.wav";
+				break;
+			default:
+				break;
+		}
+
+		audioStreamPlayer.Stream = (AudioStream)ResourceLoader.Load(path);
+		audioStreamPlayer.Play();
 	}
 
 }

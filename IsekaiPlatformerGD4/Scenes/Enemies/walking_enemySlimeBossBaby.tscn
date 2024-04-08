@@ -803,5 +803,7 @@ position = Vector2(1.67895, -14.2404)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_nssh7")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered" flags=18]
 [connection signal="body_entered" from="Death_HitBox" to="." method="_on_death_hit_box_body_entered" flags=18]

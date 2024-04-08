@@ -226,7 +226,7 @@ public partial class player : CharacterBody2D
 		{
 
 			//Create timer that will signal when the dash is done?
-			//So we can start applaying gravity again
+			//So we can start applaying gravity again 
 			isDashing = true;
 			velocity.Y = -100;
 

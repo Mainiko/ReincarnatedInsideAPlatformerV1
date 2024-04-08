@@ -1,4 +1,4 @@
-[gd_scene load_steps=324 format=3 uid="uid://curu02dbm3jyr"]
+[gd_scene load_steps=325 format=3 uid="uid://curu02dbm3jyr"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/bossTest1.cs" id="1_l2a8q"]
 [ext_resource type="Texture2D" uid="uid://bm8ejytxqvojf" path="res://Assets/Sprites/Enemies/Spikes.png" id="1_vbrhd"]
@@ -2214,6 +2214,8 @@ size = Vector2(51.5, 5)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m2jf6"]
 
+[sub_resource type="AudioStream" id="AudioStream_i5f8h"]
+
 [node name="Boss" type="CharacterBody2D"]
 script = ExtResource("1_l2a8q")
 
@@ -2287,6 +2289,9 @@ target_position = Vector2(-36, 0)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 target_position = Vector2(37, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStream_i5f8h")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

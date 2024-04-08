@@ -44,6 +44,8 @@ public partial class player : CharacterBody2D
 	private bool isInAirAfterJumpingOnEnemy = false;
 	private bool isJumpingOnJumpPlatform = false;
 	private bool hasJumped = false;
+	private bool wasLastJumpWallJump = false;
+	private bool isInsideJumpBall = false;
 
 	private float lastJumpDirection = 0;
 
@@ -146,75 +148,75 @@ public partial class player : CharacterBody2D
 		}
 		// Handle Jump.
 
-		
+		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump) || isInsideJumpBall)
+		{
+			velocity.Y = JumpVelocity;
 
-			if (Input.IsActionJustPressed("jump") && (IsOnFloor() || !coyoteTimer.IsStopped() || hasDoubleJump))
+			if (!IsOnFloor() && coyoteTimer.IsStopped())
 			{
-				velocity.Y = JumpVelocity;
-
-				if (!IsOnFloor() && coyoteTimer.IsStopped())
-				{
-					hasDoubleJump=false;
-				}
+				hasDoubleJump=false;
 			}
+		}
 
 
 
-			if (isJumpingOnJumpPlatform)
-			{
-				velocity.Y = (float)(JumpVelocity * 1.5);
-				isJumpingOnJumpPlatform = false;
-			}
+		if (isJumpingOnJumpPlatform)
+		{
+			velocity.Y = (float)(JumpVelocity * 1.5);
+			isJumpingOnJumpPlatform = false;
+		}
 
 
-			if (Input.IsActionJustReleased("jump") && (velocity.Y < JUMP_RELESE_FORCE) && !isInAirAfterJumpingOnEnemy)
-			{
-				velocity.Y = JUMP_RELESE_FORCE;
-			}
+		if (Input.IsActionJustReleased("jump") && (velocity.Y < JUMP_RELESE_FORCE) && !isInAirAfterJumpingOnEnemy)
+		{
+			velocity.Y = JUMP_RELESE_FORCE;
+		}
 
 
 
-			if (direction != Vector2.Zero)
-			{
-				velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration); // om denna kraschar skiten sa....// den gjorde det....
-				FlipSprite(direction);
-			}
-			else
-				//velocity.x = Mathf.Lerp(0, velocity.x, Mathf.Pow(2, -10 * (float)delta)); 
-			{
-				velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
-			}
+		if (direction != Vector2.Zero)
+		{
+			velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration); // om denna kraschar skiten sa....// den gjorde det....
+			FlipSprite(direction);
+		}
+		else
+			//velocity.x = Mathf.Lerp(0, velocity.x, Mathf.Pow(2, -10 * (float)delta)); 
+		{
+			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
+		}
 
-			velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
+		velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
 
 
-			bool wasOnFloor = IsOnFloor();
+		bool wasOnFloor = IsOnFloor();
 
 
 		//Handles walljump
-		if ((lastJumpDirection != direction.X || lastJumpDirection == 0) && Input.IsActionJustPressed("jump") && !IsOnFloor())
-		{
+		if (!wasLastJumpWallJump && Input.IsActionJustPressed("jump") && !IsOnFloor() )
+			{
 			if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && !IsOnFloor())
 			{
 				velocity.Y = JumpVelocity;
 				velocity.X = jumpSpeed;
+				wasLastJumpWallJump = true;
 			}
 			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor())
 			{
 				velocity.Y = JumpVelocity;
 				velocity.X = -jumpSpeed;
-
+				wasLastJumpWallJump = true;
 			}
 			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && wallClimbJump == true)
 			{
 				velocity.Y = JumpVelocity;
 				velocity.X = jumpSpeed;
-
+				wasLastJumpWallJump = true;
 			}
 			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && wallClimbJump == true)
 			{
 				velocity.Y = JumpVelocity;
 				velocity.X = -jumpSpeed;
+				wasLastJumpWallJump = true;
 			}
 			lastJumpDirection = direction.X;
 		}
@@ -265,6 +267,7 @@ public partial class player : CharacterBody2D
 		{
 			hasDoubleJump = true;
 			isInAirAfterJumpingOnEnemy = false;
+			wasLastJumpWallJump = false;
 		}
 
 	  

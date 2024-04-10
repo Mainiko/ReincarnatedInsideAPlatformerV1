@@ -21,7 +21,7 @@ position = Vector2(24, 168)
 position = Vector2(250, 166)
 Speed = 50
 timebeforeMoving = 50
-timeNeddedtoHit = 10
+timeNeddedtoHit = 7
 
 [node name="walking_enemy_slimeBoss_Children2" parent="." index="6" instance=ExtResource("3_up1dy")]
 visible = false

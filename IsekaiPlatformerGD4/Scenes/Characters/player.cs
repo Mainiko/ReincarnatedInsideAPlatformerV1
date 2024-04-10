@@ -117,10 +117,12 @@ public partial class player : CharacterBody2D
 			if (GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && velocity.Y > 0)
 			{
 				velocity.Y += (gravity - wallGravity) * (float)delta;
+				animatedSprite2D.Play("WallHug");
 			}
 			else if (GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right") && velocity.Y > 0)
 			{
 				velocity.Y += (gravity - wallGravity) * (float)delta;
+				animatedSprite2D.Play("WallHug");
 			}
 			else if (Velocity.Y > 0) //If player is falling 
 			{

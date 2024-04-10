@@ -714,3 +714,11 @@ frame_progress = 0.0
 
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, 1.56182)
+debug_color = Color(0.466667, 0.635294, 0.996078, 0.964706)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-0.0937504, 4.06249)
+debug_color = Color(0.937255, 0.129412, 0.0705882, 0.419608)
+
+[node name="CollisionShape2D" parent="Death_HitBox" index="0"]
+debug_color = Color(0.972549, 0.952941, 0.196078, 0.584314)

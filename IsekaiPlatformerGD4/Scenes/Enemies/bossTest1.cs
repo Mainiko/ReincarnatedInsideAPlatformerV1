@@ -138,7 +138,7 @@ public partial class bossTest1 : CharacterBody2D
 					}
 
 					shotAlternator = !shotAlternator;
-					await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
+					await ToSignal(GetTree().CreateTimer(1f), "timeout");
 					spikeIsActive = false;
 					chargeMode = false;
 					confused = false;
@@ -265,7 +265,7 @@ public partial class bossTest1 : CharacterBody2D
 				this.QueueFree();
 			}
 
-			await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
+			await ToSignal(GetTree().CreateTimer(1f), "timeout");
 			//GD.Print(player.Position);
 			//GD.Print(this.Position);
 			//GD.Print(direction);

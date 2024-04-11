@@ -34,29 +34,10 @@ public partial class walking_spike_enemy : CharacterBody2D
 			if (!IsOnFloor())
 				velocity.Y += gravity * (float)delta;
 
-			bool found_wall = IsOnWall();
 			var found_ledge = LedgeCheckRight.IsColliding() && ledgeCheckLeft.IsColliding();
-			if (found_wall || !found_ledge)
+			if (IsOnWall() || !found_ledge)
 			{
-				if(direction.X > 0 && LedgeCheckRight.IsColliding())
-				{
-					//do nothing
-
-				}
-				else if(direction.X < 0 && ledgeCheckLeft.IsColliding())
-				{
-					//do nothing
-
-				}
-				else
-				{
-					//GD.Print(direction.X);
 					direction *= -1;
-					//GD.Print(direction.X);
-					//GD.Print(found_ledge);
-					//GD.Print(animatedSprite2D);
-				}
-
 			}
 
 
@@ -89,13 +70,11 @@ public partial class walking_spike_enemy : CharacterBody2D
 
 	private void _on_death_hit_box_body_entered(CharacterBody2D body)
 	{
-		GD.Print("Body: " + body.Name + "has entered");
-
+		GD.Print("Body: " + body.Name + "has entered" + "ost");
 		//Call function from player
 		if (body.Name == "player")
 		{
 			playSound("crunch");
-
 			GD.Print("Kill me please!");
 			var player = GetNode<CharacterBody2D>(body.GetPath());
 			player.Call("PlayerJumpOnEnemy");

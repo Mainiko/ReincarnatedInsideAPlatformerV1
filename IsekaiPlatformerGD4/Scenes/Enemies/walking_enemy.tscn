@@ -777,4 +777,6 @@ position = Vector2(-0.0937504, 4.61793)
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_nssh7")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8"]
+
 [connection signal="body_entered" from="Death_HitBox" to="." method="_on_death_hit_box_body_entered"]

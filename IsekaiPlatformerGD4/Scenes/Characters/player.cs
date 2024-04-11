@@ -45,6 +45,9 @@ public partial class player : CharacterBody2D
 	private bool isJumpingOnJumpPlatform = false;
 	private bool hasJumped = false;
 	private bool wasLastJumpWallJump = false;
+	private bool wasLastJumpWallRight = false;
+	private bool wasLastJumpWallLeft = false;
+
 	private bool isInsideJumpBall = false;
 
 	private float lastJumpDirection = 0;
@@ -194,33 +197,38 @@ public partial class player : CharacterBody2D
 
 
 		//Handles walljump
-		if (!wasLastJumpWallJump && Input.IsActionJustPressed("jump") && !IsOnFloor() )
+		if (Input.IsActionJustPressed("jump") && !IsOnFloor() )
 			{
 			if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && !IsOnFloor())
 			{
-				velocity.Y = JumpVelocity;
-				velocity.X = jumpSpeed;
-				wasLastJumpWallJump = true;
+				if (!wasLastJumpWallRight)
+				{
+					velocity.Y = JumpVelocity;
+					velocity.X = jumpSpeed;
+					wasLastJumpWallRight = true;
+					wasLastJumpWallLeft = false;
+				}
+				
 			}
 			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor())
 			{
-				velocity.Y = JumpVelocity;
-				velocity.X = -jumpSpeed;
-				wasLastJumpWallJump = true;
+				if (!wasLastJumpWallLeft)
+				{
+					velocity.Y = JumpVelocity;
+					velocity.X = -jumpSpeed;
+					wasLastJumpWallLeft = true;
+					wasLastJumpWallRight = false;
+
+				}
+
 			}
-			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && wallClimbJump == true)
-			{
-				velocity.Y = JumpVelocity;
-				velocity.X = jumpSpeed;
-				wasLastJumpWallJump = true;
-			}
-			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && wallClimbJump == true)
-			{
-				velocity.Y = JumpVelocity;
-				velocity.X = -jumpSpeed;
-				wasLastJumpWallJump = true;
-			}
-			lastJumpDirection = direction.X;
+			
+		}
+
+		if (wasOnFloor)
+		{
+			wasLastJumpWallRight = false;
+			wasLastJumpWallLeft = false;
 		}
 
 		//Handle Dashing

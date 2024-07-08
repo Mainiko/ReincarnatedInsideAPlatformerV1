@@ -87,7 +87,6 @@ public partial class walking_spike_enemy : CharacterBody2D
 
 	private void CheckIfDead()
 	{
-		GD.Print("Should be dead");
 		if (hasDied)
 		{
 			GD.Print("Why not dead?");

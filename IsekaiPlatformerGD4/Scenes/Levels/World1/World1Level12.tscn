@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://cujqfhdxoc8iw"]
+
+[ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_4utvp"]
+[ext_resource type="PackedScene" uid="uid://ddney0wmsrcvx" path="res://Scenes/Extra/box.tscn" id="2_d7woi"]
+[ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="3_m4hdg"]
+[ext_resource type="PackedScene" uid="uid://bw81furqr13fc" path="res://Scenes/Enemies/FlyingBirdEnemy.tscn" id="4_uiefu"]
+
+[sub_resource type="Curve2D" id="Curve2D_2w6fa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 16, 40, 0, 0, 0, 0, 16, -8)
+}
+point_count = 2
+
+[node name="Level1" instance=ExtResource("1_4utvp")]
+
+[node name="TileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(720910, 65539, 1, 720911, 65539, 1, 720912, 65539, 1, 720899, 65539, 0, 720898, 65539, 0, 720897, 65539, 0, 720896, 65539, 0, 0, 65536, 1, 65536, 65536, 1, 131072, 65536, 1, 196608, 65536, 1, 262144, 65536, 1, 327680, 65536, 1, 393216, 65536, 1, 458752, 65536, 1, 524288, 65536, 1, 589824, 65536, 1, 655360, 65536, 1, 393230, 65539, 0, 393231, 65539, 0, 393232, 65539, 0, 458766, 65539, 1, 524302, 65539, 1, 589838, 65539, 1, 655374, 65539, 1, 524303, 65539, 1, 458767, 65539, 1, 589839, 65539, 1, 655375, 65539, 1, 458768, 65539, 1, 524304, 65539, 1, 589840, 65539, 1, 655376, 65539, 1, 720900, 65539, 0)
+
+[node name="player" parent="." index="5"]
+position = Vector2(32, 168)
+
+[node name="Door" parent="." index="6"]
+position = Vector2(248, 96)
+
+[node name="Box4" parent="." index="7" instance=ExtResource("2_d7woi")]
+position = Vector2(72, 40)
+
+[node name="spike_enemy4" parent="Box4" index="2" instance=ExtResource("3_m4hdg")]
+position = Vector2(0, -8)
+
+[node name="Box3" parent="." index="8" instance=ExtResource("2_d7woi")]
+position = Vector2(120, 72)
+
+[node name="spike_enemy3" parent="Box3" index="2" instance=ExtResource("3_m4hdg")]
+position = Vector2(0, -8)
+
+[node name="Box2" parent="." index="9" instance=ExtResource("2_d7woi")]
+position = Vector2(72, 104)
+
+[node name="spike_enemy2" parent="Box2" index="2" instance=ExtResource("3_m4hdg")]
+position = Vector2(0, -8)
+
+[node name="Box" parent="." index="10" instance=ExtResource("2_d7woi")]
+position = Vector2(120, 136)
+
+[node name="spike_enemy" parent="Box" index="2" instance=ExtResource("3_m4hdg")]
+position = Vector2(0, -8)
+
+[node name="BirdEnemy" parent="." index="11" instance=ExtResource("4_uiefu")]
+position = Vector2(144, 56)
+curve = SubResource("Curve2D_2w6fa")

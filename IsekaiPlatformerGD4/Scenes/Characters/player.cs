@@ -67,6 +67,9 @@ public partial class player : CharacterBody2D
 	{
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		coyoteTimer = GetNode<Timer>("CoyoteTimer");
+
+	
+
 	}
 
 	public override  void _PhysicsProcess(double delta)
@@ -305,8 +308,13 @@ public partial class player : CharacterBody2D
 		}
 	}
 
-	private void PlayerDie()
+	private async void PlayerDie()
 	{
+
+		var blackScreen = GetNode<ColorRect>("/root/Level1/CanvasLayer/ColorRect");
+		blackScreen.Visible = true;
+	   await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+		blackScreen.Visible = false;
 
 		foreach (var child in GetTree().Root.GetChildren())
 		{

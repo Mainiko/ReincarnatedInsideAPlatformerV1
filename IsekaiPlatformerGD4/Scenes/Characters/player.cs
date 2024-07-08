@@ -148,7 +148,8 @@ public partial class player : CharacterBody2D
 		if (isJumpingOnEnemy)
 		{
 			velocity.Y = (float)(JumpVelocity * 1.035);
-
+			GD.Print("Player Jumped on enemey two");
+			GD.Print(velocity.Y);
 			isJumpingOnEnemy = false;
 		}
 		// Handle Jump.
@@ -207,8 +208,9 @@ public partial class player : CharacterBody2D
 					velocity.X = jumpSpeed;
 					wasLastJumpWallRight = true;
 					wasLastJumpWallLeft = false;
+					isInAirAfterJumpingOnEnemy = false;
 				}
-				
+
 			}
 			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor())
 			{
@@ -218,6 +220,7 @@ public partial class player : CharacterBody2D
 					velocity.X = -jumpSpeed;
 					wasLastJumpWallLeft = true;
 					wasLastJumpWallRight = false;
+					isInAirAfterJumpingOnEnemy = false;
 
 				}
 
@@ -304,6 +307,7 @@ public partial class player : CharacterBody2D
 
 	private void PlayerDie()
 	{
+
 		foreach (var child in GetTree().Root.GetChildren())
 		{
 			GetTree().QueueDelete(child);
@@ -316,7 +320,8 @@ public partial class player : CharacterBody2D
 	{
 		GD.Print("Player Jumped on enemey");
 		isJumpingOnEnemy = true;
-
+		wasLastJumpWallRight = false;
+		wasLastJumpWallLeft = false;
 		isInAirAfterJumpingOnEnemy = true;
 	}
 

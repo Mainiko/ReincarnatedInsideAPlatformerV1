@@ -37,7 +37,7 @@ public partial class walking_spike_enemy : CharacterBody2D
 			var found_ledge = LedgeCheckRight.IsColliding() && ledgeCheckLeft.IsColliding();
 			if (IsOnWall() || !found_ledge)
 			{
-					direction *= -1;
+				direction *= -1;
 			}
 
 
@@ -87,8 +87,10 @@ public partial class walking_spike_enemy : CharacterBody2D
 
 	private void CheckIfDead()
 	{
+		GD.Print("Should be dead");
 		if (hasDied)
 		{
+			GD.Print("Why not dead?");
 			if (animatedSprite2D.Animation == "Explode" && animatedSprite2D.IsPlaying() == false)
 			{
 				this.QueueFree();

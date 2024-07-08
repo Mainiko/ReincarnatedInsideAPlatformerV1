@@ -2130,10 +2130,10 @@ size = Vector2(48, 1)
 size = Vector2(47, 3.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff47y"]
-size = Vector2(50, 11)
+size = Vector2(50, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldwt5"]
-size = Vector2(47, 5)
+size = Vector2(47, 7.5)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m2jf6"]
 
@@ -2165,17 +2165,16 @@ one_way_collision_margin = 0.0
 debug_color = Color(0.921569, 0.729412, 0.239216, 0.74902)
 
 [node name="Hitboxfrontandback" type="Area2D" parent="."]
-collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxfrontandback"]
-position = Vector2(1, 4.5)
+position = Vector2(1, 5.5)
 shape = SubResource("RectangleShape2D_ff47y")
 debug_color = Color(0.996078, 0, 0, 0.388235)
 
 [node name="HitboxDeath" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxDeath"]
-position = Vector2(1.5, -4)
+position = Vector2(1.5, -2.75)
 shape = SubResource("RectangleShape2D_ldwt5")
 debug_color = Color(0.992157, 0, 0, 0.419608)
 

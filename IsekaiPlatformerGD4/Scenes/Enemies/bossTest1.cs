@@ -34,6 +34,9 @@ public partial class bossTest1 : CharacterBody2D
 		Vector2 velocity = Velocity;
 
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
+		Area2D Body = GetNode<Area2D>("Hitboxfrontandback");
+
+
 		AnimatedSprite2D animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
 		if (firstime)
@@ -42,6 +45,7 @@ public partial class bossTest1 : CharacterBody2D
 			firstime = false;
 			await ToSignal(GetTree().CreateTimer(1.0), "timeout");
 			Speed = 100;
+
 		}
 
 		if (IsOnWall())
@@ -163,6 +167,7 @@ public partial class bossTest1 : CharacterBody2D
 		{
 			Spikes.Visible = true;
 			Spikes.CollisionLayer = 1;
+
 		}
 		else if (!spikeIsActive)
 		{
@@ -172,6 +177,7 @@ public partial class bossTest1 : CharacterBody2D
 
 		velocity.X = direction.X * Speed;
 		Velocity = velocity;
+
 		MoveAndSlide();
 	}
 
@@ -184,6 +190,8 @@ public partial class bossTest1 : CharacterBody2D
 
 
 		Area2D Spikes = GetNode<Area2D>("HitboxDeath");
+		Area2D Body = GetNode<Area2D>("Hitboxfrontandback");
+
 
 		var player = GetNode<CharacterBody2D>(body.GetPath());
 
@@ -196,7 +204,7 @@ public partial class bossTest1 : CharacterBody2D
 			animatedSprite2D.Play("Squish");
 			//GD.Print("Kill me please!");
 
-			
+
 
 			//if(firsttimeSplit)
 			//{
@@ -241,6 +249,7 @@ public partial class bossTest1 : CharacterBody2D
 
 
 			player.Call("PlayerJumpOnEnemy");
+			GD.Print("PlayerJumpOnEnemy called");
 
 			Speed = 0;
 
@@ -257,10 +266,10 @@ public partial class bossTest1 : CharacterBody2D
 			{
 				//GD.Print(body.GetPath());
 
-				var slimeChild1 = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children2");
-				var slimeChild2 = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children");
-				slimeChild1.Call("Spawn");
-				slimeChild2.Call("Spawn");
+				//var slimeChild1 = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children2");
+				//var slimeChild2 = GetNode<CharacterBody2D>("/root/SlimeBoss/walking_enemy_slimeBoss_Children");
+				//slimeChild1.Call("Spawn");
+				//slimeChild2.Call("Spawn");
 				//GD.Print("I should be dead");
 				this.QueueFree();
 			}

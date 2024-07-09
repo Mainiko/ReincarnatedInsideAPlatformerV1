@@ -35,7 +35,7 @@ public partial class schrodingers_box : StaticBody2D
 
 	   else if(!this.Visible) 
 		{
-			await Task.Delay(2000);
+			await ToSignal(GetTree().CreateTimer(2.0), "timeout");
 			this.Visible = true;
 			this.CollisionLayer = 1;
 			lastTime = timepast;
@@ -46,4 +46,5 @@ public partial class schrodingers_box : StaticBody2D
 
 		//GD.Print("This is last time: " + lastTime);
 	}
+
 }

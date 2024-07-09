@@ -1,8 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://dro7y7hbpdpp8"]
 
-[ext_resource type="PackedScene" uid="uid://bjvfxtva7483" path="res://Scenes/Extra/box_that_disappears.tscn" id="1_8qkys"]
 [ext_resource type="Script" path="res://Scenes/Extra/schrodingers_box.cs" id="2_rya6g"]
 [ext_resource type="Texture2D" uid="uid://5om1lcifuary" path="res://Assets/Sprites/Tiles/tile_0009.png" id="3_3qtae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5w11u"]
+size = Vector2(16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cj3km"]
 animations = [{
@@ -15,9 +17,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="schrodingers_box" instance=ExtResource("1_8qkys")]
+[node name="schrodingers_box" type="StaticBody2D"]
 script = ExtResource("2_rya6g")
-timeBeforeDisappear = 100
 
-[node name="AnimatedSprite2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5w11u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cj3km")

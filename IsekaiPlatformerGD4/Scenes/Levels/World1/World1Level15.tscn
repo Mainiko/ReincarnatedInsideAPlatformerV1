@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq31yw5s4edcd"]
+
+[ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_qrvh7"]
+[ext_resource type="PackedScene" uid="uid://dro7y7hbpdpp8" path="res://Scenes/Extra/schrodingers_box.tscn" id="2_h6yl0"]
+
+[node name="Level1" instance=ExtResource("1_qrvh7")]
+
+[node name="TileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(131091, 65539, 1, 196627, 65539, 1, 196626, 65539, 1, 262162, 65539, 1, 327698, 65539, 1, 393234, 65539, 1, 458770, 65539, 1, 524306, 65539, 1, 589842, 65539, 1, 655378, 65539, 1, 720914, 65539, 1, 720915, 65539, 1, 655379, 65539, 1, 589843, 65539, 1, 524307, 65539, 1, 458771, 65539, 1, 393235, 65539, 1, 327699, 65539, 1, 262163, 65539, 1, 131090, 65539, 1, 131089, 65539, 1, 196625, 65539, 1, 262161, 65539, 1, 327697, 65539, 1, 393233, 65539, 1, 458769, 65539, 1, 524305, 65539, 1, 589841, 65539, 1, 655377, 65539, 1, 720913, 65539, 1, 19, 65539, 1, 65555, 65539, 1, 655375, 65539, 0, 655376, 65539, 0, 655374, 65539, 0, 720910, 65539, 1, 720911, 65539, 1, 720912, 65539, 1)
+
+[node name="player" parent="." index="5"]
+position = Vector2(256, 160)
+
+[node name="Door" parent="." index="6"]
+position = Vector2(288, 32)
+
+[node name="schrodingers_box7" parent="." index="8" instance=ExtResource("2_h6yl0")]
+position = Vector2(152, 40)
+timeBeforeDisappear = 50
+
+[node name="schrodingers_box6" parent="." index="9" instance=ExtResource("2_h6yl0")]
+position = Vector2(80, 56)
+timeBeforeDisappear = 0
+
+[node name="schrodingers_box5" parent="." index="10" instance=ExtResource("2_h6yl0")]
+position = Vector2(32, 96)
+timeBeforeDisappear = 150
+
+[node name="schrodingers_box4" parent="." index="11" instance=ExtResource("2_h6yl0")]
+position = Vector2(232, 56)
+
+[node name="schrodingers_box3" parent="." index="12" instance=ExtResource("2_h6yl0")]
+position = Vector2(72, 136)
+
+[node name="schrodingers_box2" parent="." index="13" instance=ExtResource("2_h6yl0")]
+position = Vector2(136, 104)
+timeBeforeDisappear = 0
+
+[node name="schrodingers_box" parent="." index="14" instance=ExtResource("2_h6yl0")]
+position = Vector2(184, 136)
+timeBeforeDisappear = 50

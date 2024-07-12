@@ -6,6 +6,8 @@ public partial class menu : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Button startButton = GetNode<Button>("VBoxContainer/StartButton");
+		startButton.GrabFocus();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

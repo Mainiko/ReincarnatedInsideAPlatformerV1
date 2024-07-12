@@ -621,9 +621,19 @@ autoplay = "Idle"
 rotation = 1.5708
 target_position = Vector2(1.81e-05, 5)
 
+[node name="RayCastLeft2" type="RayCast2D" parent="."]
+position = Vector2(0, -10.1548)
+rotation = -3.14159
+target_position = Vector2(5.31871, -0.0993748)
+
 [node name="RayCastRight" type="RayCast2D" parent="."]
 rotation = -1.5708
 target_position = Vector2(-1.81e-05, 5)
+
+[node name="RayCastRight2" type="RayCast2D" parent="."]
+position = Vector2(0, -9.82798)
+rotation = 3.14159
+target_position = Vector2(-5.03483, 0.122334)
 
 [node name="Area2D" type="Area2D" parent="."]
 

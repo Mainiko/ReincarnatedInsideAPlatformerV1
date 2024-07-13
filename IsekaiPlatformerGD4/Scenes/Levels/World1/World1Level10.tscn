@@ -14,6 +14,7 @@ position = Vector2(23, 176)
 
 [node name="shootingEnemy" parent="." index="6" instance=ExtResource("2_ro0is")]
 position = Vector2(272, 132)
+shotSpeed = 1.0
 
 [node name="Box that disappears" parent="." index="7" instance=ExtResource("3_raw11")]
 position = Vector2(104, 152)

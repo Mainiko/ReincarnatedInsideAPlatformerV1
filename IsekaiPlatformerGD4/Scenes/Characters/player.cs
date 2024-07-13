@@ -120,12 +120,12 @@ public partial class player : CharacterBody2D
 		{
 
 
-			if (GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && velocity.Y > 0)
+			if ((GetNode<RayCast2D>("RayCastLeft").IsColliding() || GetNode<RayCast2D>("RayCastLeft2").IsColliding()) && Input.IsActionPressed("move_left") && velocity.Y > 0)
 			{
 				velocity.Y += (gravity - wallGravity) * (float)delta;
 				animatedSprite2D.Play("WallHug");
 			}
-			else if (GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right") && velocity.Y > 0)
+			else if ((GetNode<RayCast2D>("RayCastRight").IsColliding() || GetNode<RayCast2D>("RayCastLeft2").IsColliding()) &&  Input.IsActionPressed("move_right") && velocity.Y > 0)
 			{
 				velocity.Y += (gravity - wallGravity) * (float)delta;
 				animatedSprite2D.Play("WallHug");
@@ -205,9 +205,10 @@ public partial class player : CharacterBody2D
 
 
 		//Handles walljump
-		if (Input.IsActionJustPressed("jump") && !IsOnFloor() )
-			{
-			if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && !IsOnFloor())
+		if (Input.IsActionJustPressed("jump") && !IsOnFloor())
+		{
+			GD.Print(GetNode<RayCast2D>("RayCastLeft2").IsColliding());
+			if (Input.IsActionJustPressed("jump") && !IsOnFloor() && (GetNode<RayCast2D>("RayCastLeft").IsColliding() || GetNode<RayCast2D>("RayCastLeft2").IsColliding()))
 			{
 				if (!wasLastJumpWallRight)
 				{
@@ -219,7 +220,7 @@ public partial class player : CharacterBody2D
 				}
 
 			}
-			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor())
+			else if (Input.IsActionJustPressed("jump") && !IsOnFloor() && (GetNode<RayCast2D>("RayCastRight").IsColliding() || GetNode<RayCast2D>("RayCastRight2").IsColliding()))
 			{
 				if (!wasLastJumpWallLeft)
 				{
@@ -232,7 +233,7 @@ public partial class player : CharacterBody2D
 				}
 
 			}
-			
+
 		}
 
 		if (wasOnFloor)

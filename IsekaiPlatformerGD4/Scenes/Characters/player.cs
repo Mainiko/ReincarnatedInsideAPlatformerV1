@@ -54,9 +54,9 @@ public partial class player : CharacterBody2D
 
 	private float myPosition = 0;
 	private float myLastPosition = 0;
-
-	private float Speed = 125.0f;
-	//Celeste tutorial
+	private bool isSprinting = false;
+	[Export]private float walkSpeed = 125.0f;
+	[Export]private float sprintSpeed = 200.0f;
 	[Export]private int jumpSpeed = 300;
 	[Export]private int dashSpeed = 1500;
 
@@ -111,7 +111,7 @@ public partial class player : CharacterBody2D
 
 		if (IsOnFloor())
 		{
-			Speed = GroundSpeed;
+			walkSpeed = GroundSpeed;
 			lastJumpDirection = 0;
 
 		}
@@ -169,6 +169,8 @@ public partial class player : CharacterBody2D
 
 
 
+
+
 		if (isJumpingOnJumpPlatform)
 		{
 			velocity.Y = (float)(JumpVelocity * 1.5);
@@ -182,16 +184,18 @@ public partial class player : CharacterBody2D
 		}
 
 
-
+		// Handle movement direction and speed
 		if (direction != Vector2.Zero)
 		{
-			velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration); // om denna kraschar skiten sa....// den gjorde det....
+			isSprinting = Input.IsActionPressed("sprint");
+			float currentSpeed = isSprinting ? sprintSpeed : walkSpeed;
+
+			velocity.X = Mathf.Lerp(velocity.X, direction.X * currentSpeed, acceleration);
 			FlipSprite(direction);
 		}
 		else
-			//velocity.x = Mathf.Lerp(0, velocity.x, Mathf.Pow(2, -10 * (float)delta)); 
 		{
-			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
+			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); // This is friction
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);

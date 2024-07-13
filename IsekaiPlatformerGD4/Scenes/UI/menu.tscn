@@ -29,17 +29,21 @@ offset_bottom = 165.0
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../OptionsButton")
 text = "Start
 "
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
+focus_neighbor_top = NodePath("../OptionsButton")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

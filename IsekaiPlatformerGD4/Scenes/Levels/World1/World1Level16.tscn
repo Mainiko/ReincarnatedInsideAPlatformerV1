@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://yvs7kcp8d4sd"]
+
+[ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_s5gvb"]
+
+[node name="Level1" instance=ExtResource("1_s5gvb")]
+
+[node name="TileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(720915, 65539, 0, 720897, 65539, 0, 720896, 65539, 0, 0, 65536, 1, 65536, 65536, 1, 131072, 65536, 1, 196608, 65536, 1, 262144, 65536, 1, 327680, 65536, 1, 393216, 65536, 1, 458752, 65536, 1, 524288, 65536, 1, 589824, 65536, 1, 655360, 65536, 1, 720898, 65539, 0, 720906, 65539, 0)
+
+[node name="player" parent="." index="5"]
+position = Vector2(24, 176)

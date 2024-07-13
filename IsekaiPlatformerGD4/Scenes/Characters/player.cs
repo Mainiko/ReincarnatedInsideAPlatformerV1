@@ -9,7 +9,7 @@ public partial class player : CharacterBody2D
 	[Signal] public delegate void OnPlayerDiedEventHandler();
 
 
-
+	
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -20,22 +20,22 @@ public partial class player : CharacterBody2D
 
 	private enum State { NORMAL, DASHING, INPUT_DISABLED }
 
-	[Export] private float GroundSpeed = 125.0f;
-	[Export] private int airTurnSpeed = 30;
+	[Export]private float GroundSpeed = 125.0f;
+	[Export]private int airTurnSpeed = 30;
 	[Export] private int airTurnFinaleSpeed = 85;
-	[Export] private int friction = 23;
-	[Export] private int maxHorizontalSpeed = 200;
-	//	[Export]private int horizontalAcceleration = 2000;
-	[Export] private float JumpVelocity = -250.0f;
-	[Export] private int JUMP_RELESE_FORCE = -100;
-	//	[Export]private int jumpTerminationMultiplier = 4;
-	[Export] private int addiditionalFallGravity = 1500;
-	[Export] private float acceleration = 0.25f;
-	[Export] private int wallGravity = 900;
-	[Export] private bool hasDoubleJump = false;
-	[Export] private bool CanGaineDoubleJump = false;
-	[Export] private bool hasDash = false;
-	[Export] private bool isDashing = false;
+	[Export]private int friction = 23;
+	[Export]private int maxHorizontalSpeed = 200;
+//	[Export]private int horizontalAcceleration = 2000;
+	[Export]private float JumpVelocity = -250.0f;
+	[Export]private int JUMP_RELESE_FORCE = -100;
+//	[Export]private int jumpTerminationMultiplier = 4;
+	[Export]private int addiditionalFallGravity = 1500;
+	[Export]private float acceleration = 0.25f;
+	[Export]private int wallGravity = 900;
+	[Export]private bool hasDoubleJump = false;
+	[Export]private bool CanGaineDoubleJump = false;
+	[Export]private bool hasDash = false;
+	[Export]private bool isDashing = false;
 	[Export] private bool wallClimbJump = false;
 	private State currentState = State.NORMAL;
 	private bool isStateNew = true;
@@ -54,11 +54,11 @@ public partial class player : CharacterBody2D
 
 	private float myPosition = 0;
 	private float myLastPosition = 0;
-
-	private float Speed = 125.0f;
-	//Celeste tutorial
-	[Export] private int jumpSpeed = 300;
-	[Export] private int dashSpeed = 1500;
+	private bool isSprinting = false;
+	[Export]private float walkSpeed = 125.0f;
+	[Export]private float sprintSpeed = 200.0f;
+	[Export]private int jumpSpeed = 300;
+	[Export]private int dashSpeed = 1500;
 
 	[Export] private int defaultHazardMask = 0;
 
@@ -68,11 +68,11 @@ public partial class player : CharacterBody2D
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		coyoteTimer = GetNode<Timer>("CoyoteTimer");
 
-
+	
 
 	}
 
-	public override void _PhysicsProcess(double delta)
+	public override  void _PhysicsProcess(double delta)
 	{
 
 		Vector2 velocity = Velocity;
@@ -82,13 +82,13 @@ public partial class player : CharacterBody2D
 		if (!IsOnFloor())
 		{
 			//GD.Print("in air: " + isInAirAfterJumpingOnEnemy);
-			if (velocity.Y < 0)
+			if(velocity.Y < 0)
 			{
 				hasJumped = true;
 				animatedSprite2D.Play("JumpUp");
 
 			}
-			else if (velocity.Y > 0)
+			else if(velocity.Y > 0)
 			{
 				animatedSprite2D.Play("JumpDown");
 
@@ -98,20 +98,20 @@ public partial class player : CharacterBody2D
 		{
 			animatedSprite2D.Play("JumpImpact");
 		}
-		else if (direction == Vector2.Zero && (animatedSprite2D.IsPlaying() && animatedSprite2D.Animation == "JumpImpact") == false)
+		else if (direction == Vector2.Zero && (animatedSprite2D.IsPlaying() && animatedSprite2D.Animation == "JumpImpact" ) == false)
 		{
 			animatedSprite2D.Play("Idle");
 		}
-
+		
 		else if (IsOnFloor() && direction != Vector2.Zero)
 		{
 			animatedSprite2D.Play("Run");
 		}
-
+		
 
 		if (IsOnFloor())
 		{
-			Speed = GroundSpeed;
+			walkSpeed = GroundSpeed;
 			lastJumpDirection = 0;
 
 		}
@@ -120,12 +120,12 @@ public partial class player : CharacterBody2D
 		{
 
 
-			if ((GetNode<RayCast2D>("RayCastLeft").IsColliding() || GetNode<RayCast2D>("RayCastLeft2").IsColliding()) && Input.IsActionPressed("move_left") && velocity.Y > 0)
+			if (GetNode<RayCast2D>("RayCastLeft").IsColliding() && Input.IsActionPressed("move_left") && velocity.Y > 0)
 			{
 				velocity.Y += (gravity - wallGravity) * (float)delta;
 				animatedSprite2D.Play("WallHug");
 			}
-			else if ((GetNode<RayCast2D>("RayCastRight").IsColliding() || GetNode<RayCast2D>("RayCastRight2").IsColliding()) && Input.IsActionPressed("move_right") && velocity.Y > 0)
+			else if (GetNode<RayCast2D>("RayCastRight").IsColliding() && Input.IsActionPressed("move_right") && velocity.Y > 0)
 			{
 				velocity.Y += (gravity - wallGravity) * (float)delta;
 				animatedSprite2D.Play("WallHug");
@@ -163,9 +163,11 @@ public partial class player : CharacterBody2D
 
 			if (!IsOnFloor() && coyoteTimer.IsStopped())
 			{
-				hasDoubleJump = false;
+				hasDoubleJump=false;
 			}
 		}
+
+
 
 
 
@@ -182,16 +184,18 @@ public partial class player : CharacterBody2D
 		}
 
 
-
+		// Handle movement direction and speed
 		if (direction != Vector2.Zero)
 		{
-			velocity.X = Mathf.Lerp(velocity.X, direction.X * Speed, acceleration); // om denna kraschar skiten sa....// den gjorde det....
+			isSprinting = Input.IsActionPressed("sprint");
+			float currentSpeed = isSprinting ? sprintSpeed : walkSpeed;
+
+			velocity.X = Mathf.Lerp(velocity.X, direction.X * currentSpeed, acceleration);
 			FlipSprite(direction);
 		}
 		else
-		//velocity.x = Mathf.Lerp(0, velocity.x, Mathf.Pow(2, -10 * (float)delta)); 
 		{
-			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); //This is friction
+			velocity.X = Mathf.Lerp(0, velocity.X, Mathf.Pow(friction, -10 * (float)delta)); // This is friction
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -maxHorizontalSpeed, maxHorizontalSpeed);
@@ -201,10 +205,9 @@ public partial class player : CharacterBody2D
 
 
 		//Handles walljump
-		if (Input.IsActionJustPressed("jump") && !IsOnFloor())
-		{
-			GD.Print(GetNode<RayCast2D>("RayCastLeft2").IsColliding());
-			if (Input.IsActionJustPressed("jump")  && !IsOnFloor() && (GetNode<RayCast2D>("RayCastLeft").IsColliding() || GetNode<RayCast2D>("RayCastLeft2").IsColliding()))
+		if (Input.IsActionJustPressed("jump") && !IsOnFloor() )
+			{
+			if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastLeft").IsColliding() && !IsOnFloor())
 			{
 				if (!wasLastJumpWallRight)
 				{
@@ -216,7 +219,7 @@ public partial class player : CharacterBody2D
 				}
 
 			}
-			else if (Input.IsActionJustPressed("jump") && !IsOnFloor() && (GetNode<RayCast2D>("RayCastRight").IsColliding() || GetNode<RayCast2D>("RayCastRight2").IsColliding()))
+			else if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RayCastRight").IsColliding() && !IsOnFloor())
 			{
 				if (!wasLastJumpWallLeft)
 				{
@@ -229,7 +232,7 @@ public partial class player : CharacterBody2D
 				}
 
 			}
-
+			
 		}
 
 		if (wasOnFloor)
@@ -287,7 +290,7 @@ public partial class player : CharacterBody2D
 			wasLastJumpWallJump = false;
 		}
 
-
+	  
 	}
 
 
@@ -313,16 +316,9 @@ public partial class player : CharacterBody2D
 	{
 
 		var blackScreen = GetNode<ColorRect>("/root/Level1/CanvasLayer/ColorRect");
-		if (blackScreen is not null)
-		{
-			blackScreen.Visible = true;
-		}
-		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
-
-		if (blackScreen is not null)
-		{
-			blackScreen.Visible = false;
-		}
+		blackScreen.Visible = true;
+	   await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+		blackScreen.Visible = false;
 
 		foreach (var child in GetTree().Root.GetChildren())
 		{
@@ -355,7 +351,7 @@ public partial class player : CharacterBody2D
 			{
 				GetTree().ChangeSceneToFile("res://Scenes/UI/menu.tscn");
 			}
-
+			   
 	}
 
 }

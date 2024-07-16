@@ -15,6 +15,7 @@ layer_0/tile_data = PackedInt32Array(655360, 65539, 1, 589824, 65539, 1, 524288,
 
 [node name="spike_enemy" parent="." index="5" instance=ExtResource("3_v7cnw")]
 position = Vector2(248, 80)
+rotation = -0.102136
 
 [node name="spike_enemy6" parent="." index="6" instance=ExtResource("3_v7cnw")]
 position = Vector2(192, 104)

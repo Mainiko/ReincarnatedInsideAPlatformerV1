@@ -18,7 +18,6 @@ target_level_pass = "res://Scenes/Levels/World1/World1Level6.tscn"
 [node name="spike_enemy6" parent="." index="8" instance=ExtResource("2_u4bhi")]
 position = Vector2(183, 176)
 rotation = -0.0150954
-scale = Vector2(1, 1)
 
 [node name="spike_enemy3" parent="." index="9" instance=ExtResource("2_u4bhi")]
 position = Vector2(120, 160)

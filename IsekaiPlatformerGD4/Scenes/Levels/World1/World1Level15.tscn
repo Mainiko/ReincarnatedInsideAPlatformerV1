@@ -39,4 +39,3 @@ timeBeforeDisappear = 0
 
 [node name="schrodingers_box" parent="." index="14" instance=ExtResource("2_h6yl0")]
 position = Vector2(184, 136)
-timeBeforeDisappear = 50

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcifebu8a76mb"]
+
+[ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_231n7"]
+[ext_resource type="PackedScene" uid="uid://nawchfsltjvm" path="res://Scenes/Enemies/walking_enemy.tscn" id="2_a8qv3"]
+
+[node name="Level1" instance=ExtResource("1_231n7")]
+
+[node name="TileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(720910, 65539, 1, 720911, 65539, 1, 720912, 65539, 1, 524295, 65539, 0, 524296, 65539, 0, 524297, 65539, 0, 524298, 65539, 0, 524299, 65539, 0, 655361, 65539, 0, 655362, 65539, 0, 655363, 65539, 0, 720897, 65539, 1, 720898, 65539, 1, 720899, 65539, 1, 655374, 65539, 0, 655375, 65539, 0, 655376, 65539, 0, 589831, 65539, 1, 655367, 65539, 1, 720903, 65539, 1, 720904, 65539, 1, 720905, 65539, 1, 720906, 65539, 1, 720907, 65539, 1, 655371, 65539, 1, 589835, 65539, 1, 589834, 65539, 1, 589833, 65539, 1, 589832, 65539, 1, 655368, 65539, 1, 655369, 65539, 1, 655370, 65539, 1)
+
+[node name="player" parent="." index="5"]
+position = Vector2(40, 160)
+
+[node name="Door" parent="." index="6"]
+position = Vector2(248, 160)
+target_level_pass = "res://Scenes/Levels/World1/World1Level24.tscn"
+
+[node name="walking_enemy" parent="." index="8" instance=ExtResource("2_a8qv3")]
+position = Vector2(144, 112)

@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqqdr771rktkb"]
+
+[ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_o1bk3"]
+[ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="2_krmhl"]
+[ext_resource type="PackedScene" uid="uid://bjvfxtva7483" path="res://Scenes/Extra/box_that_disappears.tscn" id="3_xo6hs"]
+
+[node name="Level1" instance=ExtResource("1_o1bk3")]
+
+[node name="TileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(131080, 65539, 1, 131081, 65539, 1, 131082, 65539, 1, 131079, 65539, 1, 196615, 65539, 1, 262151, 65539, 1, 327687, 65539, 1, 589831, 65539, 1, 655367, 65539, 1, 720903, 65539, 1, 131083, 65539, 1, 196619, 65539, 1, 262155, 65539, 1, 327691, 65539, 1, 589835, 65539, 1, 655371, 65539, 1, 720907, 65539, 1, 131076, 65539, 1, 196612, 65539, 1, 393220, 65539, 1, 458756, 65539, 1, 524292, 65539, 1, 589828, 65539, 1, 655364, 65539, 1, 720900, 65539, 1, 131086, 65539, 1, 196622, 65539, 1, 393230, 65539, 1, 458766, 65539, 1, 524302, 65539, 1, 589838, 65539, 1, 655374, 65539, 1, 720910, 65539, 1, 131078, 65539, 1, 131077, 65539, 1, 131084, 65539, 1, 131085, 65539, 1, 655368, 65539, 0, 655369, 65539, 0, 655370, 65539, 0, 720904, 65539, 1, 720905, 65539, 1, 720906, 65539, 1, 393223, 65539, 1, 393227, 65539, 1)
+
+[node name="player" parent="." index="5"]
+position = Vector2(152, 160)
+
+[node name="Door" parent="." index="6"]
+position = Vector2(152, 32)
+target_level_pass = "res://Scenes/Levels/World1/World1Level27.tscn"
+
+[node name="spike_enemy" parent="." index="8" instance=ExtResource("2_krmhl")]
+position = Vector2(120, 144)
+
+[node name="spike_enemy2" parent="." index="9" instance=ExtResource("2_krmhl")]
+position = Vector2(184, 144)
+
+[node name="spike_enemy3" parent="." index="10" instance=ExtResource("2_krmhl")]
+position = Vector2(72, 96)
+
+[node name="spike_enemy4" parent="." index="11" instance=ExtResource("2_krmhl")]
+position = Vector2(232, 96)
+
+[node name="spike_enemy5" parent="." index="12" instance=ExtResource("2_krmhl")]
+position = Vector2(72, 64)
+rotation = -3.0922
+
+[node name="spike_enemy6" parent="." index="13" instance=ExtResource("2_krmhl")]
+position = Vector2(232, 64)
+rotation = 3.1339
+
+[node name="spike_enemy7" parent="." index="14" instance=ExtResource("2_krmhl")]
+position = Vector2(72, 32)
+
+[node name="spike_enemy8" parent="." index="15" instance=ExtResource("2_krmhl")]
+position = Vector2(232, 32)
+
+[node name="spike_enemy9" parent="." index="16" instance=ExtResource("2_krmhl")]
+position = Vector2(120, 112)
+rotation = -3.17739
+
+[node name="spike_enemy10" parent="." index="17" instance=ExtResource("2_krmhl")]
+position = Vector2(184, 112)
+rotation = -3.12655
+
+[node name="Box that disappears" parent="." index="18" instance=ExtResource("3_xo6hs")]
+position = Vector2(40, 104)
+
+[node name="Box that disappears2" parent="." index="19" instance=ExtResource("3_xo6hs")]
+position = Vector2(264, 104)
+
+[node name="Box that disappears3" parent="." index="20" instance=ExtResource("3_xo6hs")]
+position = Vector2(24, 72)
+
+[node name="Box that disappears4" parent="." index="21" instance=ExtResource("3_xo6hs")]
+position = Vector2(280, 72)

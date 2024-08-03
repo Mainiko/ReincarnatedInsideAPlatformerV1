@@ -1,11 +1,15 @@
 using Godot;
+using IsekaiPlatformerGD4.Scripts;
 using System;
 using System.IO;
 
 public partial class Door : Area2D
 {
 	[Export]private string target_level_pass = "";
+	[Export]private string this_level_pass = "";
 
+	private Label _deathCountLabel;
+	private PackedScene _uiOverlayScene;
 
 	private void _on_body_entered(CharacterBody2D body) // Get called when a chacarterBody2D collides with spike
 	{
@@ -23,8 +27,10 @@ public partial class Door : Area2D
 
 			else
 			{
+				LevelHandeler.UpdateLevels(this_level_pass, target_level_pass);
 				GD.Print("fungarar ish");
-				GetTree().ChangeSceneToFile(target_level_pass);
+				GetTree().ChangeSceneToFile("res://Scenes/UI/levelcompleted.tscn");
+
 
 			}
 		}

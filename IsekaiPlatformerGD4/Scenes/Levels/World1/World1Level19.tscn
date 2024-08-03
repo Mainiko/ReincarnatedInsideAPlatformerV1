@@ -20,6 +20,7 @@ position = Vector2(32, 176)
 [node name="Door" parent="." index="6"]
 position = Vector2(288, 48)
 target_level_pass = "res://Scenes/Levels/World1/World1Level20.tscn"
+this_level_pass = "res://Scenes/Levels/World1/World1Level19.tscn"
 
 [node name="walking_enemy" parent="." index="8" instance=ExtResource("2_24jax")]
 position = Vector2(42, 97)

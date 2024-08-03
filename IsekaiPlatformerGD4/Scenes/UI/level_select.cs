@@ -56,10 +56,10 @@ public partial class level_select : Control
 				GetTree().ChangeSceneToFile("res://Scenes/Levels/bossStageTest1.tscn");
 				break;
 			case 10:
-                GetTree().ChangeSceneToFile("res://Scenes/Levels/bossStageTest2.tscn");
+				GetTree().ChangeSceneToFile("res://Scenes/Levels/bossStageTest2.tscn");
 				break;
 
-            default:
+			default:
 				break;
 		}
 

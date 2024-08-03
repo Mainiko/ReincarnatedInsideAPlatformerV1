@@ -27,3 +27,4 @@ position = Vector2(224, 152)
 
 [node name="Door" parent="." index="10"]
 target_level_pass = "res://Scenes/Levels/World1/World1Level11.tscn"
+this_level_pass = "res://Scenes/Levels/World1/World1Level10.tscn"

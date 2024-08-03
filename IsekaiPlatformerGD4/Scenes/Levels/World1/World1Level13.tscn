@@ -14,6 +14,7 @@ position = Vector2(32, 176)
 [node name="Door" parent="." index="6"]
 position = Vector2(296, 48)
 target_level_pass = "res://Scenes/Levels/World1/World1Level14.tscn"
+this_level_pass = "res://Scenes/Levels/World1/World1Level13.tscn"
 
 [node name="schrodingers_box" parent="." index="8" instance=ExtResource("2_s75w7")]
 position = Vector2(88, 152)

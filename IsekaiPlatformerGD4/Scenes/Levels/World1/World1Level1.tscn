@@ -30,3 +30,4 @@ position = Vector2(24, 172)
 [node name="Door" parent="." index="11"]
 position = Vector2(289, 175)
 target_level_pass = "res://Scenes/Levels/World1/World1Level2.tscn"
+this_level_pass = "res://Scenes/Levels/World1/World1Level1.tscn"

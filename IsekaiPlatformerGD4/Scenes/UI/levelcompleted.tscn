@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqx8r44now8ju"]
+
+[ext_resource type="Script" path="res://Scenes/UI/levelcompleted.cs" id="1_ulfml"]
+[ext_resource type="Texture2D" uid="uid://dbn4et3lt4nk7" path="res://Assets/Sprites/Backgrounds/mainiko_dont_tell_me_i_got_reincarnated_inside_a_platformer_f59cf096-9389-4ab0-a9d8-e56911158d43.png" id="2_l67v8"]
+
+[node name="Level Completed" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ulfml")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 322.0
+offset_bottom = 180.0
+texture = ExtResource("2_l67v8")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 8.0
+offset_right = 225.0
+offset_bottom = 34.0
+text = "Level Completed"
+
+[node name="DeathCountLable" type="Label" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 88.0
+offset_right = 269.0
+offset_bottom = 152.0
+text = "Well done! You died x times!"
+
+[node name="PlayAgainButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 112.0
+offset_right = 151.0
+offset_bottom = 143.0
+text = "Play again"
+
+[node name="NextLevelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 112.0
+offset_right = 248.0
+offset_bottom = 143.0
+text = "Next level"
+
+[connection signal="pressed" from="PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]

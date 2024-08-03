@@ -19,6 +19,7 @@ position = Vector2(160, 176)
 rotation = -0.00695073
 scale = Vector2(0.990259, 0.99376)
 target_level_pass = "res://Scenes/Levels/World1/World1Level19.tscn"
+this_level_pass = "res://Scenes/Levels/World1/World1Level18.tscn"
 
 [node name="spike_enemy" parent="." index="8" instance=ExtResource("2_tnhos")]
 position = Vector2(56, 80)

@@ -1,4 +1,5 @@
 using Godot;
+using IsekaiPlatformerGD4.Scripts;
 using System;
 using System.Diagnostics.Tracing;
 using System.Text.RegularExpressions;
@@ -315,6 +316,9 @@ public partial class player : CharacterBody2D
 
 	private async void PlayerDie()
 	{
+
+		DeathCounter.IncrementDeathCount();
+		GD.Print("DeathCount" + DeathCounter.DeathCount);
 
 		var blackScreen = GetNode<ColorRect>("/root/Level1/CanvasLayer/ColorRect");
 		blackScreen.Visible = true;

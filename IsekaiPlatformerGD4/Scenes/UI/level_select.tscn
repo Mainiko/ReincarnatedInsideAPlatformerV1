@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/UI/level_select.cs" id="1_6hfag"]
 
 [sub_resource type="SystemFont" id="SystemFont_hrkjl"]
+subpixel_positioning = 0
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3

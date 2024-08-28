@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=6 format=3 uid="uid://c18q7b77gfsuc"]
 
 [ext_resource type="Texture2D" uid="uid://bp71rulo1mj47" path="res://Assets/Sprites/Tiles/Isekai_Tiles_1/tileset_Isekai_Tiles_1.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://bdigmbtguwgmp" path="res://Assets/Sprites/Tiles/DirtGrassTiles/tileset_DirtGrassV3.png" id="2_tubx1"]
+[ext_resource type="Texture2D" uid="uid://dcmjxrocrlgvq" path="res://Assets/Sprites/Tiles/DirtGrassTiles/NewGrassTilesImageV1.png" id="2_xm2dx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xy4wd"]
 texture = ExtResource("1")
@@ -222,7 +222,7 @@ texture = ExtResource("1")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dtl04"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3nyrv"]
-texture = ExtResource("2_tubx1")
+texture = ExtResource("2_xm2dx")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0

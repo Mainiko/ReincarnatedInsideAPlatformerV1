@@ -1,15 +1,100 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce88ag4tnpq8t"]
+[gd_scene load_steps=18 format=3 uid="uid://ce88ag4tnpq8t"]
 
 [ext_resource type="Script" path="res://Scenes/Extra/Door.cs" id="1_mntbs"]
 [ext_resource type="Texture2D" uid="uid://ne5yu3nln78h" path="res://Assets/Sprites/Tilemap/tiles.png" id="2_kv3yb"]
+[ext_resource type="Texture2D" uid="uid://dhfs2x48o7mge" path="res://Assets/Sprites/Portals/portal v1.png" id="3_68ywt"]
+[ext_resource type="Texture2D" uid="uid://cn4gyvkommm8a" path="res://Assets/Sprites/Portals/Portal v2 animation v1 sheet_25x35.png" id="4_oxfjr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5t7cy"]
-size = Vector2(18, 18)
+size = Vector2(18, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo336"]
+atlas = ExtResource("4_oxfjr")
+region = Rect2(0, 0, 25, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8v85"]
+atlas = ExtResource("4_oxfjr")
+region = Rect2(25, 0, 25, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bbfk"]
+atlas = ExtResource("4_oxfjr")
+region = Rect2(50, 0, 25, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cs4u"]
+atlas = ExtResource("4_oxfjr")
+region = Rect2(75, 0, 25, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngoag"]
+atlas = ExtResource("4_oxfjr")
+region = Rect2(0, 35, 25, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m074y"]
+atlas = ExtResource("4_oxfjr")
+region = Rect2(25, 35, 25, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3go0y"]
+atlas = ExtResource("4_oxfjr")
+region = Rect2(50, 35, 25, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwv2m"]
+atlas = ExtResource("4_oxfjr")
+region = Rect2(75, 35, 25, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_los5o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo336")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8v85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bbfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cs4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngoag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m074y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3go0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwv2m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_6yll2"]
+offsets = PackedFloat32Array(0, 0.79661, 0.988701)
+colors = PackedColorArray(0.501961, 0.203922, 0.541176, 0.462745, 0.466667, 0.101961, 0.278431, 0.529412, 0.466667, 0.101961, 0.278431, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_whoof"]
+gradient = SubResource("Gradient_6yll2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vj3k"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 8.72
+particle_flag_disable_z = true
+gravity = Vector3(0, -50, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_whoof")
 
 [node name="Door" type="Area2D"]
 script = ExtResource("1_mntbs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(0, -9)
 texture = ExtResource("2_kv3yb")
@@ -18,7 +103,25 @@ region_rect = Rect2(200, 120, 18, 18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -9)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_5t7cy")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -16)
+texture = ExtResource("3_68ywt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_los5o")
+autoplay = "default"
+frame_progress = 0.0220931
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -21)
+process_material = SubResource("ParticleProcessMaterial_5vj3k")
+trail_lifetime = 0.8
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

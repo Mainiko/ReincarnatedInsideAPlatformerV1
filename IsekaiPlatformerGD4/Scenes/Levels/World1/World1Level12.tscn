@@ -13,16 +13,8 @@ point_count = 2
 
 [node name="Level1" instance=ExtResource("1_4utvp")]
 
-[node name="TileMap" parent="." index="1"]
-layer_0/tile_data = PackedInt32Array(720910, 65539, 1, 720911, 65539, 1, 720912, 65539, 1, 720899, 65539, 0, 720898, 65539, 0, 720897, 65539, 0, 720896, 65539, 0, 0, 65536, 1, 65536, 65536, 1, 131072, 65536, 1, 196608, 65536, 1, 262144, 65536, 1, 327680, 65536, 1, 393216, 65536, 1, 458752, 65536, 1, 524288, 65536, 1, 589824, 65536, 1, 655360, 65536, 1, 393230, 65539, 0, 393231, 65539, 0, 393232, 65539, 0, 458766, 65539, 1, 524302, 65539, 1, 589838, 65539, 1, 655374, 65539, 1, 524303, 65539, 1, 458767, 65539, 1, 589839, 65539, 1, 655375, 65539, 1, 458768, 65539, 1, 524304, 65539, 1, 589840, 65539, 1, 655376, 65539, 1, 720900, 65539, 0)
-
-[node name="player" parent="." index="5"]
-position = Vector2(32, 168)
-
-[node name="Door" parent="." index="6"]
-position = Vector2(248, 96)
-target_level_pass = "res://Scenes/Levels/World1/World1Level13.tscn"
-this_level_pass = "res://Scenes/Levels/World1/World1Level12.tscn"
+[node name="TileMap" parent="." index="3"]
+layer_0/tile_data = PackedInt32Array(720910, 3, 2, 720911, 65539, 2, 720912, 131075, 2, 720899, 65539, 3, 720898, 65539, 3, 720897, 65539, 3, 720896, 262147, 3, 0, 196611, 0, 65536, 196611, 1, 131072, 196611, 1, 196608, 196611, 1, 262144, 196611, 1, 327680, 196611, 1, 393216, 196611, 1, 458752, 196611, 1, 524288, 196611, 1, 589824, 196611, 1, 655360, 196611, 1, 393230, 3, 0, 393231, 65539, 0, 393232, 131075, 0, 458766, 3, 1, 524302, 3, 1, 589838, 3, 1, 655374, 3, 1, 524303, 65539, 1, 458767, 65539, 1, 589839, 65539, 1, 655375, 65539, 1, 458768, 131075, 1, 524304, 131075, 1, 589840, 131075, 1, 655376, 131075, 1, 720900, 131075, 3)
 
 [node name="Box4" parent="." index="7" instance=ExtResource("2_d7woi")]
 position = Vector2(72, 40)
@@ -51,3 +43,11 @@ position = Vector2(0, -8)
 [node name="BirdEnemy" parent="." index="11" instance=ExtResource("4_uiefu")]
 position = Vector2(144, 56)
 curve = SubResource("Curve2D_2w6fa")
+
+[node name="player" parent="." index="12"]
+position = Vector2(32, 168)
+
+[node name="Door" parent="." index="13"]
+position = Vector2(248, 96)
+target_level_pass = "res://Scenes/Levels/World1/World1Level13.tscn"
+this_level_pass = "res://Scenes/Levels/World1/World1Level12.tscn"

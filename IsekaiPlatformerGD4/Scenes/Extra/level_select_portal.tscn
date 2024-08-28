@@ -7,7 +7,7 @@
 offsets = PackedFloat32Array(0, 0.79661, 0.988701)
 colors = PackedColorArray(0.501961, 0.203922, 0.541176, 0.462745, 0.466667, 0.101961, 0.278431, 0.529412, 0.466667, 0.101961, 0.278431, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_whoof"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4y3e4"]
 gradient = SubResource("Gradient_cbsd7")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7vlmk"]
@@ -19,7 +19,7 @@ gravity = Vector3(0, -50, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_max = 4.0
-color_ramp = SubResource("GradientTexture1D_whoof")
+color_ramp = SubResource("GradientTexture1D_4y3e4")
 
 [sub_resource type="Theme" id="Theme_e6e1q"]
 

@@ -21,10 +21,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_haq86"]
-size = Vector2(18, 18.1236)
+size = Vector2(16, 12.6236)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78dwn"]
-size = Vector2(22.6875, 16.9859)
+size = Vector2(18, 12.1109)
 
 [node name="walking_spike_enemy" type="CharacterBody2D"]
 script = ExtResource("1_krdfc")

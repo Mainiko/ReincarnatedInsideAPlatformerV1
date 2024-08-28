@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ddney0wmsrcvx"]
 
-[ext_resource type="Texture2D" uid="uid://dv7g16pwxcx8h" path="res://Assets/Sprites/Characters/character_0013.png" id="1_loifl"]
+[ext_resource type="Texture2D" uid="uid://c47umkro2n118" path="res://Assets/Sprites/Environment/Blocks/Newblock.png" id="1_l2xov"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yh0al"]
 size = Vector2(16, 16)
@@ -11,4 +11,5 @@ size = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_yh0al")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_loifl")
+texture_filter = 1
+texture = ExtResource("1_l2xov")

@@ -320,12 +320,12 @@ public partial class player : CharacterBody2D
 		DeathCounter.IncrementDeathCount();
 		GD.Print("DeathCount" + DeathCounter.DeathCount);
 
-		var blackScreen = GetNode<ColorRect>("/root/Level1/CanvasLayer/ColorRect");
-		blackScreen.Visible = true;
+		//var blackScreen = GetNode<ColorRect>("/root/Level1/CanvasLayer/ColorRect");
+		//blackScreen.Visible = true;
 	   await ToSignal(GetTree().CreateTimer(0.1), "timeout");
-		blackScreen.Visible = false;
+		//blackScreen.Visible = false;
 
-		foreach (var child in GetTree().Root.GetChildren())
+		foreach (var child in GetTree().CurrentScene.GetChildren())
 		{
 			GetTree().QueueDelete(child);
 		}

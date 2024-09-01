@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://nawchfsltjvm" path="res://Scenes/Enemies/walking_enemy.tscn" id="2_24jax"]
 [ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="3_5nebj"]
 
-[node name="Level1" instance=ExtResource("1_46gq6")]
+[node name="Level2" instance=ExtResource("1_46gq6")]
 
 [node name="TextureRect" parent="." index="1"]
 offset_left = 5.0

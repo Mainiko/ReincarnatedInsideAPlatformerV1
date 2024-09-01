@@ -24,7 +24,7 @@ color = Color(0.384314, 0.180392, 0.435294, 0.439216)
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[node name="Level1" instance=ExtResource("1_6c8dg")]
+[node name="Level3" instance=ExtResource("1_6c8dg")]
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 offset_left = -8.0

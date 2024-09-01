@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_fu6pj"]
 [ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="2_q3ap6"]
 
-[node name="Level1" instance=ExtResource("1_fu6pj")]
+[node name="Level3" instance=ExtResource("1_fu6pj")]
 
 [node name="TextureRect" parent="." index="1"]
 anchors_preset = -1

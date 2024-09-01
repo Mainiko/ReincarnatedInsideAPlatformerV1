@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b3kgimmbqp6ts" path="res://Scenes/Levels/World1/level_1.tscn" id="1_2hfie"]
 [ext_resource type="PackedScene" uid="uid://bn6ou3uctyhlm" path="res://Scenes/Enemies/spike_enemy.tscn" id="2_tnhos"]
 
-[node name="Level1" instance=ExtResource("1_2hfie")]
+[node name="Level3" instance=ExtResource("1_2hfie")]
 
 [node name="TextureRect" parent="." index="1"]
 rotation = 0.000337391

@@ -4,12 +4,12 @@
 
 [node name="BossState2" instance=ExtResource("1_14oq5")]
 
-[node name="CollisionShape2D" parent="HitboxDeath" index="0"]
-position = Vector2(1.5, -8)
-
-[node name="AnimatedSprite2D" parent="." index="6"]
+[node name="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(-0.5, 0)
 scale = Vector2(0.683333, 1)
+
+[node name="CollisionShape2D" parent="HitboxDeath" index="0"]
+position = Vector2(1.5, -8)
 
 [node name="RayCastLeft" parent="." index="7"]
 target_position = Vector2(-25, 0)

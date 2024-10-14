@@ -59,10 +59,12 @@ public partial class bossTest1 : CharacterBody2D
 				}
 				else
 				{
+					direction *= -1;
 					confused = true;
-
+					animatedSprite2D.Play("Shoot");
 					if (GetNode<RayCast2D>("RayCastRight").IsColliding())
 					{
+						animatedSprite2D.FlipH = false;
 						if (shotAlternator)
 						{
 							switch (bossStage)
@@ -104,6 +106,7 @@ public partial class bossTest1 : CharacterBody2D
 
 					else if (GetNode<RayCast2D>("RayCastLeft").IsColliding())
 					{
+						animatedSprite2D.FlipH = true;
 
 						if (shotAlternator)
 						{
@@ -146,7 +149,6 @@ public partial class bossTest1 : CharacterBody2D
 					spikeIsActive = false;
 					chargeMode = false;
 					confused = false;
-					direction *= -1;
 					Speed = 100;
 					//GD.Print("My speed" + Speed);
 					//GD.Print("On wall?" + IsOnWall());
@@ -159,8 +161,13 @@ public partial class bossTest1 : CharacterBody2D
 				animatedSprite2D.Play("Walking");
 				//GD.Print("outside of chargemode ");
 				direction *= -1;
+
 				Speed = 100;
 			}
+
+		 
+
+
 		}
 
 		if (spikeIsActive)
@@ -179,6 +186,13 @@ public partial class bossTest1 : CharacterBody2D
 		Velocity = velocity;
 
 		MoveAndSlide();
+
+		if (direction.X > 0)
+		{
+			animatedSprite2D.FlipH = true;
+		}
+		else
+			animatedSprite2D.FlipH = false;
 	}
 
 	private async void _on_hitbox_body_entered(CharacterBody2D body)
@@ -300,6 +314,7 @@ public partial class bossTest1 : CharacterBody2D
 				if (direction.X > 0)
 				{
 					direction.X *= -1;
+
 				}
 
 				else if (direction.X < 0)
@@ -404,10 +419,10 @@ public partial class bossTest1 : CharacterBody2D
 			for (int i = 0; i < stage; i++)
 			{
 				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
-				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemySlimeBossBaby.tscn").Instantiate();
+				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemy.tscn").Instantiate();
 				Vector2 direction = new Vector2(-1, 0);
 				instance.Call("SetDirection", direction, 180);
-				GetTree().Root.AddChild(instance);
+				GetTree().CurrentScene.AddChild(instance);
 				var Slimeposition = this.Position;
 				instance.GlobalPosition = new Vector2(Slimeposition.X - 50, Slimeposition.Y + 5);
 				playSound("baby");
@@ -437,10 +452,10 @@ public partial class bossTest1 : CharacterBody2D
 			for (int i = 0; i < stage; i++)
 			{
 				await ToSignal(GetTree().CreateTimer(0.5), "timeout");
-				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemySlimeBossBaby.tscn").Instantiate();
+				Node2D instance = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/walking_enemy.tscn").Instantiate();
 				Vector2 direction = new Vector2(1, 0);
 				instance.Call("SetDirection", direction, 180);
-				GetTree().Root.AddChild(instance);
+				GetTree().CurrentScene.AddChild(instance);
 				var Slimeposition = this.Position;
 				instance.GlobalPosition = new Vector2(Slimeposition.X + 50, Slimeposition.Y + 5);
 				playSound("baby");

@@ -2402,11 +2402,11 @@ script = ExtResource("1_l2a8q")
 texture_filter = 1
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_dtfsi")
-animation = &"Idle"
+animation = &"Shoot"
 autoplay = "Walking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 9.5)
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_npr1r")
 debug_color = Color(0, 0.847059, 0.996078, 0.862745)
 

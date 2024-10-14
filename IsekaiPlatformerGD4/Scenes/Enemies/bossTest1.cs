@@ -267,7 +267,7 @@ public partial class bossTest1 : CharacterBody2D
 
 			Speed = 0;
 
-			await ToSignal(GetTree().CreateTimer(1.0), "timeout");
+			await ToSignal(GetTree().CreateTimer(0.3), "timeout");
 
 			chargeMode = true;
 			spikeIsActive = true;

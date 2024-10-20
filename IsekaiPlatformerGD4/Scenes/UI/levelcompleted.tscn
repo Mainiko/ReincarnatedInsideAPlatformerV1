@@ -19,20 +19,28 @@ offset_bottom = 180.0
 texture = ExtResource("2_l67v8")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="LevelCompletedLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 96.0
+offset_left = 40.0
 offset_top = 8.0
-offset_right = 225.0
+offset_right = 272.0
 offset_bottom = 34.0
 text = "Level Completed"
+
+[node name="TimeCountLable" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 88.0
+offset_right = 304.0
+offset_bottom = 114.0
+text = "And finished in x time"
 
 [node name="DeathCountLable" type="Label" parent="."]
 layout_mode = 0
 offset_left = 56.0
-offset_top = 88.0
-offset_right = 269.0
-offset_bottom = 152.0
+offset_top = 56.0
+offset_right = 273.0
+offset_bottom = 82.0
 text = "Well done! You died x times!"
 
 [node name="PlayAgainButton" type="Button" parent="."]

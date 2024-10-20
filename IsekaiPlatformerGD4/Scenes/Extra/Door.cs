@@ -29,9 +29,9 @@ public partial class Door : Area2D
 			{
 				LevelHandeler.UpdateLevels(this_level_pass, target_level_pass);
 				GD.Print("fungarar ish");
+				var player = GetNode<CharacterBody2D>(body.GetPath());
+				player.Call("StopTimer");
 				GetTree().ChangeSceneToFile("res://Scenes/UI/levelcompleted.tscn");
-
-
 			}
 		}
 	}

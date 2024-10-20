@@ -55,6 +55,7 @@ public partial class player : CharacterBody2D
 
 	private float myPosition = 0;
 	private float myLastPosition = 0;
+	private float gameTime = 0.0f;
 	private bool isSprinting = false;
 	[Export]private float walkSpeed = 125.0f;
 	[Export]private float sprintSpeed = 200.0f;
@@ -62,7 +63,6 @@ public partial class player : CharacterBody2D
 	[Export]private int dashSpeed = 1500;
 
 	[Export] private int defaultHazardMask = 0;
-
 
 	public override void _Ready()
 	{
@@ -75,6 +75,8 @@ public partial class player : CharacterBody2D
 
 	public override  void _PhysicsProcess(double delta)
 	{
+
+		gameTime += (float)delta;
 
 		Vector2 velocity = Velocity;
 		Vector2 direction = GetDirectionVector();
@@ -359,4 +361,8 @@ public partial class player : CharacterBody2D
 			   
 	}
 
+	public void StopTimer()
+	{
+		GameTimer.OnGameFinish(gameTime);
+	}
 }
